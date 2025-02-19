@@ -1,1 +1,1 @@
-# octopath-handbook
+# Octopath Handbook
