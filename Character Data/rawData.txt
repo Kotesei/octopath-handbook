@@ -2,3 +2,6 @@ Odio O;Male;Warrior;★★★★★;Fame;Sword;Dark;Yūichi Nakamura;Battle Skil
 ===============
 Sazantos;Male;Warrior;★★★★★★;Power;Sword;Light;Fire;Jun Fukushima
 ====
+Goku;Male;Warrior;★★★★★★★
+====
+Vegeta;Male;Warrior;★★★★★
