@@ -18,7 +18,16 @@ const sortUnits = (travelers, sortingType, reverseOrder = false) =>
   );
 
 // Filters through travelers, takes a condition (rank for example) and value
-const filterUnits = (travelers, condition, value) =>
-  travelers.filter((traveler) => traveler[condition].length === value);
-
+const filterUnits = (travelers, condition, value) => {
+  switch (condition) {
+    case "rank":
+      return travelers.filter(
+        (traveler) => traveler[condition].length === value
+      );
+    case "type":
+      return travelers.filter((traveler) =>
+        traveler[condition].includes(value)
+      );
+  }
+};
 export { reverseSort, lookupUnit, indexOfUnit, sortUnits, filterUnits };
