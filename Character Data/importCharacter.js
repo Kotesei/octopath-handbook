@@ -19,6 +19,7 @@ export class Traveler {
     this.name = name;
     this.gender = gender;
     this.job = job;
+    // Create min - max for ranks since some characters can rank up
     this.rank = rank;
     this.influence = influence;
     // Checks for types starting from index 5

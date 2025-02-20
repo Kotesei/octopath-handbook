@@ -5,3 +5,5 @@ Sazantos;Male;Warrior;★★★★★★;Power;Sword;Light;Fire;Jun Fukushima
 Goku;Male;Warrior;★★★★★★★
 ====
 Vegeta;Male;Warrior;★★★★★
+==== 
+Sample Character;Male;Ghost;★;Fame;Dark
