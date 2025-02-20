@@ -12,12 +12,17 @@ const indexOfUnit = (unit) =>
 
 // Sorts the travelers by the type in either descending ascending orders
 const sortUnits = (sortingType, reverseOrder = false) =>
-  allTravelers.sort((a, b) =>
-    // Sorts from highest to lowest OR lowest to highest if reverse passed through
-    reverseOrder
-      ? a[sortingType].length - b[sortingType].length
-      : b[sortingType].length - a[sortingType].length
-  );
+  filteredUnits && filteredUnits.length > 0 // Check if filteredUnits is not empty
+    ? filteredUnits.sort((a, b) =>
+        reverseOrder
+          ? a[sortingType].length - b[sortingType].length // For array-like properties (e.g., type)
+          : b[sortingType].length - a[sortingType].length
+      )
+    : allTravelers.sort((a, b) =>
+        reverseOrder
+          ? a[sortingType].length - b[sortingType].length
+          : b[sortingType].length - a[sortingType].length
+      );
 
 // Filters through travelers, takes a condition (rank for example) and value
 const filterUnits = (condition, value) => {
