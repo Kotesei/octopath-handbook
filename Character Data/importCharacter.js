@@ -14,13 +14,17 @@ export class Traveler {
     const awakeningAccessoryIndex = data.findIndex(
       (e) => e === "Awakening Accessory"
     );
+
     // Gets the main information that doesn't change
     const [name, gender, job, rank, influence] = data;
+    const [minRank, maxRank] = rank.split("|");
+    const rankRange = [];
+    for (let i = minRank.length; i <= maxRank?.length; i++) rankRange.push(i);
     this.name = name;
     this.gender = gender;
     this.job = job;
     // Create min - max for ranks since some characters can rank up
-    this.rank = rank;
+    this.rank = rankRange;
     this.influence = influence;
     // Checks for types starting from index 5
     let typeIndex = 5;
