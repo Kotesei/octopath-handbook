@@ -6,10 +6,7 @@
       "job": "Cleric",
       "rank": "★★★★★",
       "influence": "Wealth",
-      "types": [
-        "Staves",
-        "Ice"
-      ],
+      "types": ["Staves", "Ice"],
       "va": "Kenjirō Tsuda",
       "battleskills": [
         {
@@ -108,10 +105,7 @@
       "job": "Cleric",
       "rank": "★★★★/★★★★★",
       "influence": "Fame",
-      "types": [
-        "Staves",
-        "Light"
-      ],
+      "types": ["Staves", "Light"],
       "va": "Yuuya Hirose",
       "battleskills": [
         {
@@ -210,10 +204,7 @@
       "job": "Cleric",
       "rank": "★★★★/★★★★★",
       "influence": "Fame",
-      "types": [
-        "Staves",
-        "Light"
-      ],
+      "types": ["Staves", "Light"],
       "va": "Ai Kayano",
       "battleskills": [
         {
@@ -312,10 +303,7 @@
       "job": "Cleric",
       "rank": "★★★★/★★★★★",
       "influence": "Power",
-      "types": [
-        "Staves",
-        "Wind"
-      ],
+      "types": ["Staves", "Wind"],
       "va": "Sayaka Senbongi",
       "battleskills": [
         {
@@ -414,10 +402,7 @@
       "job": "Cleric",
       "rank": "★★★★/★★★★★",
       "influence": "Wealth",
-      "types": [
-        "Staves",
-        "Dark"
-      ],
+      "types": ["Staves", "Dark"],
       "va": "Yūki Kaji",
       "battleskills": [
         {
@@ -516,11 +501,7 @@
       "job": "Cleric",
       "rank": "★★★★/★★★★★",
       "influence": "Fame",
-      "types": [
-        "Staves",
-        "Wind",
-        "Light"
-      ],
+      "types": ["Staves", "Wind", "Light"],
       "va": "Ami Koshimizu",
       "battleskills": [
         {
@@ -616,10 +597,7 @@
       "job": "Cleric",
       "rank": "★★★★/★★★★★",
       "influence": "Power",
-      "types": [
-        "Staves",
-        "Fire"
-      ],
+      "types": ["Staves", "Fire"],
       "va": "Yuusuke Kobayashi",
       "battleskills": [
         {
@@ -718,10 +696,7 @@
       "job": "Cleric",
       "rank": "★★★★/★★★★★",
       "influence": "Fame",
-      "types": [
-        "Staves",
-        "Ice"
-      ],
+      "types": ["Staves", "Ice"],
       "va": "Ayumi Tsunematsu",
       "battleskills": [
         {
@@ -820,10 +795,7 @@
       "job": "Cleric",
       "rank": "★★★★/★★★★★",
       "influence": "Wealth",
-      "types": [
-        "Staves",
-        "Fire"
-      ],
+      "types": ["Staves", "Fire"],
       "va": "Mariya Ise",
       "battleskills": [
         {
@@ -922,11 +894,7 @@
       "job": "Cleric",
       "rank": "★★★★/★★★★★",
       "influence": "Fame",
-      "types": [
-        "Bows",
-        "Staves",
-        "Lightning"
-      ],
+      "types": ["Bows", "Staves", "Lightning"],
       "va": "Ai Kakuma",
       "battleskills": [
         {
@@ -1022,11 +990,7 @@
       "job": "Cleric",
       "rank": "★★★★/★★★★★",
       "influence": "Power",
-      "types": [
-        "Staves",
-        "Fire",
-        "Dark"
-      ],
+      "types": ["Staves", "Fire", "Dark"],
       "va": "Shizuma Hodoshima",
       "battleskills": [
         {
@@ -1122,10 +1086,7 @@
       "job": "Cleric",
       "rank": "★★★★/★★★★★★",
       "influence": "Dominance",
-      "types": [
-        "Staves",
-        "Light"
-      ],
+      "types": ["Staves", "Light"],
       "va": "Akira Ishida",
       "battleskills": [
         {
@@ -1242,10 +1203,7 @@
       "job": "Cleric",
       "rank": "★★★★/★★★★★★",
       "influence": "Power",
-      "types": [
-        "Staves",
-        "Fire"
-      ],
+      "types": ["Staves", "Fire"],
       "va": "Eiji Takeuchi",
       "battleskills": [
         {
@@ -1364,9 +1322,7 @@
       "job": "Cleric",
       "rank": "★★★★/★★★★★★",
       "influence": "Wealth",
-      "types": [
-        "Staves"
-      ],
+      "types": ["Staves"],
       "va": "Akari Kitō",
       "battleskills": [
         {
@@ -1473,10 +1429,7 @@
       "job": "Cleric",
       "rank": "★★★/★★★★★★",
       "influence": "Wealth",
-      "types": [
-        "Axes",
-        "Lightning"
-      ],
+      "types": ["Axes", "Lightning"],
       "va": "Shiori Sugiura",
       "battleskills": [
         {
@@ -1569,10 +1522,7 @@
       "job": "Cleric",
       "rank": "★★★/★★★★★★",
       "influence": "Power",
-      "types": [
-        "Staves",
-        "Fire"
-      ],
+      "types": ["Staves", "Fire"],
       "va": "Youhei Hamada",
       "battleskills": [
         {
@@ -1665,10 +1615,7 @@
       "job": "Cleric",
       "rank": "★★★/★★★★★★",
       "influence": "Fame",
-      "types": [
-        "Staves",
-        "Wind"
-      ],
+      "types": ["Staves", "Wind"],
       "va": "Ai Fairouz",
       "battleskills": [
         {
@@ -1761,10 +1708,7 @@
       "job": "Cleric",
       "rank": "★★★/★★★★★★",
       "influence": "Power",
-      "types": [
-        "Staves",
-        "Ice"
-      ],
+      "types": ["Staves", "Ice"],
       "va": "Ikumi Hasegawa",
       "battleskills": [
         {
@@ -1852,10 +1796,7 @@
       "job": "Cleric",
       "rank": "★★★/★★★★★★",
       "influence": "Fame",
-      "types": [
-        "Staves",
-        "Light"
-      ],
+      "types": ["Staves", "Light"],
       "va": "Jun'ichi Yanagita",
       "battleskills": [
         {
@@ -1950,10 +1891,7 @@
       "job": "Cleric",
       "rank": "★★★/★★★★★★",
       "influence": "Power",
-      "types": [
-        "Staves",
-        "Fire"
-      ],
+      "types": ["Staves", "Fire"],
       "va": "Shiori Sugiura",
       "battleskills": [
         {
@@ -2037,10 +1975,7 @@
       "job": "Cleric",
       "rank": "★★★/★★★★★★",
       "influence": "Wealth",
-      "types": [
-        "Staves",
-        "Ice"
-      ],
+      "types": ["Staves", "Ice"],
       "va": "Shun Horie",
       "battleskills": [
         {
@@ -2124,10 +2059,7 @@
       "job": "Apothecary",
       "rank": "★★★★/★★★★★",
       "influence": "Fame",
-      "types": [
-        "Light",
-        "Dark"
-      ],
+      "types": ["Light", "Dark"],
       "va": "Manaka Iwami",
       "battleskills": "Missing",
       "supportskills": "Missing",
@@ -2141,10 +2073,7 @@
       "job": "Apothecary",
       "rank": "★★★★★",
       "influence": "Wealth",
-      "types": [
-        "Axes",
-        "Dark"
-      ],
+      "types": ["Axes", "Dark"],
       "va": "Hiroko Kiso",
       "battleskills": [
         {
@@ -2243,10 +2172,7 @@
       "job": "Apothecary",
       "rank": "★★★★/★★★★★",
       "influence": "Power",
-      "types": [
-        "Axes",
-        "Lightning"
-      ],
+      "types": ["Axes", "Lightning"],
       "va": "Jun Fukushima",
       "battleskills": [
         {
@@ -2332,10 +2258,7 @@
       "job": "Apothecary",
       "rank": "★★★★/★★★★★",
       "influence": "Fame",
-      "types": [
-        "Axes",
-        "Ice"
-      ],
+      "types": ["Axes", "Ice"],
       "va": "Tomokazu Seki",
       "battleskills": [
         {
@@ -2434,10 +2357,7 @@
       "job": "Apothecary",
       "rank": "★★★★/★★★★★",
       "influence": "Fame",
-      "types": [
-        "Axes",
-        "Wind"
-      ],
+      "types": ["Axes", "Wind"],
       "va": "Haruka Tomatsu",
       "battleskills": [
         {
@@ -2536,10 +2456,7 @@
       "job": "Apothecary",
       "rank": "★★★★/★★★★★",
       "influence": "Power",
-      "types": [
-        "Axes",
-        "Light"
-      ],
+      "types": ["Axes", "Light"],
       "va": "Shizuka Itō",
       "battleskills": [
         {
@@ -2638,10 +2555,7 @@
       "job": "Apothecary",
       "rank": "★★★★/★★★★★",
       "influence": "Power",
-      "types": [
-        "Axes",
-        "Fire"
-      ],
+      "types": ["Axes", "Fire"],
       "va": "Tasuku Hatanaka",
       "battleskills": [
         {
@@ -2737,10 +2651,7 @@
       "job": "Apothecary",
       "rank": "★★★★/★★★★★",
       "influence": "Power",
-      "types": [
-        "Axes",
-        "Dark"
-      ],
+      "types": ["Axes", "Dark"],
       "va": "Miho Okasaki",
       "battleskills": [
         {
@@ -2836,10 +2747,7 @@
       "job": "Apothecary",
       "rank": "★★★★/★★★★★",
       "influence": "Wealth",
-      "types": [
-        "Axes",
-        "Wind"
-      ],
+      "types": ["Axes", "Wind"],
       "va": "Aoi Yuuki",
       "battleskills": [
         {
@@ -2935,10 +2843,7 @@
       "job": "Apothecary",
       "rank": "★★★★/★★★★★",
       "influence": "Power",
-      "types": [
-        "Axes",
-        "Lightning"
-      ],
+      "types": ["Axes", "Lightning"],
       "va": "Houko Kuwashima",
       "battleskills": [
         {
@@ -3037,9 +2942,7 @@
       "job": "Apothecary",
       "rank": "★★★★/★★★★★",
       "influence": "Fame",
-      "types": [
-        "Axes"
-      ],
+      "types": ["Axes"],
       "va": "Akari Kitō",
       "battleskills": [
         {
@@ -3135,10 +3038,7 @@
       "job": "Apothecary",
       "rank": "★★★★/★★★★★",
       "influence": "Fame",
-      "types": [
-        "Axes",
-        "Ice"
-      ],
+      "types": ["Axes", "Ice"],
       "va": "Eiji Takeuchi",
       "battleskills": [
         {
@@ -3234,10 +3134,7 @@
       "job": "Apothecary",
       "rank": "★★★★/★★★★★★",
       "influence": "Prestige",
-      "types": [
-        "Axes",
-        "Ice"
-      ],
+      "types": ["Axes", "Ice"],
       "va": "Tasuku Hatanaka",
       "battleskills": [
         {
@@ -3358,10 +3255,7 @@
       "job": "Apothecary",
       "rank": "★★★★/★★★★★★",
       "influence": "Prestige",
-      "types": [
-        "Axes",
-        "Ice"
-      ],
+      "types": ["Axes", "Ice"],
       "va": "Tasuku Hatanaka",
       "battleskills": [
         {
@@ -3482,10 +3376,7 @@
       "job": "Apothecary",
       "rank": "★★★★",
       "influence": "Power",
-      "types": [
-        "Axes",
-        "Lightning"
-      ],
+      "types": ["Axes", "Lightning"],
       "va": "Eriko Nakamura",
       "battleskills": [
         {
@@ -3567,10 +3458,7 @@
       "job": "Apothecary",
       "rank": "★★★/★★★★",
       "influence": "Power",
-      "types": [
-        "Axes",
-        "Wind"
-      ],
+      "types": ["Axes", "Wind"],
       "va": "Takako Tanaka",
       "battleskills": [
         {
@@ -3641,10 +3529,7 @@
       "job": "Apothecary",
       "rank": "★★★/★★★★",
       "influence": "Wealth",
-      "types": [
-        "Axes",
-        "Ice"
-      ],
+      "types": ["Axes", "Ice"],
       "va": "Sayaka Senbongi",
       "battleskills": [
         {
@@ -3715,10 +3600,7 @@
       "job": "Apothecary",
       "rank": "★★★/★★★★",
       "influence": "Fame",
-      "types": [
-        "Axes",
-        "Dark"
-      ],
+      "types": ["Axes", "Dark"],
       "va": "Zenichi Nagano",
       "battleskills": [
         {
@@ -3789,10 +3671,7 @@
       "job": "Apothecary",
       "rank": "★★★/★★★★",
       "influence": "Wealth",
-      "types": [
-        "Axes",
-        "Light"
-      ],
+      "types": ["Axes", "Light"],
       "va": "Manaka Iwami",
       "battleskills": [
         {
@@ -3863,10 +3742,7 @@
       "job": "Apothecary",
       "rank": "★★★/★★★★★★",
       "influence": "Fame",
-      "types": [
-        "Axes",
-        "Fire"
-      ],
+      "types": ["Axes", "Fire"],
       "va": "Haruki Ishiya",
       "battleskills": [
         {
@@ -3950,10 +3826,7 @@
       "job": "Apothecary",
       "rank": "★★★/★★★★★★",
       "influence": "Power",
-      "types": [
-        "Axes",
-        "Ice"
-      ],
+      "types": ["Axes", "Ice"],
       "va": "Ikumi Hasegawa",
       "battleskills": [
         {
@@ -4037,10 +3910,7 @@
       "job": "Apothecary",
       "rank": "★★★/★★★★★★",
       "influence": "Wealth",
-      "types": [
-        "Axes",
-        "Lightning"
-      ],
+      "types": ["Axes", "Lightning"],
       "va": "Ayaka Suwa",
       "battleskills": [
         {
@@ -4124,10 +3994,7 @@
       "job": "Dancer",
       "rank": "★★★★/★★★★★",
       "influence": "Power",
-      "types": [
-        "Fans",
-        "Wind"
-      ],
+      "types": ["Fans", "Wind"],
       "va": "Miyuki Sawashiro",
       "battleskills": [
         {
@@ -4226,10 +4093,7 @@
       "job": "Dancer",
       "rank": "★★★★★",
       "influence": "Power",
-      "types": [
-        "Fans",
-        "Lightning"
-      ],
+      "types": ["Fans", "Lightning"],
       "va": "Atsushi Abe",
       "battleskills": [
         {
@@ -4328,10 +4192,7 @@
       "job": "Dancer",
       "rank": "★★★★/★★★★★",
       "influence": "Power",
-      "types": [
-        "Fans",
-        "Fire"
-      ],
+      "types": ["Fans", "Fire"],
       "va": "Ai Kakuma",
       "battleskills": [
         {
@@ -4412,10 +4273,7 @@
       "job": "Dancer",
       "rank": "★★★★/★★★★★",
       "influence": "Power",
-      "types": [
-        "Fans",
-        "Dark"
-      ],
+      "types": ["Fans", "Dark"],
       "va": "Houko Kuwashima",
       "battleskills": [
         {
@@ -4514,10 +4372,7 @@
       "job": "Dancer",
       "rank": "★★★★/★★★★★",
       "influence": "Fame",
-      "types": [
-        "Fans",
-        "Wind"
-      ],
+      "types": ["Fans", "Wind"],
       "va": "Mitsuhiro Ichiki",
       "battleskills": [
         {
@@ -4616,10 +4471,7 @@
       "job": "Dancer",
       "rank": "★★★★/★★★★★",
       "influence": "Power",
-      "types": [
-        "Fans",
-        "Light"
-      ],
+      "types": ["Fans", "Light"],
       "va": "Rie Takahashi",
       "battleskills": [
         {
@@ -4718,10 +4570,7 @@
       "job": "Dancer",
       "rank": "★★★★/★★★★★",
       "influence": "Fame",
-      "types": [
-        "Fans",
-        "Lightning"
-      ],
+      "types": ["Fans", "Lightning"],
       "va": "Shizuka Ishigami",
       "battleskills": [
         {
@@ -4820,10 +4669,7 @@
       "job": "Dancer",
       "rank": "★★★★/★★★★★",
       "influence": "Fame",
-      "types": [
-        "Fans",
-        "Ice"
-      ],
+      "types": ["Fans", "Ice"],
       "va": "Yumi Hara",
       "battleskills": [
         {
@@ -4922,9 +4768,7 @@
       "job": "Dancer",
       "rank": "★★★★/★★★★★",
       "influence": "Fame",
-      "types": [
-        "Fans"
-      ],
+      "types": ["Fans"],
       "va": "Saori Ōnishi",
       "battleskills": [
         {
@@ -5023,15 +4867,7 @@
       "job": "Dancer",
       "rank": "★★★★/★★★★★",
       "influence": "Fame",
-      "types": [
-        "Fans",
-        "Fire",
-        "Ice",
-        "Lightning",
-        "Wind",
-        "Light",
-        "Dark"
-      ],
+      "types": ["Fans", "Fire", "Ice", "Lightning", "Wind", "Light", "Dark"],
       "va": "Hiroko Kiso",
       "battleskills": [
         {
@@ -5133,10 +4969,7 @@
       "job": "Dancer",
       "rank": "★★★★/★★★★★",
       "influence": "Power",
-      "types": [
-        "Fans",
-        "Ice"
-      ],
+      "types": ["Fans", "Ice"],
       "va": "Saori Onishi",
       "battleskills": [
         {
@@ -5232,10 +5065,7 @@
       "job": "Dancer",
       "rank": "★★★★/★★★★★",
       "influence": "Fame",
-      "types": [
-        "Fans",
-        "Fire"
-      ],
+      "types": ["Fans", "Fire"],
       "va": "Yuuko Kaida",
       "battleskills": [
         {
@@ -5331,10 +5161,7 @@
       "job": "Dancer",
       "rank": "★★★★/★★★★★",
       "influence": "Fame",
-      "types": [
-        "Fans",
-        "Light"
-      ],
+      "types": ["Fans", "Light"],
       "va": "Rie Takahashi",
       "battleskills": [
         {
@@ -5455,11 +5282,7 @@
       "job": "Dancer",
       "rank": "★★★★/★★★★★★",
       "influence": "Dominance",
-      "types": [
-        "Fans",
-        "Ice",
-        "Dark"
-      ],
+      "types": ["Fans", "Ice", "Dark"],
       "va": "Aoi Koga",
       "battleskills": [
         {
@@ -5577,10 +5400,7 @@
       "job": "Dancer",
       "rank": "★★★★/★★★★★★",
       "influence": "Prestige",
-      "types": [
-        "Fans",
-        "Wind"
-      ],
+      "types": ["Fans", "Wind"],
       "va": "Inori Minase",
       "battleskills": [
         {
@@ -5694,11 +5514,7 @@
       "job": "Dancer",
       "rank": "★★★★/★★★★★",
       "influence": "Prestige",
-      "types": [
-        "Fans",
-        "Fire",
-        "Wind"
-      ],
+      "types": ["Fans", "Fire", "Wind"],
       "va": "Satomi Arai",
       "battleskills": [
         {
@@ -5791,10 +5607,7 @@
       "job": "Dancer",
       "rank": "★★★★/★★★★★★",
       "influence": "Fame",
-      "types": [
-        "Fans",
-        "Dark"
-      ],
+      "types": ["Fans", "Dark"],
       "va": "Rie Takahashi",
       "battleskills": [
         {
@@ -5912,10 +5725,7 @@
       "job": "Dancer",
       "rank": "★★★★",
       "influence": "Power",
-      "types": [
-        "Fans",
-        "Dark"
-      ],
+      "types": ["Fans", "Dark"],
       "va": "Ai Fairouz",
       "battleskills": [
         {
@@ -6000,10 +5810,7 @@
       "job": "Dancer",
       "rank": "★★★/★★★★",
       "influence": "Fame",
-      "types": [
-        "Fans",
-        "Light"
-      ],
+      "types": ["Fans", "Light"],
       "va": "Manaka Iwami",
       "battleskills": [
         {
@@ -6074,10 +5881,7 @@
       "job": "Dancer",
       "rank": "★★★/★★★★",
       "influence": "Power",
-      "types": [
-        "Fans",
-        "Lightning"
-      ],
+      "types": ["Fans", "Lightning"],
       "va": "Juri Nagatsuma",
       "battleskills": [
         {
@@ -6148,10 +5952,7 @@
       "job": "Dancer",
       "rank": "★★★/★★★★",
       "influence": "Fame",
-      "types": [
-        "Fans",
-        "Ice"
-      ],
+      "types": ["Fans", "Ice"],
       "va": "Tomoyo Takayanagi",
       "battleskills": [
         {
@@ -6222,10 +6023,7 @@
       "job": "Dancer",
       "rank": "★★★/★★★★",
       "influence": "Wealth",
-      "types": [
-        "Fans",
-        "Wind"
-      ],
+      "types": ["Fans", "Wind"],
       "va": "Haruki Ishiya",
       "battleskills": [
         {
@@ -6287,10 +6085,7 @@
       "job": "Dancer",
       "rank": "★★★/★★★★★★",
       "influence": "Fame",
-      "types": [
-        "Fans",
-        "Wind"
-      ],
+      "types": ["Fans", "Wind"],
       "va": "Kousuke Oonishi",
       "battleskills": [
         {
@@ -6458,10 +6253,7 @@
       "job": "Dancer",
       "rank": "★★★/★★★★★★",
       "influence": "Wealth",
-      "types": [
-        "Fans",
-        "Fire"
-      ],
+      "types": ["Fans", "Fire"],
       "va": "Shun Horie",
       "battleskills": [
         {
@@ -6545,9 +6337,7 @@
       "job": "Merchant",
       "rank": "★★★★/★★★★★",
       "influence": "Missing Influence",
-      "types": [
-        "Polearms"
-      ],
+      "types": ["Polearms"],
       "va": "Daisuke Hirakawa",
       "battleskills": "Missing",
       "supportskills": "Missing",
@@ -6561,11 +6351,7 @@
       "job": "Merchant",
       "rank": "★★★★★",
       "influence": "Fame",
-      "types": [
-        "Polearms",
-        "Fire",
-        "Lightning"
-      ],
+      "types": ["Polearms", "Fire", "Lightning"],
       "va": "Rie Kugimiya",
       "battleskills": [
         {
@@ -6664,10 +6450,7 @@
       "job": "Merchant",
       "rank": "★★★★/★★★★★",
       "influence": "Power",
-      "types": [
-        "Polearms",
-        "Lightning"
-      ],
+      "types": ["Polearms", "Lightning"],
       "va": "Jun'ichi Yanagita",
       "battleskills": [
         {
@@ -6763,10 +6546,7 @@
       "job": "Merchant",
       "rank": "★★★★/★★★★★",
       "influence": "Wealth",
-      "types": [
-        "Polearms",
-        "Wind"
-      ],
+      "types": ["Polearms", "Wind"],
       "va": "Ruriko Aoki",
       "battleskills": [
         {
@@ -6865,10 +6645,7 @@
       "job": "Merchant",
       "rank": "★★★★/★★★★★★",
       "influence": "Wealth",
-      "types": [
-        "Polearms",
-        "Fire"
-      ],
+      "types": ["Polearms", "Fire"],
       "va": "Eriko Nakamura",
       "battleskills": [
         {
@@ -6989,10 +6766,7 @@
       "job": "Merchant",
       "rank": "★★★★/★★★★★",
       "influence": "Fame",
-      "types": [
-        "Polearms",
-        "Ice"
-      ],
+      "types": ["Polearms", "Ice"],
       "va": "Yui Ishikawa",
       "battleskills": [
         {
@@ -7091,12 +6865,7 @@
       "job": "Merchant",
       "rank": "★★★★/★★★★★",
       "influence": "Fame",
-      "types": [
-        "Polearms",
-        "Axes",
-        "Tomes",
-        "Light"
-      ],
+      "types": ["Polearms", "Axes", "Tomes", "Light"],
       "va": "Aya Kawakami",
       "battleskills": [
         {
@@ -7195,10 +6964,7 @@
       "job": "Merchant",
       "rank": "★★★★/★★★★★",
       "influence": "Power",
-      "types": [
-        "Polearms",
-        "Dark"
-      ],
+      "types": ["Polearms", "Dark"],
       "va": "Aya Endō",
       "battleskills": [
         {
@@ -7294,10 +7060,7 @@
       "job": "Merchant",
       "rank": "★★★★/★★★★★",
       "influence": "Wealth",
-      "types": [
-        "Polearms",
-        "Fire"
-      ],
+      "types": ["Polearms", "Fire"],
       "va": "Ayane Sakura",
       "battleskills": [
         {
@@ -7396,11 +7159,7 @@
       "job": "Merchant",
       "rank": "★★★★/★★★★★",
       "influence": "Wealth",
-      "types": [
-        "Polearms",
-        "Fire",
-        "Lightning"
-      ],
+      "types": ["Polearms", "Fire", "Lightning"],
       "va": "Natsuki Hanae",
       "battleskills": [
         {
@@ -7496,10 +7255,7 @@
       "job": "Merchant",
       "rank": "★★★★/★★★★★",
       "influence": "Power",
-      "types": [
-        "Polearms",
-        "Wind"
-      ],
+      "types": ["Polearms", "Wind"],
       "va": "Jun Fukushima",
       "battleskills": [
         {
@@ -7598,10 +7354,7 @@
       "job": "Merchant",
       "rank": "★★★★/★★★★★",
       "influence": "Fame",
-      "types": [
-        "Polearms",
-        "Lightning"
-      ],
+      "types": ["Polearms", "Lightning"],
       "va": "Yūichi Nakamura",
       "battleskills": [
         {
@@ -7697,10 +7450,7 @@
       "job": "Merchant",
       "rank": "★★★★/★★★★★",
       "influence": "Wealth",
-      "types": [
-        "Polearms",
-        "Staves"
-      ],
+      "types": ["Polearms", "Staves"],
       "va": "Jun Inoue",
       "battleskills": [
         {
@@ -7796,10 +7546,7 @@
       "job": "Merchant",
       "rank": "★★★★/★★★★★",
       "influence": "Fame",
-      "types": [
-        "Polearms",
-        "Ice"
-      ],
+      "types": ["Polearms", "Ice"],
       "va": "Yuuya Hirose",
       "battleskills": [
         {
@@ -7898,10 +7645,7 @@
       "job": "Merchant",
       "rank": "★★★★/★★★★★★",
       "influence": "Opulence",
-      "types": [
-        "Polearms",
-        "Bows"
-      ],
+      "types": ["Polearms", "Bows"],
       "va": "Kazuya Nakai",
       "battleskills": [
         {
@@ -8015,10 +7759,7 @@
       "job": "Merchant",
       "rank": "★★★★/★★★★★",
       "influence": "Wealth",
-      "types": [
-        "Polearms",
-        "Wind"
-      ],
+      "types": ["Polearms", "Wind"],
       "va": "Yoshiko Shibao",
       "battleskills": [
         {
@@ -8117,13 +7858,7 @@
       "job": "Merchant",
       "rank": "★★★★/★★★★★",
       "influence": "Opulence",
-      "types": [
-        "Swords",
-        "Polearms",
-        "Staves",
-        "Fans",
-        "Light"
-      ],
+      "types": ["Swords", "Polearms", "Staves", "Fans", "Light"],
       "va": "Souta Arai",
       "battleskills": [
         {
@@ -8219,10 +7954,7 @@
       "job": "Merchant",
       "rank": "★★★★/★★★★★",
       "influence": "Prestige",
-      "types": [
-        "Polearms",
-        "Wind"
-      ],
+      "types": ["Polearms", "Wind"],
       "va": "Ai Fairouz",
       "battleskills": [
         {
@@ -8324,10 +8056,7 @@
       "job": "Merchant",
       "rank": "★★★★/★★★★★",
       "influence": "Prestige",
-      "types": [
-        "Polearms",
-        "Lightning"
-      ],
+      "types": ["Polearms", "Lightning"],
       "va": "Mie Sonozaki",
       "battleskills": [
         {
@@ -8423,10 +8152,7 @@
       "job": "Merchant",
       "rank": "★★★★",
       "influence": "Wealth",
-      "types": [
-        "Polearms",
-        "Dark"
-      ],
+      "types": ["Polearms", "Dark"],
       "va": "Inori Minase",
       "battleskills": [
         {
@@ -8511,10 +8237,7 @@
       "job": "Merchant",
       "rank": "★★★/★★★★",
       "influence": "Power",
-      "types": [
-        "Polearms",
-        "Fire"
-      ],
+      "types": ["Polearms", "Fire"],
       "va": "Kōichi Sōma",
       "battleskills": [
         {
@@ -8585,10 +8308,7 @@
       "job": "Merchant",
       "rank": "★★★/★★★★",
       "influence": "Fame",
-      "types": [
-        "Polearms",
-        "Light"
-      ],
+      "types": ["Polearms", "Light"],
       "va": "Ai Kakuma",
       "battleskills": [
         {
@@ -8659,10 +8379,7 @@
       "job": "Merchant",
       "rank": "★★★/★★★★",
       "influence": "Power",
-      "types": [
-        "Polearms",
-        "Ice"
-      ],
+      "types": ["Polearms", "Ice"],
       "va": "Yōko Fujita",
       "battleskills": [
         {
@@ -8733,10 +8450,7 @@
       "job": "Merchant",
       "rank": "★★★/★★★★",
       "influence": "Wealth",
-      "types": [
-        "Polearms",
-        "Wind"
-      ],
+      "types": ["Polearms", "Wind"],
       "va": "Mitsuhiro Ichiki",
       "battleskills": [
         {
@@ -8807,10 +8521,7 @@
       "job": "Merchant",
       "rank": "★★★/★★★★★★",
       "influence": "Fame",
-      "types": [
-        "Polearms",
-        "Dark"
-      ],
+      "types": ["Polearms", "Dark"],
       "va": "Kousuke Oonishi",
       "battleskills": [
         {
@@ -8894,10 +8605,7 @@
       "job": "Merchant",
       "rank": "★★★/★★★★★★",
       "influence": "Power",
-      "types": [
-        "Polearms",
-        "Wind"
-      ],
+      "types": ["Polearms", "Wind"],
       "va": "Ai Fairouz",
       "battleskills": [
         {
@@ -8981,10 +8689,7 @@
       "job": "Merchant",
       "rank": "★★★/★★★★★★",
       "influence": "Wealth",
-      "types": [
-        "Polearms",
-        "Light"
-      ],
+      "types": ["Polearms", "Light"],
       "va": "Ayaka Suwa",
       "battleskills": [
         {
@@ -9063,12 +8768,7 @@
       "job": "Scholar",
       "rank": "★★★★/★★★★★",
       "influence": "Power",
-      "types": [
-        "Swords",
-        "Fire",
-        "Lightning",
-        "Dark"
-      ],
+      "types": ["Swords", "Fire", "Lightning", "Dark"],
       "va": "Tetsuaki Genda",
       "battleskills": "Missing",
       "supportskills": "Missing",
@@ -9082,10 +8782,7 @@
       "job": "Scholar",
       "rank": "★★★★★",
       "influence": "Power",
-      "types": [
-        "Tomes",
-        "Light"
-      ],
+      "types": ["Tomes", "Light"],
       "va": "Hiroki Yasumoto",
       "battleskills": [
         {
@@ -9184,10 +8881,7 @@
       "job": "Scholar",
       "rank": "★★★★★",
       "influence": "Fame",
-      "types": [
-        "Tomes",
-        "Ice"
-      ],
+      "types": ["Tomes", "Ice"],
       "va": "Sayumi Suzushiro",
       "battleskills": [
         {
@@ -9286,10 +8980,7 @@
       "job": "Scholar",
       "rank": "★★★★/★★★★★",
       "influence": "Wealth",
-      "types": [
-        "Tomes",
-        "Ice"
-      ],
+      "types": ["Tomes", "Ice"],
       "va": "Aoi Yuuki",
       "battleskills": [
         {
@@ -9388,12 +9079,7 @@
       "job": "Scholar",
       "rank": "★★★★/★★★★★",
       "influence": "Fame",
-      "types": [
-        "Tomes",
-        "Fire",
-        "Ice",
-        "Lightning"
-      ],
+      "types": ["Tomes", "Fire", "Ice", "Lightning"],
       "va": "Yuuichirou Umehara",
       "battleskills": [
         {
@@ -9492,10 +9178,7 @@
       "job": "Scholar",
       "rank": "★★★/★★★★★",
       "influence": "Fame",
-      "types": [
-        "Tomes",
-        "Lightning"
-      ],
+      "types": ["Tomes", "Lightning"],
       "va": "Kazuhiko Inoue",
       "battleskills": [
         {
@@ -9594,10 +9277,7 @@
       "job": "Scholar",
       "rank": "★★★★/★★★★★",
       "influence": "Fame",
-      "types": [
-        "Tomes",
-        "Lightning"
-      ],
+      "types": ["Tomes", "Lightning"],
       "va": "Arisa Sakuraba",
       "battleskills": [
         {
@@ -9701,10 +9381,7 @@
       "job": "Scholar",
       "rank": "★★★★/★★★★★",
       "influence": "Wealth",
-      "types": [
-        "Tomes",
-        "Fire"
-      ],
+      "types": ["Tomes", "Fire"],
       "va": "Rie Takahashi",
       "battleskills": [
         {
@@ -9803,11 +9480,7 @@
       "job": "Scholar",
       "rank": "★★★★/★★★★★★",
       "influence": "Power",
-      "types": [
-        "Tomes",
-        "Wind",
-        "Light"
-      ],
+      "types": ["Tomes", "Wind", "Light"],
       "va": "Asami Yoshida",
       "battleskills": [
         {
@@ -9925,10 +9598,7 @@
       "job": "Scholar",
       "rank": "★★★★/★★★★★",
       "influence": "Power",
-      "types": [
-        "Tomes",
-        "Dark"
-      ],
+      "types": ["Tomes", "Dark"],
       "va": "Sayumi Suzushiro",
       "battleskills": [
         {
@@ -10027,12 +9697,7 @@
       "job": "Scholar",
       "rank": "★★★★/★★★★★",
       "influence": "Wealth",
-      "types": [
-        "Daggers",
-        "Tomes",
-        "Lightning",
-        "Wind"
-      ],
+      "types": ["Daggers", "Tomes", "Lightning", "Wind"],
       "va": "Yumi Hara",
       "battleskills": [
         {
@@ -10128,11 +9793,7 @@
       "job": "Scholar",
       "rank": "★★★★/★★★★★",
       "influence": "Power",
-      "types": [
-        "Tomes",
-        "Fire",
-        "Light"
-      ],
+      "types": ["Tomes", "Fire", "Light"],
       "va": "Saori Onishi",
       "battleskills": [
         {
@@ -10231,10 +9892,7 @@
       "job": "Scholar",
       "rank": "★★★★/★★★★★",
       "influence": "Fame",
-      "types": [
-        "Tomes",
-        "Fire"
-      ],
+      "types": ["Tomes", "Fire"],
       "va": "Minami Tsuda",
       "battleskills": [
         {
@@ -10330,10 +9988,7 @@
       "job": "Scholar",
       "rank": "★★★★/★★★★★",
       "influence": "Wealth",
-      "types": [
-        "Tomes",
-        "Fire"
-      ],
+      "types": ["Tomes", "Fire"],
       "va": "Itaru Yamamoto",
       "battleskills": [
         {
@@ -10432,14 +10087,7 @@
       "job": "Scholar",
       "rank": "★★★★/★★★★★",
       "influence": "Power",
-      "types": [
-        "Tomes",
-        "Fire",
-        "Ice",
-        "Lightning",
-        "Wind",
-        "Dark"
-      ],
+      "types": ["Tomes", "Fire", "Ice", "Lightning", "Wind", "Dark"],
       "va": "Shizuma Hodoshima",
       "battleskills": [
         {
@@ -10535,11 +10183,7 @@
       "job": "Scholar",
       "rank": "★★★★/★★★★★",
       "influence": "Power",
-      "types": [
-        "Tomes",
-        "Light",
-        "Dark"
-      ],
+      "types": ["Tomes", "Light", "Dark"],
       "va": "Miho Okasaki",
       "battleskills": [
         {
@@ -10632,11 +10276,7 @@
       "job": "Scholar",
       "rank": "★★★★/★★★★★",
       "influence": "Power",
-      "types": [
-        "Tomes",
-        "Fire",
-        "Lightning"
-      ],
+      "types": ["Tomes", "Fire", "Lightning"],
       "va": "Satoshi Hino",
       "battleskills": [
         {
@@ -10735,10 +10375,7 @@
       "job": "Scholar",
       "rank": "★★★★/★★★★★★",
       "influence": "Fame",
-      "types": [
-        "Tomes",
-        "Fire"
-      ],
+      "types": ["Tomes", "Fire"],
       "va": "Yui Ishikawa",
       "battleskills": [
         {
@@ -10856,10 +10493,7 @@
       "job": "Scholar",
       "rank": "★★★★/★★★★★★",
       "influence": "Fame",
-      "types": [
-        "Tomes",
-        "Fire"
-      ],
+      "types": ["Tomes", "Fire"],
       "va": "Yui Ishikawa",
       "battleskills": [
         {
@@ -10977,10 +10611,7 @@
       "job": "Scholar",
       "rank": "★★★★",
       "influence": "Wealth",
-      "types": [
-        "Tomes",
-        "Ice"
-      ],
+      "types": ["Tomes", "Ice"],
       "va": "Hiroki Gotō",
       "battleskills": [
         {
@@ -11062,10 +10693,7 @@
       "job": "Scholar",
       "rank": "★★★★",
       "influence": "Wealth",
-      "types": [
-        "Tomes",
-        "Light"
-      ],
+      "types": ["Tomes", "Light"],
       "va": "Ruriko Noguchi",
       "battleskills": [
         {
@@ -11150,10 +10778,7 @@
       "job": "Scholar",
       "rank": "★★★/★★★★",
       "influence": "Fame",
-      "types": [
-        "Tomes",
-        "Wind"
-      ],
+      "types": ["Tomes", "Wind"],
       "va": "Ruriko Noguchi",
       "battleskills": [
         {
@@ -11224,10 +10849,7 @@
       "job": "Scholar",
       "rank": "★★★/★★★★",
       "influence": "Power",
-      "types": [
-        "Tomes",
-        "Lightning"
-      ],
+      "types": ["Tomes", "Lightning"],
       "va": "Manaka Iwami",
       "battleskills": [
         {
@@ -11298,10 +10920,7 @@
       "job": "Scholar",
       "rank": "★★★/★★★★",
       "influence": "Fame",
-      "types": [
-        "Tomes",
-        "Fire"
-      ],
+      "types": ["Tomes", "Fire"],
       "va": "Missing Voice Actor",
       "battleskills": [
         {
@@ -11372,10 +10991,7 @@
       "job": "Scholar",
       "rank": "★★★/★★★★",
       "influence": "Wealth",
-      "types": [
-        "Tomes",
-        "Dark"
-      ],
+      "types": ["Tomes", "Dark"],
       "va": "Itaru Yamamoto",
       "battleskills": [
         {
@@ -11446,10 +11062,7 @@
       "job": "Scholar",
       "rank": "★★★/★★★★★★",
       "influence": "Fame",
-      "types": [
-        "Tomes",
-        "Ice"
-      ],
+      "types": ["Tomes", "Ice"],
       "va": "Takamasa Mogi",
       "battleskills": [
         {
@@ -11533,10 +11146,7 @@
       "job": "Scholar",
       "rank": "★★★/★★★★★★",
       "influence": "Power",
-      "types": [
-        "Tomes",
-        "Light"
-      ],
+      "types": ["Tomes", "Light"],
       "va": "Yōko Fujita",
       "battleskills": [
         {
@@ -11620,10 +11230,7 @@
       "job": "Scholar",
       "rank": "★★★/★★★★★★",
       "influence": "Wealth",
-      "types": [
-        "Tomes",
-        "Dark"
-      ],
+      "types": ["Tomes", "Dark"],
       "va": "Shun Horie",
       "battleskills": [
         {
@@ -11707,11 +11314,7 @@
       "job": "Thief",
       "rank": "★★★★/★★★★★",
       "influence": "Fame",
-      "types": [
-        "Daggers",
-        "Tomes",
-        "Dark"
-      ],
+      "types": ["Daggers", "Tomes", "Dark"],
       "va": "Daisuke Namikawa",
       "battleskills": [
         {
@@ -11807,10 +11410,7 @@
       "job": "Thief",
       "rank": "★★★★★",
       "influence": "Power",
-      "types": [
-        "Daggers",
-        "Lightning"
-      ],
+      "types": ["Daggers", "Lightning"],
       "va": "Yui Ishikawa",
       "battleskills": [
         {
@@ -11909,10 +11509,7 @@
       "job": "Thief",
       "rank": "★★★★/★★★★★",
       "influence": "Wealth",
-      "types": [
-        "Daggers",
-        "Fire"
-      ],
+      "types": ["Daggers", "Fire"],
       "va": "Yoko Hikasa",
       "battleskills": [
         {
@@ -12011,10 +11608,7 @@
       "job": "Thief",
       "rank": "★★★★/★★★★★",
       "influence": "Wealth",
-      "types": [
-        "Daggers",
-        "Fire"
-      ],
+      "types": ["Daggers", "Fire"],
       "va": "Yoshitsugu Matsuoka",
       "battleskills": "Missing",
       "supportskills": "Missing",
@@ -12028,10 +11622,7 @@
       "job": "Thief",
       "rank": "★★★★/★★★★★",
       "influence": "Power",
-      "types": [
-        "Daggers",
-        "Wind"
-      ],
+      "types": ["Daggers", "Wind"],
       "va": "Yousuke Akimoto",
       "battleskills": [
         {
@@ -12130,10 +11721,7 @@
       "job": "Thief",
       "rank": "★★★★/★★★★★★",
       "influence": "Fame",
-      "types": [
-        "Daggers",
-        "Light"
-      ],
+      "types": ["Daggers", "Light"],
       "va": "Inori Minase",
       "battleskills": [
         {
@@ -12254,10 +11842,7 @@
       "job": "Thief",
       "rank": "★★★★/★★★★★",
       "influence": "Wealth",
-      "types": [
-        "Daggers",
-        "Light"
-      ],
+      "types": ["Daggers", "Light"],
       "va": "Yukana Nogami",
       "battleskills": [
         {
@@ -12358,10 +11943,7 @@
       "job": "Thief",
       "rank": "★★★★/★★★★★★",
       "influence": "Power",
-      "types": [
-        "Daggers",
-        "Ice"
-      ],
+      "types": ["Daggers", "Ice"],
       "va": "Kōsuke Toriumi",
       "battleskills": [
         {
@@ -12482,11 +12064,7 @@
       "job": "Thief",
       "rank": "★★★★/★★★★★",
       "influence": "Power",
-      "types": [
-        "Swords",
-        "Daggers",
-        "Axes"
-      ],
+      "types": ["Swords", "Daggers", "Axes"],
       "va": "Ayaka Suwa",
       "battleskills": [
         {
@@ -12582,10 +12160,7 @@
       "job": "Thief",
       "rank": "★★★★/★★★★★",
       "influence": "Power",
-      "types": [
-        "Daggers",
-        "Fire"
-      ],
+      "types": ["Daggers", "Fire"],
       "va": "Yukana Nogami",
       "battleskills": [
         {
@@ -12684,10 +12259,7 @@
       "job": "Thief",
       "rank": "★★★★/★★★★★",
       "influence": "Wealth",
-      "types": [
-        "Daggers",
-        "Wind"
-      ],
+      "types": ["Daggers", "Wind"],
       "va": "Kaito Ishikawa",
       "battleskills": [
         {
@@ -12783,10 +12355,7 @@
       "job": "Thief",
       "rank": "★★★★/★★★★★",
       "influence": "Wealth",
-      "types": [
-        "Daggers",
-        "Wind"
-      ],
+      "types": ["Daggers", "Wind"],
       "va": "Aoi Yuuki",
       "battleskills": [
         {
@@ -12882,10 +12451,7 @@
       "job": "Thief",
       "rank": "★★★★/★★★★★",
       "influence": "Wealth",
-      "types": [
-        "Daggers",
-        "Fire"
-      ],
+      "types": ["Daggers", "Fire"],
       "va": "Tomoyo Takayanagi",
       "battleskills": [
         {
@@ -12981,10 +12547,7 @@
       "job": "Thief",
       "rank": "★★★★/★★★★★★",
       "influence": "Prestige",
-      "types": [
-        "Daggers",
-        "Dark"
-      ],
+      "types": ["Daggers", "Dark"],
       "va": "Rie Tanaka",
       "battleskills": [
         {
@@ -13098,10 +12661,7 @@
       "job": "Thief",
       "rank": "★★★★/★★★★★★",
       "influence": "Opulence",
-      "types": [
-        "Daggers",
-        "Dark"
-      ],
+      "types": ["Daggers", "Dark"],
       "va": "Takamasa Mogi",
       "battleskills": [
         {
@@ -13222,10 +12782,7 @@
       "job": "Thief",
       "rank": "★★★★/★★★★★",
       "influence": "Wealth",
-      "types": [
-        "Daggers",
-        "Wind"
-      ],
+      "types": ["Daggers", "Wind"],
       "va": "Daisuke Hirakawa",
       "battleskills": [
         {
@@ -13324,10 +12881,7 @@
       "job": "Thief",
       "rank": "★★★★",
       "influence": "Fame",
-      "types": [
-        "Daggers",
-        "Light"
-      ],
+      "types": ["Daggers", "Light"],
       "va": "Toshinari Fukamachi",
       "battleskills": [
         {
@@ -13412,10 +12966,7 @@
       "job": "Thief",
       "rank": "★★★/★★★★",
       "influence": "Fame",
-      "types": [
-        "Daggers",
-        "Ice"
-      ],
+      "types": ["Daggers", "Ice"],
       "va": "Saori Ōnishi",
       "battleskills": [
         {
@@ -13486,10 +13037,7 @@
       "job": "Thief",
       "rank": "★★★/★★★★",
       "influence": "Power",
-      "types": [
-        "Daggers",
-        "Wind"
-      ],
+      "types": ["Daggers", "Wind"],
       "va": "Takamasa Mogi",
       "battleskills": [
         {
@@ -13560,10 +13108,7 @@
       "job": "Thief",
       "rank": "★★★/★★★★",
       "influence": "Wealth",
-      "types": [
-        "Daggers",
-        "Dark"
-      ],
+      "types": ["Daggers", "Dark"],
       "va": "Shin'ya Takahashi",
       "battleskills": [
         {
@@ -13634,10 +13179,7 @@
       "job": "Thief",
       "rank": "★★★/★★★★",
       "influence": "Fame",
-      "types": [
-        "Daggers",
-        "Lightning"
-      ],
+      "types": ["Daggers", "Lightning"],
       "va": "Eiji Takeuchi",
       "battleskills": [
         {
@@ -13699,10 +13241,7 @@
       "job": "Thief",
       "rank": "★★★/★★★★★★",
       "influence": "Fame",
-      "types": [
-        "Daggers",
-        "Fire"
-      ],
+      "types": ["Daggers", "Fire"],
       "va": "Jun Fukushima",
       "battleskills": [
         {
@@ -13786,10 +13325,7 @@
       "job": "Thief",
       "rank": "★★★/★★★★★★",
       "influence": "Power",
-      "types": [
-        "Daggers",
-        "Lightning"
-      ],
+      "types": ["Daggers", "Lightning"],
       "va": "Ruriko Noguchi",
       "battleskills": [
         {
@@ -13873,10 +13409,7 @@
       "job": "Thief",
       "rank": "★★★/★★★★★★",
       "influence": "Wealth",
-      "types": [
-        "Daggers",
-        "Light"
-      ],
+      "types": ["Daggers", "Light"],
       "va": "Shun Horie",
       "battleskills": [
         {
@@ -13960,10 +13493,7 @@
       "job": "Warrior",
       "rank": "★★★★/★★★★★",
       "influence": "Power",
-      "types": [
-        "Swords",
-        "Lightning"
-      ],
+      "types": ["Swords", "Lightning"],
       "va": "Rikiya Koyama",
       "battleskills": [
         {
@@ -14059,10 +13589,7 @@
       "job": "Warrior",
       "rank": "★★★★★",
       "influence": "Wealth",
-      "types": [
-        "Swords",
-        "Wind"
-      ],
+      "types": ["Swords", "Wind"],
       "va": "Juri Nagatsuma",
       "battleskills": [
         {
@@ -14161,10 +13688,7 @@
       "job": "Warrior",
       "rank": "★★★★/★★★★★",
       "influence": "Power",
-      "types": [
-        "Swords",
-        "Fire"
-      ],
+      "types": ["Swords", "Fire"],
       "va": "Kenshō Ono",
       "battleskills": [
         {
@@ -14249,10 +13773,7 @@
       "job": "Warrior",
       "rank": "★★★★/★★★★★",
       "influence": "Fame",
-      "types": [
-        "Swords",
-        "Dark"
-      ],
+      "types": ["Swords", "Dark"],
       "va": "Saori Ōnishi",
       "battleskills": [
         {
@@ -14351,11 +13872,7 @@
       "job": "Warrior",
       "rank": "★★★★/★★★★★",
       "influence": "Power",
-      "types": [
-        "Swords",
-        "Polearms",
-        "Lightning"
-      ],
+      "types": ["Swords", "Polearms", "Lightning"],
       "va": "Tomokazu Seki",
       "battleskills": [
         {
@@ -14456,10 +13973,7 @@
       "job": "Warrior",
       "rank": "★★★★/★★★★★",
       "influence": "Fame",
-      "types": [
-        "Swords",
-        "Ice"
-      ],
+      "types": ["Swords", "Ice"],
       "va": "Kōsuke Toriumi",
       "battleskills": [
         {
@@ -14556,12 +14070,9 @@
       "name": "Eliza Woodward",
       "gender": "Female",
       "job": "Warrior",
-      "rank": "Warrior",
+      "rank": "★★★★/★★★★★",
       "influence": "Power",
-      "types": [
-        "Swords",
-        "Light"
-      ],
+      "types": ["Swords", "Light"],
       "va": "Yuu Ayase",
       "battleskills": [
         {
@@ -14660,11 +14171,7 @@
       "job": "Warrior",
       "rank": "★★★★/★★★★★",
       "influence": "Power",
-      "types": [
-        "Swords",
-        "Fire",
-        "Light"
-      ],
+      "types": ["Swords", "Fire", "Light"],
       "va": "Mai Aizawa",
       "battleskills": [
         {
@@ -14760,10 +14267,7 @@
       "job": "Warrior",
       "rank": "★★★★/★★★★★",
       "influence": "Wealth",
-      "types": [
-        "Swords",
-        "Light"
-      ],
+      "types": ["Swords", "Light"],
       "va": "Tasuku Hatanaka",
       "battleskills": [
         {
@@ -14862,10 +14366,7 @@
       "job": "Warrior",
       "rank": "★★★★/★★★★★",
       "influence": "Power",
-      "types": [
-        "Swords",
-        "Wind"
-      ],
+      "types": ["Swords", "Wind"],
       "va": "Daisuke Yokota",
       "battleskills": [
         {
@@ -14964,10 +14465,7 @@
       "job": "Warrior",
       "rank": "★★★★/★★★★★",
       "influence": "Fame",
-      "types": [
-        "Swords",
-        "Ice"
-      ],
+      "types": ["Swords", "Ice"],
       "va": "Kengo Kawanishi",
       "battleskills": [
         {
@@ -15063,10 +14561,7 @@
       "job": "Warrior",
       "rank": "★★★★/★★★★★",
       "influence": "Fame",
-      "types": [
-        "Swords",
-        "Lightning"
-      ],
+      "types": ["Swords", "Lightning"],
       "va": "Takamasa Mogi",
       "battleskills": [
         {
@@ -15165,12 +14660,7 @@
       "job": "Warrior",
       "rank": "★★★★/★★★★★",
       "influence": "Fame",
-      "types": [
-        "Swords",
-        "Axes",
-        "Fire",
-        "Dark"
-      ],
+      "types": ["Swords", "Axes", "Fire", "Dark"],
       "va": "Yui Ishikawa",
       "battleskills": [
         {
@@ -15266,10 +14756,7 @@
       "job": "Warrior",
       "rank": "★★★★/★★★★★",
       "influence": "Fame",
-      "types": [
-        "Swords",
-        "Light"
-      ],
+      "types": ["Swords", "Light"],
       "va": "Yuki Kaji",
       "battleskills": [
         {
@@ -15368,10 +14855,7 @@
       "job": "Warrior",
       "rank": "★★★★/★★★★★",
       "influence": "Fame",
-      "types": [
-        "Swords",
-        "Fire"
-      ],
+      "types": ["Swords", "Fire"],
       "va": "Ami Koshimizu",
       "battleskills": [
         {
@@ -15467,11 +14951,7 @@
       "job": "Warrior",
       "rank": "★★★★/★★★★★",
       "influence": "Wealth",
-      "types": [
-        "Swords",
-        "Axes",
-        "Dark"
-      ],
+      "types": ["Swords", "Axes", "Dark"],
       "va": "Yōko Hikasa",
       "battleskills": [
         {
@@ -15567,10 +15047,7 @@
       "job": "Warrior",
       "rank": "★★★★/★★★★★",
       "influence": "Power",
-      "types": [
-        "Swords",
-        "Light"
-      ],
+      "types": ["Swords", "Light"],
       "va": "Yoko Hikasa",
       "battleskills": [
         {
@@ -15666,10 +15143,7 @@
       "job": "Warrior",
       "rank": "★★★★/★★★★★",
       "influence": "Fame",
-      "types": [
-        "Swords",
-        "Wind"
-      ],
+      "types": ["Swords", "Wind"],
       "va": "Yūichi Nakamura",
       "battleskills": [
         {
@@ -15765,10 +15239,7 @@
       "job": "Warrior",
       "rank": "★★★★/★★★★★",
       "influence": "Fame",
-      "types": [
-        "Swords",
-        "Dark"
-      ],
+      "types": ["Swords", "Dark"],
       "va": "Yūichi Nakamura",
       "battleskills": [
         {
@@ -15864,11 +15335,7 @@
       "job": "Warrior",
       "rank": "★★★★/★★★★★★",
       "influence": "Power",
-      "types": [
-        "Swords",
-        "Fire",
-        "Light"
-      ],
+      "types": ["Swords", "Fire", "Light"],
       "va": "Jun Fukushima",
       "battleskills": [
         {
@@ -15989,11 +15456,7 @@
       "job": "Warrior",
       "rank": "★★★★/★★★★★★",
       "influence": "Power",
-      "types": [
-        "Swords",
-        "Fire",
-        "Light"
-      ],
+      "types": ["Swords", "Fire", "Light"],
       "va": "Jun Fukushima",
       "battleskills": [
         {
@@ -16114,9 +15577,7 @@
       "job": "Warrior",
       "rank": "★★★★/★★★★★★",
       "influence": "Dominance",
-      "types": [
-        "Swords"
-      ],
+      "types": ["Swords"],
       "va": "Haruka Tomatsu",
       "battleskills": [
         {
@@ -16237,9 +15698,7 @@
       "job": "Warrior",
       "rank": "★★★★/★★★★★",
       "influence": "Wealth",
-      "types": [
-        "Swords"
-      ],
+      "types": ["Swords"],
       "va": "Ryōta Takeuchi",
       "battleskills": [
         {
@@ -16335,9 +15794,7 @@
       "job": "Warrior",
       "rank": "★★★★/★★★★★",
       "influence": "Wealth",
-      "types": [
-        "Swords"
-      ],
+      "types": ["Swords"],
       "va": "Ryōta Takeuchi",
       "battleskills": [
         {
@@ -16433,11 +15890,7 @@
       "job": "Warrior",
       "rank": "★★★★/★★★★★",
       "influence": "Prestige",
-      "types": [
-        "Swords",
-        "Staves",
-        "Light"
-      ],
+      "types": ["Swords", "Staves", "Light"],
       "va": "Junya Enoki",
       "battleskills": [
         {
@@ -16536,10 +15989,7 @@
       "job": "Warrior",
       "rank": "★★★★/★★★★★★",
       "influence": "Power",
-      "types": [
-        "Swords",
-        "Dark"
-      ],
+      "types": ["Swords", "Dark"],
       "va": "Jun Fukushima",
       "battleskills": [
         {
@@ -16657,10 +16107,7 @@
       "job": "Warrior",
       "rank": "★★★★",
       "influence": "Wealth",
-      "types": [
-        "Swords",
-        "Dark"
-      ],
+      "types": ["Swords", "Dark"],
       "va": "Hiroki Gotō",
       "battleskills": [
         {
@@ -16739,10 +16186,7 @@
       "job": "Warrior",
       "rank": "★★★/★★★★",
       "influence": "Power",
-      "types": [
-        "Swords",
-        "Light"
-      ],
+      "types": ["Swords", "Light"],
       "va": "Yuuya Hirose",
       "battleskills": [
         {
@@ -16813,10 +16257,7 @@
       "job": "Warrior",
       "rank": "★★★/★★★★",
       "influence": "Power",
-      "types": [
-        "Swords",
-        "Lightning"
-      ],
+      "types": ["Swords", "Lightning"],
       "va": "Ruriko Noguchi",
       "battleskills": [
         {
@@ -16887,10 +16328,7 @@
       "job": "Warrior",
       "rank": "★★★/★★★★",
       "influence": "Fame",
-      "types": [
-        "Swords",
-        "Fire"
-      ],
+      "types": ["Swords", "Fire"],
       "va": "Hisafumi Oda",
       "battleskills": [
         {
@@ -16961,10 +16399,7 @@
       "job": "Warrior",
       "rank": "★★★/★★★★",
       "influence": "Wealth",
-      "types": [
-        "Swords",
-        "Wind"
-      ],
+      "types": ["Swords", "Wind"],
       "va": "Aoi Yuuki",
       "battleskills": [
         {
@@ -17035,10 +16470,7 @@
       "job": "Warrior",
       "rank": "★★★/★★★★★★",
       "influence": "Fame",
-      "types": [
-        "Swords",
-        "Ice"
-      ],
+      "types": ["Swords", "Ice"],
       "va": "Shin'ya Takahashi",
       "battleskills": [
         {
@@ -17122,10 +16554,7 @@
       "job": "Warrior",
       "rank": "★★★/★★★★★★",
       "influence": "Power",
-      "types": [
-        "Swords",
-        "Dark"
-      ],
+      "types": ["Swords", "Dark"],
       "va": "Tomoyo Takayanagi",
       "battleskills": [
         {
@@ -17209,10 +16638,7 @@
       "job": "Warrior",
       "rank": "★★★/★★★★★★",
       "influence": "Wealth",
-      "types": [
-        "Swords",
-        "Light"
-      ],
+      "types": ["Swords", "Light"],
       "va": "Ayaka Suwa",
       "battleskills": [
         {
@@ -17296,11 +16722,7 @@
       "job": "Hunter",
       "rank": "★★★★/★★★★★",
       "influence": "Wealth",
-      "types": [
-        "Bows",
-        "Fans",
-        "Light"
-      ],
+      "types": ["Bows", "Fans", "Light"],
       "va": "Atsuko Tanaka",
       "battleskills": [
         {
@@ -17394,12 +16816,7 @@
       "job": "Hunter",
       "rank": "★★★★★",
       "influence": "Fame",
-      "types": [
-        "Swords",
-        "Polearms",
-        "Axes",
-        "Bows"
-      ],
+      "types": ["Swords", "Polearms", "Axes", "Bows"],
       "va": "Akari Kitō",
       "battleskills": [
         {
@@ -17493,10 +16910,7 @@
       "job": "Hunter",
       "rank": "★★★★/★★★★★",
       "influence": "Fame",
-      "types": [
-        "Daggers",
-        "Wind"
-      ],
+      "types": ["Daggers", "Wind"],
       "va": "Kaito Ishikawa",
       "battleskills": [
         {
@@ -17592,10 +17006,7 @@
       "job": "Hunter",
       "rank": "★★★★/★★★★★",
       "influence": "Fame",
-      "types": [
-        "Bows",
-        "Lightning"
-      ],
+      "types": ["Bows", "Lightning"],
       "va": "Yuuko Kaida",
       "battleskills": [
         {
@@ -17692,12 +17103,9 @@
       "name": "Z'aanta",
       "gender": "Male",
       "job": "Hunter",
-      "rank": "Hunter",
+      "rank": "★★★★/★★★★★",
       "influence": "Wealth",
-      "types": [
-        "Bows",
-        "Wind"
-      ],
+      "types": ["Bows", "Wind"],
       "va": "Kento Fujinuma",
       "battleskills": [
         {
@@ -17796,10 +17204,7 @@
       "job": "Hunter",
       "rank": "★★★★/★★★★★",
       "influence": "Fame",
-      "types": [
-        "Bows",
-        "Ice"
-      ],
+      "types": ["Bows", "Ice"],
       "va": "Kenjirō Tsuda",
       "battleskills": [
         {
@@ -17898,10 +17303,7 @@
       "job": "Hunter",
       "rank": "★★★★/★★★★★",
       "influence": "Power",
-      "types": [
-        "Bows",
-        "Dark"
-      ],
+      "types": ["Bows", "Dark"],
       "va": "Shizuka Itō",
       "battleskills": [
         {
@@ -18000,10 +17402,7 @@
       "job": "Hunter",
       "rank": "★★★★/★★★★★",
       "influence": "Power",
-      "types": [
-        "Bows",
-        "Wind"
-      ],
+      "types": ["Bows", "Wind"],
       "va": "Mariya Ise",
       "battleskills": [
         {
@@ -18099,10 +17498,7 @@
       "job": "Hunter",
       "rank": "★★★★/★★★★★★",
       "influence": "Wealth",
-      "types": [
-        "Bows",
-        "Fire"
-      ],
+      "types": ["Bows", "Fire"],
       "va": "Ruriko Aoki",
       "battleskills": [
         {
@@ -18223,10 +17619,7 @@
       "job": "Hunter",
       "rank": "★★★★/★★★★★",
       "influence": "Fame",
-      "types": [
-        "Bows",
-        "Lightning"
-      ],
+      "types": ["Bows", "Lightning"],
       "va": "Haruka Tomatsu",
       "battleskills": [
         {
@@ -18325,10 +17718,7 @@
       "job": "Hunter",
       "rank": "★★★★/★★★★★",
       "influence": "Power",
-      "types": [
-        "Bows",
-        "Wind"
-      ],
+      "types": ["Bows", "Wind"],
       "va": "Aya Endō",
       "battleskills": [
         {
@@ -18549,10 +17939,7 @@
       "job": "Hunter",
       "rank": "★★★★/★★★★★★",
       "influence": "Power",
-      "types": [
-        "Bows",
-        "Lightning"
-      ],
+      "types": ["Bows", "Lightning"],
       "va": "Takeshi Maeda",
       "battleskills": [
         {
@@ -18670,10 +18057,7 @@
       "job": "Hunter",
       "rank": "★★★★",
       "influence": "Wealth",
-      "types": [
-        "Bows",
-        "Dark"
-      ],
+      "types": ["Bows", "Dark"],
       "va": "Haruki Ishiya",
       "battleskills": [
         {
@@ -18755,10 +18139,7 @@
       "job": "Hunter",
       "rank": "★★★★",
       "influence": "Fame",
-      "types": [
-        "Bows",
-        "Light"
-      ],
+      "types": ["Bows", "Light"],
       "va": "Yoshiko Shibao",
       "battleskills": [
         {
@@ -18843,10 +18224,7 @@
       "job": "Hunter",
       "rank": "★★★/★★★★",
       "influence": "Wealth",
-      "types": [
-        "Bows",
-        "Fire"
-      ],
+      "types": ["Bows", "Fire"],
       "va": "Arisa Sakuraba",
       "battleskills": [
         {
@@ -18917,10 +18295,7 @@
       "job": "Hunter",
       "rank": "★★★/★★★★",
       "influence": "Power",
-      "types": [
-        "Bows",
-        "Ice"
-      ],
+      "types": ["Bows", "Ice"],
       "va": "Juri Nagatsuma",
       "battleskills": [
         {
@@ -18991,10 +18366,7 @@
       "job": "Hunter",
       "rank": "★★★/★★★★",
       "influence": "Wealth",
-      "types": [
-        "Bows",
-        "Lightning"
-      ],
+      "types": ["Bows", "Lightning"],
       "va": "Youhei Hamada",
       "battleskills": [
         {
@@ -19065,10 +18437,7 @@
       "job": "Hunter",
       "rank": "★★★/★★★★",
       "influence": "Fame",
-      "types": [
-        "Bows",
-        "Dark"
-      ],
+      "types": ["Bows", "Dark"],
       "va": "Hisafumi Oda",
       "battleskills": [
         {
@@ -19139,10 +18508,7 @@
       "job": "Hunter",
       "rank": "★★★/★★★★★★",
       "influence": "Fame",
-      "types": [
-        "Bows",
-        "Wind"
-      ],
+      "types": ["Bows", "Wind"],
       "va": "Kōichi Sōma",
       "battleskills": [
         {
@@ -19226,10 +18592,7 @@
       "job": "Hunter",
       "rank": "★★★/★★★★★★",
       "influence": "Power",
-      "types": [
-        "Bows",
-        "Light"
-      ],
+      "types": ["Bows", "Light"],
       "va": "Yōko Fujita",
       "battleskills": [
         {
