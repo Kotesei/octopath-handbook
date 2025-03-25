@@ -5,7 +5,9 @@ class FilterTravelers {
   constructor() {
     this.unsortedTravelers = travelersData;
     this.filteredTravelers = [...travelersData];
-    this.ranks = this.getUniqueValues("rank");
+    this.ranks = this.getUniqueValues("rank").sort(
+      (a, b) => a.length - b.length
+    );
     this.types = this.getUniqueValues("types");
     this.influences = this.getUniqueValues("influence");
     this.jobs = this.getUniqueValues("job");
@@ -47,9 +49,15 @@ class FilterTravelers {
     });
     return this;
   }
-  filterByRank(rank) {
+  filterByStartingRank(rank) {
     this.filteredTravelers = this.filteredTravelers.filter((traveler) => {
-      return traveler.rank === rank;
+      return traveler.rank.split("/")[0] === rank;
+    });
+    return this;
+  }
+  filterByHighestRank(rank) {
+    this.filteredTravelers = this.filteredTravelers.filter((traveler) => {
+      return traveler.rank.split("/")[1] === rank;
     });
     return this;
   }

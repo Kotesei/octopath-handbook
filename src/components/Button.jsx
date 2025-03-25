@@ -1,6 +1,9 @@
-export default function Button({ children, ...props }) {
+export default function Button({ active, children, ...props }) {
   return (
-    <button className="bg-white h-fit p-2 rounded" {...props}>
+    <button
+      className={`h-fit p-2 rounded ${active ? "bg-slate-500" : "bg-white"}`}
+      {...props}
+    >
       {children}
     </button>
   );
