@@ -5,7 +5,11 @@ const typeImages = import.meta.glob("/src/assets/types/Type_*.webp", {
   eager: true,
 });
 
-export default function TravelerList({ travelers, isLoading }) {
+export default function TravelerList({
+  travelers,
+  isLoading,
+  openTravelerDetails,
+}) {
   return (
     <div className="grid w-[90%] max-h-[80%] bg-amber-600 grid-cols-3 gap-2 overflow-auto p-5 rounded border border-white">
       {isLoading && <p>Fetching Data...</p>}
@@ -24,7 +28,11 @@ export default function TravelerList({ travelers, isLoading }) {
           gender = unknown;
         }
         return (
-          <div className="h-30 flex gap-2 border-2" key={i}>
+          <div
+            className="h-30 flex gap-2 border-2"
+            key={i}
+            onClick={() => openTravelerDetails(traveler)}
+          >
             <div className="flex flex-col border-r-2">
               <p className="w-22 text-nowrap text-sm text-center">
                 {traveler.job}

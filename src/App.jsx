@@ -32,6 +32,7 @@ export default function App() {
 
     fetchData();
   }, []);
+  console.log(travelers);
   function applyFilters(value, minRank, maxRank) {
     console.log(minRank);
     setFilters((prev) => {
@@ -80,6 +81,10 @@ export default function App() {
     applyFilters(filterName, min, max);
   }
 
+  function handleSelectTraveler({ _id: id }) {
+    console.log(travelersData.find((traveler) => traveler._id === id));
+  }
+
   useEffect(() => {
     if (travelersData.length > 0) {
       travelers.resetFilters();
@@ -105,12 +110,10 @@ export default function App() {
       const value = filters[key];
 
       if (Array.isArray(value)) {
-        // If it's an array (like 'types'), add each value to activeFilter
         value.forEach((item) => {
           newActiveFilter[`${key}:${item}`] = true;
         });
       } else if (value) {
-        // If it's a non-empty string, add it
         newActiveFilter[`${key}:${value}`] = true;
       }
     }
@@ -159,6 +162,7 @@ export default function App() {
         travelers={
           filteredTravelers ? travelers.filteredTravelers : travelersData
         }
+        openTravelerDetails={handleSelectTraveler}
       />
       {filtersTab &&
         createPortal(
