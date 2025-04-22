@@ -2,11 +2,12 @@ import Button from "./Button";
 
 export default function FiltersMenu({
   filterList,
-  handleReset,
-  handleClose,
-  handleFilterToggle,
+  onReset,
+  onClose,
+  onToggle,
   activeFilters,
 }) {
+  console.log(filterList);
   const {
     genders: gender,
     influences: influence,
@@ -37,9 +38,7 @@ export default function FiltersMenu({
                   className={`h-fit px-5 hover:bg-slate-600 cursor-pointer p-2 rounded ${
                     activeFilters[key] ? "bg-slate-400" : "bg-white"
                   }`}
-                  onClick={() =>
-                    handleFilterToggle(filterName, allFilters[filterType])
-                  }
+                  onClick={() => onToggle(filterName, allFilters[filterType])}
                   key={key}
                 >
                   {filterName}
@@ -51,8 +50,8 @@ export default function FiltersMenu({
       })}
 
       <div className="col-2 col-end-4 flex gap-15">
-        <Button onClick={handleReset}>Reset?</Button>
-        <Button onClick={handleClose}>OK</Button>
+        <Button onClick={onReset}>Reset?</Button>
+        <Button onClick={onClose}>OK</Button>
       </div>
     </>
   );

@@ -1,13 +1,5 @@
-import fetchCharacters from "./fetchCharacters";
-
-let travelersData = [];
-fetchCharacters().then((data) => {
-  travelersData = data;
-  travelers = new FilterTravelers(data);
-});
-
-class FilterTravelers {
-  constructor() {
+export default class FilterTravelers {
+  constructor(travelersData) {
     this.unsortedTravelers = travelersData;
     this.filteredTravelers = [...travelersData];
     this.ranks = this.getUniqueValues("rank").sort(
@@ -78,5 +70,3 @@ class FilterTravelers {
     this.filteredTravelers = [...this.unsortedTravelers];
   }
 }
-
-export let travelers = null;

@@ -5,14 +5,10 @@ const typeImages = import.meta.glob("/src/assets/types/Type_*.webp", {
   eager: true,
 });
 
-export default function TravelerList({
-  travelers,
-  isLoading,
-  openTravelerDetails,
-}) {
+export default function TravelerList({ travelers, openTravelerDetails }) {
   return (
     <div className="grid w-[90%] max-h-[80%] bg-amber-600 grid-cols-3 gap-2 overflow-auto p-5 rounded border border-white">
-      {isLoading && <p>Fetching Data...</p>}
+      {!travelers.length > 0 && <p>Fetching Data...</p>}
       {travelers.map((traveler, i) => {
         const types = Array.isArray(traveler.types)
           ? traveler.types
