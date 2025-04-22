@@ -1,5 +1,10 @@
-import Travelers from "../assets/octopathCoTCUnitList.json";
-const travelersData = Travelers["CoTCCharacters"];
+import fetchCharacters from "./fetchCharacters";
+
+let travelersData = [];
+fetchCharacters().then((data) => {
+  travelersData = data;
+  travelers = new FilterTravelers(data);
+});
 
 class FilterTravelers {
   constructor() {
@@ -74,4 +79,4 @@ class FilterTravelers {
   }
 }
 
-export const travelers = new FilterTravelers();
+export let travelers = null;

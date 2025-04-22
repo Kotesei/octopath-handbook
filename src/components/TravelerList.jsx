@@ -1,10 +1,20 @@
-import female from "../assets/female.svg";
-import unknown from "../assets/unknown.svg";
-import male from "../assets/male.svg";
-export default function TravelerList({ travelers }) {
+import female from "../assets/genders/female.svg";
+import unknown from "../assets/genders/unknown.svg";
+import male from "../assets/genders/male.svg";
+const typeImages = import.meta.glob("/src/assets/types/Type_*.webp", {
+  eager: true,
+});
+
+export default function TravelerList({ travelers, isLoading }) {
   return (
-    <div className="grid w-full bg-amber-600 grid-cols-3 gap-2 overflow-auto p-5 rounded-2xl border border-white">
+    <div className="grid w-[90%] max-h-[80%] bg-amber-600 grid-cols-3 gap-2 overflow-auto p-5 rounded border border-white">
+      {isLoading && <p>Fetching Data...</p>}
       {travelers.map((traveler, i) => {
+        const types = Array.isArray(traveler.types)
+          ? traveler.types
+          : typeof traveler.types === "string"
+          ? [traveler.types]
+          : [];
         let gender;
         if (traveler.gender[0] === "F") {
           gender = female;
@@ -28,7 +38,13 @@ export default function TravelerList({ travelers }) {
             <div className="flex flex-col justify-center">
               <p>{traveler.name}</p>
               <p>{traveler.rank}</p>
-              <p>{traveler.types}</p>
+              <div className="flex">
+                {types.map((type, i) => {
+                  const fileKey = `/src/assets/types/Type_${type}.webp`;
+                  const imgSrc = typeImages[fileKey]?.default;
+                  return <img key={i} src={imgSrc} alt={type} />;
+                })}
+              </div>
               <p>{traveler.influence}</p>
             </div>
           </div>
