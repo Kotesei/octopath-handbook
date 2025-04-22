@@ -19,6 +19,8 @@ export function TravelersProvider({ children }) {
   });
   const [enabled, setEnabled] = useState();
 
+  // Wait for fetched data
+
   useEffect(() => {
     async function loadTravelers() {
       const travelersData = await fetchCharacters();
@@ -28,6 +30,8 @@ export function TravelersProvider({ children }) {
     }
     loadTravelers();
   }, []);
+
+  // Function for applying the filters properly
 
   function applyFilters(value, minRank, maxRank) {
     setActiveFilters((prev) => {
@@ -76,6 +80,8 @@ export function TravelersProvider({ children }) {
     applyFilters(filterName, min, max);
   }
 
+  // Function to handle clicking on a traveler
+
   function handleSelectTraveler({ _id: id }) {
     console.log(travelers.find((traveler) => traveler._id === id));
   }
@@ -119,46 +125,41 @@ export function TravelersProvider({ children }) {
   useEffect(() => {
     if (!loading) {
       travelerFilters.resetFilters();
-      console.log(activeFilters);
 
-      if (activeFilters.job) travelerFilters.filterByJob(activeFilters.job);
-      if (activeFilters.gender)
-        travelerFilters.filterByGenders(activeFilters.gender);
-      if (activeFilters.influence)
-        travelerFilters.filterByInfluence(activeFilters.influence);
-      if (activeFilters.startingRank)
-        travelerFilters.filterByStartingRank(activeFilters.startingRank);
-      if (activeFilters.highestRank)
-        travelerFilters.filterByHighestRank(activeFilters.highestRank);
+      const filterMap = {
+        job: travelerFilters.filterByJob,
+        gender: travelerFilters.filterByGenders,
+        influence: travelerFilters.filterByInfluence,
+        startingRank: travelerFilters.filterByStartingRank,
+        highestRank: travelerFilters.filterByHighestRank,
+      };
 
-      if (activeFilters.types.length > 0)
-        travelerFilters.filterByType(...activeFilters.types);
+      Object.entries(activeFilters).forEach(([key, value]) => {
+        if (key === "types" && value.length > 0) {
+          travelerFilters.filterByType(...value);
+        } else if (filterMap[key] && value) {
+          filterMap[key].call(travelerFilters, value);
+        }
+      });
 
       setTravelers([...travelerFilters.filteredTravelers]);
       console.log(travelerFilters);
-      const enabledFilters = {};
 
-      for (const key in activeFilters) {
-        const value = activeFilters[key];
-
-        if (Array.isArray(value)) {
-          value.forEach((item) => {
-            enabledFilters[`${key}:${item}`] = true;
-          });
-        } else if (value) {
-          enabledFilters[`${key}:${value}`] = true;
-        }
-      }
+      const enabledFilters = Object.entries(activeFilters).reduce(
+        (acc, [key, value]) => {
+          if (Array.isArray(value)) {
+            value.forEach((item) => (acc[`${key}:${item}`] = true));
+          } else if (value) {
+            acc[`${key}:${value}`] = true;
+          }
+          return acc;
+        },
+        {}
+      );
 
       setEnabled(enabledFilters);
     }
-  }, [activeFilters]);
-
-  useEffect(() => {
-    if (enabled) {
-      console.log(enabled);
-    }
-  }, [enabled]);
+  }, [activeFilters, loading]);
 
   return (
     <TravelersContext.Provider

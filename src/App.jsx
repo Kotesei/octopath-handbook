@@ -1,4 +1,4 @@
-import { useEffect, useContext } from "react";
+import { useContext } from "react";
 import { TravelersContext } from "./store/travelers-context.jsx";
 import "./App.css";
 import TravelerList from "./components/TravelerList";
