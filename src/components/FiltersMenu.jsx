@@ -5,9 +5,8 @@ export default function FiltersMenu({
   onReset,
   onClose,
   onToggle,
-  activeFilters,
+  enabled = {},
 }) {
-  console.log(filterList);
   const {
     genders: gender,
     influences: influence,
@@ -36,7 +35,7 @@ export default function FiltersMenu({
               return (
                 <Button
                   className={`h-fit px-5 hover:bg-slate-600 cursor-pointer p-2 rounded ${
-                    activeFilters[key] ? "bg-slate-400" : "bg-white"
+                    enabled[key] ? "bg-slate-400" : "bg-white"
                   }`}
                   onClick={() => onToggle(filterName, allFilters[filterType])}
                   key={key}

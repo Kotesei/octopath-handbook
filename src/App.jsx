@@ -11,7 +11,7 @@ export default function App() {
     travelers,
     loading,
     travelerFilters,
-    activeFilters,
+    enabled,
     openFiltersTab,
     handleSortTravelers,
     handleFilterToggle,
@@ -20,31 +20,6 @@ export default function App() {
     handleSelectTraveler,
     handleResetFilters,
   } = useContext(TravelersContext);
-
-  useEffect(() => {
-    if (travelers.length > 0) {
-      console.log(travelers);
-    }
-  }, [travelers]);
-
-  // useEffect(() => {
-  //   const newActiveFilter = {};
-
-  //   for (const key in filters) {
-  //     const value = filters[key];
-
-  //     if (Array.isArray(value)) {
-  //       value.forEach((item) => {
-  //         newActiveFilter[`${key}:${item}`] = true;
-  //       });
-  //     } else if (value) {
-  //       newActiveFilter[`${key}:${value}`] = true;
-  //     }
-  //   }
-
-  //   setActiveFilter(newActiveFilter);
-  // }, [filteredTravelers]);
-  // console.log(activeFilter);
 
   return (
     <div className="bg-black h-full w-full flex items-center flex-col gap-5 overflow-hidden">
@@ -63,6 +38,7 @@ export default function App() {
         </div>
       </div>
       <TravelerList
+        loading={loading}
         travelers={travelers ? travelers : ""}
         openTravelerDetails={handleSelectTraveler}
       />
@@ -71,7 +47,7 @@ export default function App() {
           <div className="flex flex-col overflow-auto gap-10 w-[100vw] h-[100vh] p-15 items-center bg-[#000000d0]">
             <FiltersMenu
               filterList={travelerFilters}
-              activeFilters={activeFilters}
+              enabled={enabled}
               onToggle={handleFilterToggle}
               onReset={handleResetFilters}
               onClose={handleCloseFiltersWindow}

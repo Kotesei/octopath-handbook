@@ -17,6 +17,7 @@ export function TravelersProvider({ children }) {
     startingRank: "",
     highestRank: "",
   });
+  const [enabled, setEnabled] = useState();
 
   useEffect(() => {
     async function loadTravelers() {
@@ -116,8 +117,10 @@ export function TravelersProvider({ children }) {
   // Updates the filters
 
   useEffect(() => {
-    if (travelers.length > 0) {
+    if (!loading) {
+      travelerFilters.resetFilters();
       console.log(activeFilters);
+
       if (activeFilters.job) travelerFilters.filterByJob(activeFilters.job);
       if (activeFilters.gender)
         travelerFilters.filterByGenders(activeFilters.gender);
@@ -132,8 +135,30 @@ export function TravelersProvider({ children }) {
         travelerFilters.filterByType(...activeFilters.types);
 
       setTravelers([...travelerFilters.filteredTravelers]);
+      console.log(travelerFilters);
+      const enabledFilters = {};
+
+      for (const key in activeFilters) {
+        const value = activeFilters[key];
+
+        if (Array.isArray(value)) {
+          value.forEach((item) => {
+            enabledFilters[`${key}:${item}`] = true;
+          });
+        } else if (value) {
+          enabledFilters[`${key}:${value}`] = true;
+        }
+      }
+
+      setEnabled(enabledFilters);
     }
   }, [activeFilters]);
+
+  useEffect(() => {
+    if (enabled) {
+      console.log(enabled);
+    }
+  }, [enabled]);
 
   return (
     <TravelersContext.Provider
@@ -141,10 +166,10 @@ export function TravelersProvider({ children }) {
         travelers,
         loading,
         travelerFilters,
-        activeFilters,
-        openFiltersTab,
         handleSortTravelers,
+        openFiltersTab,
         handleFilterToggle,
+        enabled,
         handleOpenFiltersTab,
         handleCloseFiltersWindow,
         handleSelectTraveler,
