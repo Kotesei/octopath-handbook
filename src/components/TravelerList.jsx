@@ -1,10 +1,3 @@
-import female from "../assets/genders/female.svg";
-import unknown from "../assets/genders/unknown.svg";
-import male from "../assets/genders/male.svg";
-const typeImages = import.meta.glob("/src/assets/types/Type_*.webp", {
-  eager: true,
-});
-
 export default function TravelerList({
   travelers,
   openTravelerDetails,
@@ -14,6 +7,9 @@ export default function TravelerList({
     <div className="grid w-[90%] max-h-[80%] bg-amber-600 grid-cols-3 gap-2 overflow-auto p-5 rounded border border-white">
       {loading && <p>Fetching Data...</p>}
       {travelers.map((traveler, i) => {
+        const avatarImagePath = `https://cotc-travelers-backend.onrender.com/assets/avatars/${
+          traveler.job
+        }/${traveler.name.replace(/\s+/g, "_").replace(/'/g, "_")}_Sprite.webp`;
         const types = Array.isArray(traveler.types)
           ? traveler.types
           : typeof traveler.types === "string"
@@ -21,25 +17,29 @@ export default function TravelerList({
           : [];
         let gender;
         if (traveler.gender[0] === "F") {
-          gender = female;
+          gender = "female";
         } else if (traveler.gender[0] === "M") {
-          gender = male;
+          gender = "male";
         } else {
-          gender = unknown;
+          gender = "unknown";
         }
+
         return (
           <div
-            className="h-30 flex gap-2 border-2"
+            className="h-30 flex gap-2 border-2 relative"
             key={i}
             onClick={() => openTravelerDetails(traveler)}
           >
-            <div className="flex flex-col border-r-2">
-              <p className="w-22 text-nowrap text-sm text-center">
-                {traveler.job}
-              </p>
-              <div className="flex-1 bg-amber-950 relative">
-                <div className="absolute bottom-[-4px] left-[-6px] w-5 h-5 rounded-full bg-white flex items-center justify-center text-xs">
-                  <img className="size-4" src={gender}></img>
+            <div className="w-22 h- flex flex-col border-r-2">
+              <p className="text-nowrap text-sm text-center">{traveler.job}</p>
+              <div className="flex-1 bg-amber-950 overflow-hidden flex items-center justify-center">
+                <img src={avatarImagePath} className="h-20" />
+
+                <div className="absolute bottom-[-5px] left-[-6px] w-5 h-5 rounded-full bg-white flex items-center justify-center text-xs">
+                  <img
+                    className="size-4"
+                    src={`https://cotc-travelers-backend.onrender.com/assets/genders/${gender}.svg`}
+                  ></img>
                 </div>
               </div>
             </div>
@@ -48,9 +48,8 @@ export default function TravelerList({
               <p>{traveler.rank}</p>
               <div className="flex">
                 {types.map((type, i) => {
-                  const fileKey = `/src/assets/types/Type_${type}.webp`;
-                  const imgSrc = typeImages[fileKey]?.default;
-                  return <img key={i} src={imgSrc} alt={type} />;
+                  const typesImagePath = `https://cotc-travelers-backend.onrender.com/assets/types/Type_${type}.webp`;
+                  return <img key={i} src={typesImagePath} alt={type} />;
                 })}
               </div>
               <p>{traveler.influence}</p>

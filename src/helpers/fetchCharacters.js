@@ -9,7 +9,6 @@ export default async function fetchCharacters() {
     }
 
     const data = await res.json();
-    console.log(data);
     return data.data;
   } catch (error) {
     console.error("Error fetching data: ", error.message);

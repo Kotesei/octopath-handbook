@@ -143,7 +143,6 @@ export function TravelersProvider({ children }) {
       });
 
       setTravelers([...travelerFilters.filteredTravelers]);
-      console.log(travelerFilters);
 
       const enabledFilters = Object.entries(activeFilters).reduce(
         (acc, [key, value]) => {
