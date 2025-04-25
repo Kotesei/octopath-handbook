@@ -21,7 +21,7 @@ export default function TravelerList({
         } else if (traveler.gender[0] === "M") {
           gender = "male";
         } else {
-          gender = "unknown";
+          gender = "ambiguous";
         }
 
         return (
