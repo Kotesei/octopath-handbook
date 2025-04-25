@@ -1,9 +1,12 @@
 import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
+import { TravelersProvider } from "./store/travelers-context.jsx";
 import App from "./App.jsx";
 
 createRoot(document.getElementById("root")).render(
   <StrictMode>
-    <App />
+    <TravelersProvider>
+      <App />
+    </TravelersProvider>
   </StrictMode>
 );
