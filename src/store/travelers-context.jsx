@@ -1,12 +1,14 @@
 import { createContext, useEffect, useState } from "react";
 import fetchCharacters from "../helpers/fetchCharacters.js";
 import filters from "../helpers/filterCharacters.js";
+import sheepQuotes from "../../randomSheepQuote.js";
 
 export const TravelersContext = createContext();
 
 export function TravelersProvider({ children }) {
   const [travelers, setTravelers] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [loadingText, setLoadingText] = useState(null);
   const [openFiltersTab, setOpenFiltersTab] = useState(false);
   const [travelerFilters, setTravelerFilters] = useState([]);
   const [activeFilters, setActiveFilters] = useState({
@@ -23,6 +25,7 @@ export function TravelersProvider({ children }) {
   // Wait for fetched data
 
   useEffect(() => {
+    setLoadingText(sheepQuotes[Math.floor(Math.random() * sheepQuotes.length)]);
     async function loadTravelers() {
       const travelersData = await fetchCharacters();
       setTravelers(travelersData);
@@ -33,7 +36,6 @@ export function TravelersProvider({ children }) {
   }, []);
 
   // Function for applying the filters properly
-
   function applyFilters(value, minRank, maxRank) {
     setActiveFilters((prev) => {
       if (travelerFilters.jobs.includes(value))
@@ -85,8 +87,6 @@ export function TravelersProvider({ children }) {
   }
 
   function handleFilterToggle(filterName, filterList, category) {
-    console.log(filterName, filterList, category);
-
     if (category === "startingRank") {
       if (filterName === "★★★★★") {
         setDisableMaxRanks((prev) => !prev);
@@ -175,16 +175,10 @@ export function TravelersProvider({ children }) {
 
   useEffect(() => {
     if (disableMaxRanks) {
-      console.log(activeFilters);
       setActiveFilters((prev) => ({
         ...prev,
         highestRank: "",
       }));
-      // setEnabled((prev) => ({
-      //   ...prev,
-      //   ["highestRank:★★★★★"]: false,
-      //   ["highestRank:★★★★★★"]: false,
-      // }));
     }
   }, [disableMaxRanks]);
 
@@ -193,6 +187,7 @@ export function TravelersProvider({ children }) {
       value={{
         travelers,
         loading,
+        loadingText,
         travelerFilters,
         handleSortTravelers,
         openFiltersTab,
