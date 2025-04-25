@@ -19,6 +19,7 @@ export default function App() {
     handleCloseFiltersWindow,
     handleSelectTraveler,
     handleResetFilters,
+    disableMaxRanks,
   } = useContext(TravelersContext);
 
   return (
@@ -51,6 +52,7 @@ export default function App() {
               onToggle={handleFilterToggle}
               onReset={handleResetFilters}
               onClose={handleCloseFiltersWindow}
+              disabledMaxRanks={disableMaxRanks}
             />
           </div>,
           document.getElementById("filtersMenu")

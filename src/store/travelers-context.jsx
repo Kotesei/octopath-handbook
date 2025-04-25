@@ -17,7 +17,8 @@ export function TravelersProvider({ children }) {
     startingRank: "",
     highestRank: "",
   });
-  const [enabled, setEnabled] = useState();
+  const [enabled, setEnabled] = useState({});
+  const [disableMaxRanks, setDisableMaxRanks] = useState(false);
 
   // Wait for fetched data
 
@@ -71,15 +72,6 @@ export function TravelersProvider({ children }) {
     });
   }
 
-  function handleFilterToggle(filterName, category) {
-    let min = false;
-    let max = false;
-    if (category[0] === "★★★") min = true;
-    if (category[0] === "★★★★") max = true;
-
-    applyFilters(filterName, min, max);
-  }
-
   // Function to handle clicking on a traveler
 
   function handleSelectTraveler({ _id: id }) {
@@ -90,6 +82,27 @@ export function TravelersProvider({ children }) {
 
   function handleSortTravelers() {
     console.log("Sorting Feature here");
+  }
+
+  function handleFilterToggle(filterName, filterList, category) {
+    console.log(filterName, filterList, category);
+
+    if (category === "startingRank") {
+      if (filterName === "★★★★★") {
+        setDisableMaxRanks((prev) => !prev);
+      } else {
+        setDisableMaxRanks(false);
+      }
+    }
+
+    if (disableMaxRanks && category === "highestRank") return;
+
+    let min = false;
+    let max = false;
+    if (filterList[0] === "★★★") min = true;
+    if (filterList[0] === "★★★★★") max = true;
+
+    applyFilters(filterName, min, max);
   }
 
   function handleOpenFiltersTab() {
@@ -113,6 +126,7 @@ export function TravelersProvider({ children }) {
       highestRank: "",
     });
     handleCloseFiltersWindow();
+    setDisableMaxRanks(false);
   }
   function handleCloseFiltersWindow() {
     setOpenFiltersTab(false);
@@ -142,8 +156,6 @@ export function TravelersProvider({ children }) {
         }
       });
 
-      setTravelers([...travelerFilters.filteredTravelers]);
-
       const enabledFilters = Object.entries(activeFilters).reduce(
         (acc, [key, value]) => {
           if (Array.isArray(value)) {
@@ -157,8 +169,24 @@ export function TravelersProvider({ children }) {
       );
 
       setEnabled(enabledFilters);
+      setTravelers([...travelerFilters.filteredTravelers]);
     }
   }, [activeFilters, loading]);
+
+  useEffect(() => {
+    if (disableMaxRanks) {
+      console.log(activeFilters);
+      setActiveFilters((prev) => ({
+        ...prev,
+        highestRank: "",
+      }));
+      // setEnabled((prev) => ({
+      //   ...prev,
+      //   ["highestRank:★★★★★"]: false,
+      //   ["highestRank:★★★★★★"]: false,
+      // }));
+    }
+  }, [disableMaxRanks]);
 
   return (
     <TravelersContext.Provider
@@ -174,6 +202,7 @@ export function TravelersProvider({ children }) {
         handleCloseFiltersWindow,
         handleSelectTraveler,
         handleResetFilters,
+        disableMaxRanks,
       }}
     >
       {children}

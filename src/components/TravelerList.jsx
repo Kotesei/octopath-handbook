@@ -4,7 +4,7 @@ export default function TravelerList({
   loading,
 }) {
   return (
-    <div className="grid w-[90%] max-h-[80%] bg-amber-600 grid-cols-3 gap-2 overflow-auto p-5 rounded border border-white">
+    <div className="grid w-[90%] max-h-[80%] bg-indigo-500 grid-cols-3 gap-2 overflow-auto p-5 rounded border border-white">
       {loading && <p>Fetching Data...</p>}
       {travelers.map((traveler, i) => {
         const avatarImagePath = `https://cotc-travelers-backend.onrender.com/assets/avatars/${
@@ -31,8 +31,10 @@ export default function TravelerList({
             onClick={() => openTravelerDetails(traveler)}
           >
             <div className="w-22 h- flex flex-col border-r-2">
-              <p className="text-nowrap text-sm text-center">{traveler.job}</p>
-              <div className="flex-1 bg-amber-950 overflow-hidden flex items-center justify-center">
+              <p className="text-nowrap text-sm text-center bg-indigo-400">
+                {traveler.job}
+              </p>
+              <div className="flex-1 bg-indigo-950 overflow-hidden flex items-center justify-center">
                 <img src={avatarImagePath} className="h-20" />
 
                 <div className="absolute bottom-[-5px] left-[-6px] w-5 h-5 rounded-full bg-white flex items-center justify-center text-xs">
