@@ -22,6 +22,9 @@ export default function App() {
     handleSelectTraveler,
     handleResetFilters,
     disableMaxRanks,
+    error,
+    icons,
+    travelersList,
   } = useContext(TravelersContext);
 
   return (
@@ -32,20 +35,32 @@ export default function App() {
           <p className="text-white">Favorite</p>
         </div>
         <div className="flex gap-2  items-center">
-          <Button disabled={loading} clearbg onClick={handleSortTravelers}>
+          <Button
+            disabled={loading || error}
+            clearbg
+            onClick={handleSortTravelers}
+          >
             Sort
           </Button>
-          <Button disabled={loading} onClick={handleOpenFiltersTab}>
+          <Button disabled={loading || error} onClick={handleOpenFiltersTab}>
             Filter
           </Button>
         </div>
       </div>
       <TravelerList
+        travelersList={travelersList}
         loading={loading}
         loadingText={loadingText}
+        error={error}
         travelers={travelers ? travelers : ""}
+        icons={icons}
         openTravelerDetails={handleSelectTraveler}
       />
+      {error && (
+        <h2 className="text-red-600 font-extrabold text-3xl text-center">
+          Failed to fetch characters from database
+        </h2>
+      )}
       {loading && (
         <div className="flex flex-col justify-center items-center gap-5">
           <h2 className="text-white">Loading Travelers...</h2>
@@ -54,14 +69,14 @@ export default function App() {
       )}
       {!loading && (
         <footer className="flex flex-col items-center flex-1 justify-end pb-9 text-white">
-          <h2>It's go time..</h2>
+          <h2>{error ? "It's NOT go time..." : "It's go time.."}</h2>
           <p>Made by Kotesei 👾</p>
           <a href="#">Source Code</a>
         </footer>
       )}
       {openFiltersTab &&
         createPortal(
-          <div className="flex flex-col overflow-auto gap-10 w-[100vw] h-[100vh] p-15 items-center bg-[#000000d0]">
+          <div className="flex flex-col overflow-auto gap-2 w-[100dvw] h-[100dvh] p-5 items-center bg-[#000000d0]">
             <FiltersMenu
               filterList={travelerFilters}
               enabled={enabled}

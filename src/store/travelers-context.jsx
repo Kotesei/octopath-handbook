@@ -7,10 +7,13 @@ export const TravelersContext = createContext();
 
 export function TravelersProvider({ children }) {
   const [travelers, setTravelers] = useState([]);
+  const [icons, setIcons] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(false);
   const [loadingText, setLoadingText] = useState(null);
   const [openFiltersTab, setOpenFiltersTab] = useState(false);
   const [travelerFilters, setTravelerFilters] = useState([]);
+  const [travelersList, setTravelersList] = useState([]);
   const [activeFilters, setActiveFilters] = useState({
     job: "",
     gender: "",
@@ -21,18 +24,38 @@ export function TravelersProvider({ children }) {
   });
   const [enabled, setEnabled] = useState({});
   const [disableMaxRanks, setDisableMaxRanks] = useState(false);
-
-  // Wait for fetched data
-
   useEffect(() => {
     setLoadingText(sheepQuotes[Math.floor(Math.random() * sheepQuotes.length)]);
     async function loadTravelers() {
-      const travelersData = await fetchCharacters();
-      setTravelers(travelersData);
-      setTravelerFilters(new filters(travelersData));
+      let travelersData = await fetchCharacters();
+      if (!travelersData) {
+        console.log("Failed to fetch DOOO SOMETHING MAN");
+        setError(true);
+        setLoadingText(
+          "The shepherd’s voice is lost, and the herd, without guidance, wanders in silence. The records are corrupted; the path is unclear..."
+        );
+        setTravelers([]);
+        setTravelerFilters(new filters([]));
+      } else {
+        setIcons({
+          genders: travelersData.genders,
+          types: travelersData.types,
+        });
+        travelersData = travelersData.travelers;
+        setTravelers(travelersData);
+        setTravelersList(travelersData);
+        setTravelerFilters(new filters(travelersData));
+      }
+
       setLoading(false);
     }
-    loadTravelers();
+    const timeoutId = setTimeout(() => {
+      loadTravelers();
+    }, 2000);
+
+    return () => {
+      clearTimeout(timeoutId);
+    };
   }, []);
 
   // Function for applying the filters properly
@@ -83,6 +106,7 @@ export function TravelersProvider({ children }) {
   // App Button Functions
 
   function handleSortTravelers() {
+    if (loading || error) return;
     console.log("Sorting Feature here");
   }
 
@@ -106,7 +130,7 @@ export function TravelersProvider({ children }) {
   }
 
   function handleOpenFiltersTab() {
-    if (loading) return;
+    if (loading || error) return;
     setOpenFiltersTab(true);
   }
 
@@ -116,7 +140,7 @@ export function TravelersProvider({ children }) {
 
   function handleResetFilters() {
     travelerFilters.resetFilters();
-    setTravelers([...travelerFilters.unsortedTravelers]);
+    setTravelers([...travelerFilters.unfilteredTravelers]);
     setActiveFilters({
       job: "",
       gender: "",
@@ -198,6 +222,9 @@ export function TravelersProvider({ children }) {
         handleSelectTraveler,
         handleResetFilters,
         disableMaxRanks,
+        error,
+        icons,
+        travelersList,
       }}
     >
       {children}
