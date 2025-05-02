@@ -1,4 +1,5 @@
-import { createContext, useEffect, useState } from "react";
+// #REFACTOR - Start putting these in different contexts that make more sense rather than a giant context.
+import { createContext, useEffect, useRef, useState } from "react";
 import fetchCharacters from "../helpers/fetchCharacters.js";
 import filters from "../helpers/filterCharacters.js";
 import sheepQuotes from "../../randomSheepQuote.js";
@@ -6,14 +7,24 @@ import sheepQuotes from "../../randomSheepQuote.js";
 export const TravelersContext = createContext();
 
 export function TravelersProvider({ children }) {
+  // #REFACTOR - Store truthies inside one huge element
+  const inputRef = useRef();
+  const timer = useRef(null);
+  const list = useRef(null);
+  const firstLetter = useRef(null);
   const [travelers, setTravelers] = useState([]);
   const [icons, setIcons] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(false);
+  const [resultsFound, setResultsFound] = useState();
+  const [visibleSearchItems, setVisibleSearchItems] = useState(new Set());
+  const [visibleItems, setVisibleItems] = useState(new Set());
   const [loadingText, setLoadingText] = useState(null);
   const [openFiltersTab, setOpenFiltersTab] = useState(false);
   const [travelerFilters, setTravelerFilters] = useState([]);
   const [travelersList, setTravelersList] = useState([]);
+  const [openSearchResultsWindow, setOpenSearchResultsWindow] = useState(false);
+  const [searchResults, setSearchResults] = useState();
   const [activeFilters, setActiveFilters] = useState({
     job: "",
     gender: "",
@@ -29,7 +40,6 @@ export function TravelersProvider({ children }) {
     async function loadTravelers() {
       let travelersData = await fetchCharacters();
       if (!travelersData) {
-        console.log("Failed to fetch DOOO SOMETHING MAN");
         setError(true);
         setLoadingText(
           "The shepherd’s voice is lost, and the herd, without guidance, wanders in silence. The records are corrupted; the path is unclear..."
@@ -42,12 +52,13 @@ export function TravelersProvider({ children }) {
           types: travelersData.types,
         });
         travelersData = travelersData.travelers;
+
         setTravelers(travelersData);
         setTravelersList(travelersData);
         setTravelerFilters(new filters(travelersData));
       }
-
       setLoading(false);
+      list.current = [...travelersData];
     }
     const timeoutId = setTimeout(() => {
       loadTravelers();
@@ -156,6 +167,85 @@ export function TravelersProvider({ children }) {
     setOpenFiltersTab(false);
   }
 
+  function handleSearch(firstLetter) {
+    if (firstLetter) {
+      list.current.sort((a, b) => {
+        const aStarts = a.name
+          .toLowerCase()
+          .startsWith(firstLetter.toLowerCase());
+        const bStarts = b.name
+          .toLowerCase()
+          .startsWith(firstLetter.toLowerCase());
+
+        if (aStarts && !bStarts) return -1; // a comes first
+        if (!aStarts && bStarts) return 1; // b comes first
+        return a.name.localeCompare(b.name);
+      });
+    }
+
+    if (inputRef.current.value.length > 0) {
+      setOpenSearchResultsWindow(true);
+      setSearchResults(
+        list.current.filter((traveler) =>
+          traveler.name
+            .toLowerCase()
+            .includes(inputRef.current.value.toLowerCase())
+        )
+      );
+    } else {
+      setOpenSearchResultsWindow(false);
+    }
+  }
+
+  function handleSearchTimer(callback, delay) {
+    if (inputRef.current.value.length === 1) {
+      firstLetter.current = inputRef.current.value;
+    }
+    if (timer.current) {
+      clearTimeout(timer.current);
+    }
+
+    timer.current = setTimeout(() => {
+      callback(firstLetter.current);
+      timer.current = null;
+    }, delay);
+  }
+
+  // For unloading when out of view elements
+
+  function createIntersectionHandler(intersection) {
+    return function (entries) {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          intersection((prev) => new Set(prev).add(entry.target.id));
+        } else {
+          intersection((prev) => {
+            const newSet = new Set(prev);
+            newSet.delete(entry.target.id);
+            return newSet;
+          });
+        }
+      });
+    };
+  }
+
+  function observeElements(handleIntersection, element, location) {
+    const observer = new IntersectionObserver(handleIntersection, {
+      root: null,
+      rootMargin: "0px",
+    });
+
+    element.forEach((traveler, index) => {
+      const cardElement = document.getElementById(`${location}-${index}`);
+      if (cardElement) {
+        observer.observe(cardElement);
+      }
+    });
+    return () => {
+      observer.disconnect();
+    };
+  }
+
   /////////////////
 
   // Updates the filters
@@ -206,6 +296,28 @@ export function TravelersProvider({ children }) {
     }
   }, [disableMaxRanks]);
 
+  useEffect(() => {
+    if (searchResults && searchResults.length > 0) {
+      setResultsFound(true);
+      observeElements(
+        createIntersectionHandler(setVisibleSearchItems),
+        searchResults,
+        "result"
+      );
+    } else if (searchResults && searchResults.length === 0) {
+      setResultsFound(false);
+      clearTimeout(timer.current);
+    }
+  }, [searchResults]);
+
+  useEffect(() => {
+    observeElements(
+      createIntersectionHandler(setVisibleItems),
+      travelers,
+      "traveler"
+    );
+  }, [travelers]);
+
   return (
     <TravelersContext.Provider
       value={{
@@ -225,6 +337,16 @@ export function TravelersProvider({ children }) {
         error,
         icons,
         travelersList,
+        inputRef,
+        openSearchResultsWindow,
+        setOpenSearchResultsWindow,
+        searchResults,
+        handleSearch,
+        handleSearchTimer,
+        timer,
+        resultsFound,
+        visibleSearchItems,
+        visibleItems,
       }}
     >
       {children}

@@ -17,6 +17,7 @@ server.js
 .stfolder*
 upload*js
 nohup.out
+.vscode
 
 # Editor directories and files
 .vscode/*

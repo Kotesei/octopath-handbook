@@ -1,30 +1,22 @@
+import "./App.css";
+import { createPortal } from "react-dom";
 import { useContext } from "react";
 import { TravelersContext } from "./store/travelers-context.jsx";
-import "./App.css";
-import TravelerList from "./components/TravelerList";
 import Button from "./components/Button";
-import { createPortal } from "react-dom";
-import FiltersMenu from "./components/FiltersMenu";
 import Spinner from "./components/Spinner.jsx";
+import Loader from "./components/Loader.jsx";
+import FiltersMenu from "./components/FiltersMenu";
+import MainList from "./components/MainList.jsx";
+import SearchList from "./components/SearchList.jsx";
 
 export default function App() {
   const {
     travelers,
     loading,
-    loadingText,
-    travelerFilters,
-    enabled,
+    error,
     openFiltersTab,
     handleSortTravelers,
-    handleFilterToggle,
     handleOpenFiltersTab,
-    handleCloseFiltersWindow,
-    handleSelectTraveler,
-    handleResetFilters,
-    disableMaxRanks,
-    error,
-    icons,
-    travelersList,
   } = useContext(TravelersContext);
 
   return (
@@ -47,15 +39,22 @@ export default function App() {
           </Button>
         </div>
       </div>
-      <TravelerList
-        travelersList={travelersList}
-        loading={loading}
-        loadingText={loadingText}
-        error={error}
-        travelers={travelers ? travelers : ""}
-        icons={icons}
-        openTravelerDetails={handleSelectTraveler}
-      />
+      {!loading && !error && (
+        <>
+          <SearchList />
+          {travelers.length > 0 && <MainList />}
+        </>
+      )}
+      {travelers.length === 0 && (
+        <div
+          className={`flex items-center justify-center ${
+            error ? "bg-red-200" : "bg-indigo-500"
+          } w-[90%] min-h-[30px] overflow-auto p-5 rounded border border-white`}
+        >
+          <Loader error={error} loading={loading} />
+        </div>
+      )}
+
       {error && (
         <h2 className="text-red-600 font-extrabold text-3xl text-center">
           Failed to fetch characters from database
@@ -77,14 +76,7 @@ export default function App() {
       {openFiltersTab &&
         createPortal(
           <div className="flex flex-col overflow-auto gap-2 w-[100dvw] h-[100dvh] p-5 items-center bg-[#000000d0]">
-            <FiltersMenu
-              filterList={travelerFilters}
-              enabled={enabled}
-              onToggle={handleFilterToggle}
-              onReset={handleResetFilters}
-              onClose={handleCloseFiltersWindow}
-              disabledMaxRanks={disableMaxRanks}
-            />
+            <FiltersMenu />
           </div>,
           document.getElementById("filtersMenu")
         )}

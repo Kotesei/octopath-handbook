@@ -1,5 +1,5 @@
 import Button from "./Button";
-
+// #REFACTOR - UseContext
 export default function FiltersMenu({
   filterList,
   onReset,
