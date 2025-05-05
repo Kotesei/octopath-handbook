@@ -110,14 +110,6 @@ export function UIProvider({ children }) {
             loading: false,
           };
         });
-        requestAnimationFrame(() => {
-          const cleanup = observeElements(
-            createIntersectionHandler(setVisibleItems),
-            data.travelers,
-            "traveler"
-          );
-          return cleanup;
-        });
       }
     }
   }, [data.travelers, uiState.openFilterWindow]);

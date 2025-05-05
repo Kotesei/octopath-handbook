@@ -110,6 +110,19 @@ export function FilterProvider({ children }) {
   }, [travelerFilters, activeFilters]);
 
   useEffect(() => {
+    if (
+      travelerFilters.filteredTravelers &&
+      travelerFilters.filteredTravelers.length > 0
+    ) {
+      observeElements(
+        createIntersectionHandler(setVisibleItems),
+        data.travelers,
+        "traveler"
+      );
+    }
+  }, [travelerFilters.filteredTravelers]);
+
+  useEffect(() => {
     if (!uiState.loading) {
       const filterMap = {
         job: travelerFilters.filterByJob,

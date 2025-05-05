@@ -76,12 +76,11 @@ export function SearchProvider({ children }) {
         found: true,
       }));
 
-      const cleanup = observeElements(
+      observeElements(
         createIntersectionHandler(setVisibleSearchItems),
         results.travelers,
         "result"
       );
-      return cleanup;
     } else {
       setResults((prev) => ({
         ...prev,
