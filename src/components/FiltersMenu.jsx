@@ -1,13 +1,16 @@
+import { useContext } from "react";
 import Button from "./Button";
+import { FilterContext } from "../store/travelersFilters-context";
 // #REFACTOR - UseContext
-export default function FiltersMenu({
-  filterList,
-  onReset,
-  onClose,
-  onToggle,
-  enabled = {},
-  disabledMaxRanks,
-}) {
+export default function FiltersMenu({}) {
+  const {
+    travelerFilters: filterList,
+    enabled,
+    disableMaxRanks,
+    handleResetFilters: onReset,
+    handleFilterToggle: onToggle,
+    handleCloseFilterWindow: onClose,
+  } = useContext(FilterContext);
   const {
     genders: gender,
     influences: influence,
@@ -49,7 +52,7 @@ export default function FiltersMenu({
               {allFilters[filterType].map((filterName, i) => {
                 const key = `${filterType}:${filterName}`;
                 const disableMaxRankFilters =
-                  key.includes("highestRank") && disabledMaxRanks;
+                  key.includes("highestRank") && disableMaxRanks;
 
                 let cssClasses = `h-fit px-3 cursor-pointer rounded `;
                 if (disableMaxRankFilters) {

@@ -1,11 +1,12 @@
 import { useContext } from "react";
-import { TravelersContext } from "../store/travelers-context";
+import { DataContext } from "../store/travelersData-context";
+import { UIContext } from "../store/travelersUI-context";
 
 export default function Traveler({ traveler, index, inView, search }) {
-  const { icons, handleSelectTraveler } = useContext(TravelersContext);
-  const isVisible = inView.has(
-    search ? `result-${index + 1}` : `traveler-${index}`
-  );
+  const { data } = useContext(DataContext);
+  const { handleSelectTraveler } = useContext(UIContext);
+
+  const isVisible = inView.has(`${search ? "result" : "traveler"}-${index}`);
 
   const types = Array.isArray(traveler.types)
     ? traveler.types
@@ -20,7 +21,7 @@ export default function Traveler({ traveler, index, inView, search }) {
           : "h-30 flex gap-2 border-2 border-black relative"
       }
       onClick={() => handleSelectTraveler(traveler)}
-      id={search ? `result-${index + 1}` : `traveler-${index}`}
+      id={`${search ? "result" : "traveler"}-${index}`}
     >
       {isVisible ? (
         <>
@@ -47,8 +48,8 @@ export default function Traveler({ traveler, index, inView, search }) {
                 <img
                   className={search ? "size-3" : "size-4"}
                   src={`${
-                    icons.genders[
-                      icons.genders.findIndex((gender) =>
+                    data.icons.genders[
+                      data.icons.genders.findIndex((gender) =>
                         gender.filename.includes(traveler.gender.toLowerCase())
                       )
                     ].url
@@ -74,8 +75,8 @@ export default function Traveler({ traveler, index, inView, search }) {
                       <img
                         key={i}
                         src={`${
-                          icons.types[
-                            icons.types.findIndex((gender) =>
+                          data.icons.types[
+                            data.icons.types.findIndex((gender) =>
                               gender.filename.includes(type)
                             )
                           ].url
@@ -108,8 +109,8 @@ export default function Traveler({ traveler, index, inView, search }) {
                     <img
                       key={i}
                       src={`${
-                        icons.types[
-                          icons.types.findIndex((gender) =>
+                        data.icons.types[
+                          data.icons.types.findIndex((gender) =>
                             gender.filename.includes(type)
                           )
                         ].url

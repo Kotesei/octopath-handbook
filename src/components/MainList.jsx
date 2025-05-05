@@ -1,20 +1,29 @@
 import { useContext } from "react";
 import Traveler from "./Traveler";
-import { TravelersContext } from "../store/travelers-context";
+import { FilterContext } from "../store/travelersFilters-context";
+import { UIContext } from "../store/travelersUI-context";
+
 export default function MainList() {
-  const { travelers, visibleItems } = useContext(TravelersContext);
+  const { visibleItems } = useContext(UIContext);
+  const { travelerFilters } = useContext(FilterContext);
+
   return (
-    <div className="grid w-[90%] max-h-[70dvh] bg-indigo-500 grid-cols-1 gap-2 overflow-auto p-5 rounded border border-white">
-      {travelers.map((traveler, i) => {
-        return (
-          <Traveler
-            traveler={traveler}
-            inView={visibleItems}
-            index={i}
-            key={`traveler-${i}`}
-          />
-        );
-      })}
+    <div className="relative w-[90%]">
+      <div className="grid max-h-[70dvh] bg-indigo-500 grid-cols-1 gap-2 overflow-auto p-5 rounded border border-white ">
+        {travelerFilters.filteredTravelers.map((traveler, i) => {
+          return (
+            <Traveler
+              traveler={traveler}
+              inView={visibleItems}
+              index={i}
+              key={`traveler-${i}`}
+            />
+          );
+        })}
+        <p className="absolute top-[100%] right-0 text-white">
+          Found: {travelerFilters.filteredTravelers.length}
+        </p>
+      </div>
     </div>
   );
 }
