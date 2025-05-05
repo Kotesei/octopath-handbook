@@ -8,11 +8,16 @@ pnpm-debug.log*
 lerna-debug.log*
 
 node_modules
-backend
 .env
 dist
 dist-ssr
 *.local
+backend
+server.js
+.stfolder*
+upload*js
+nohup.out
+.vscode
 
 # Editor directories and files
 .vscode/*

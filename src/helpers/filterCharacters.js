@@ -1,6 +1,6 @@
 export default class FilterTravelers {
   constructor(travelersData) {
-    this.unsortedTravelers = travelersData;
+    this.unfilteredTravelers = travelersData;
     this.filteredTravelers = [...travelersData];
     this.ranks = this.getUniqueValues("rank").sort(
       (a, b) => a.length - b.length
@@ -13,11 +13,11 @@ export default class FilterTravelers {
   getUniqueValues(property) {
     let flattenValues;
     if (property === "rank") {
-      flattenValues = this.unsortedTravelers.flatMap((traveler) => {
+      flattenValues = this.unfilteredTravelers.flatMap((traveler) => {
         return traveler[property].split("/").flatMap((rank) => rank);
       });
     } else {
-      flattenValues = this.unsortedTravelers.flatMap(
+      flattenValues = this.unfilteredTravelers.flatMap(
         (traveler) => traveler[property]
       );
     }
@@ -67,6 +67,6 @@ export default class FilterTravelers {
   }
 
   resetFilters() {
-    this.filteredTravelers = [...this.unsortedTravelers];
+    this.filteredTravelers = [...this.unfilteredTravelers];
   }
 }

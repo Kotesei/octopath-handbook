@@ -1,14 +1,20 @@
-import { createContext, useEffect, useState } from "react";
-import fetchCharacters from "../helpers/fetchCharacters.js";
+import { createContext, useContext, useState, useEffect } from "react";
 import filters from "../helpers/filterCharacters.js";
+import { DataContext } from "./travelersData-context.jsx";
+import { UIContext } from "./travelersUI-context.jsx";
 
-export const TravelersContext = createContext();
+export const FilterContext = createContext();
 
-export function TravelersProvider({ children }) {
-  const [travelers, setTravelers] = useState([]);
-  const [loading, setLoading] = useState(true);
-  const [openFiltersTab, setOpenFiltersTab] = useState(false);
-  const [travelerFilters, setTravelerFilters] = useState([]);
+export function FilterProvider({ children }) {
+  const { data } = useContext(DataContext);
+  const {
+    uiState,
+    handleCloseFilterWindow,
+    setVisibleItems,
+    observeElements,
+    createIntersectionHandler,
+  } = useContext(UIContext);
+
   const [activeFilters, setActiveFilters] = useState({
     job: "",
     gender: "",
@@ -17,22 +23,9 @@ export function TravelersProvider({ children }) {
     startingRank: "",
     highestRank: "",
   });
+  const [travelerFilters, setTravelerFilters] = useState([]);
   const [enabled, setEnabled] = useState({});
   const [disableMaxRanks, setDisableMaxRanks] = useState(false);
-
-  // Wait for fetched data
-
-  useEffect(() => {
-    async function loadTravelers() {
-      const travelersData = await fetchCharacters();
-      setTravelers(travelersData);
-      setTravelerFilters(new filters(travelersData));
-      setLoading(false);
-    }
-    loadTravelers();
-  }, []);
-
-  // Function for applying the filters properly
 
   function applyFilters(value, minRank, maxRank) {
     setActiveFilters((prev) => {
@@ -72,21 +65,7 @@ export function TravelersProvider({ children }) {
     });
   }
 
-  // Function to handle clicking on a traveler
-
-  function handleSelectTraveler({ _id: id }) {
-    console.log(travelers.find((traveler) => traveler._id === id));
-  }
-
-  // App Button Functions
-
-  function handleSortTravelers() {
-    console.log("Sorting Feature here");
-  }
-
   function handleFilterToggle(filterName, filterList, category) {
-    console.log(filterName, filterList, category);
-
     if (category === "startingRank") {
       if (filterName === "★★★★★") {
         setDisableMaxRanks((prev) => !prev);
@@ -105,18 +84,8 @@ export function TravelersProvider({ children }) {
     applyFilters(filterName, min, max);
   }
 
-  function handleOpenFiltersTab() {
-    if (loading) return;
-    setOpenFiltersTab(true);
-  }
-
-  //////////////////
-
-  // FiltersMenu functions
-
   function handleResetFilters() {
     travelerFilters.resetFilters();
-    setTravelers([...travelerFilters.unsortedTravelers]);
     setActiveFilters({
       job: "",
       gender: "",
@@ -125,21 +94,36 @@ export function TravelersProvider({ children }) {
       startingRank: "",
       highestRank: "",
     });
-    handleCloseFiltersWindow();
+    handleCloseFilterWindow();
     setDisableMaxRanks(false);
   }
-  function handleCloseFiltersWindow() {
-    setOpenFiltersTab(false);
-  }
-
-  /////////////////
-
-  // Updates the filters
+  useEffect(() => {
+    if (!uiState.error) {
+      setTravelerFilters(new filters(data.travelers));
+    }
+  }, [uiState.loading, uiState.error]);
 
   useEffect(() => {
-    if (!loading) {
+    if (travelerFilters.length !== 0) {
       travelerFilters.resetFilters();
+    }
+  }, [travelerFilters, activeFilters]);
 
+  useEffect(() => {
+    if (
+      travelerFilters.filteredTravelers &&
+      travelerFilters.filteredTravelers.length > 0
+    ) {
+      observeElements(
+        createIntersectionHandler(setVisibleItems),
+        data.travelers,
+        "traveler"
+      );
+    }
+  }, [travelerFilters.filteredTravelers]);
+
+  useEffect(() => {
+    if (!uiState.loading) {
       const filterMap = {
         job: travelerFilters.filterByJob,
         gender: travelerFilters.filterByGenders,
@@ -169,43 +153,43 @@ export function TravelersProvider({ children }) {
       );
 
       setEnabled(enabledFilters);
-      setTravelers([...travelerFilters.filteredTravelers]);
     }
-  }, [activeFilters, loading]);
+  }, [activeFilters, uiState.loading]);
+
+  useEffect(() => {
+    if (Object.keys(enabled).length > 0) {
+      observeElements(
+        createIntersectionHandler(setVisibleItems),
+        travelerFilters.filteredTravelers,
+        "traveler"
+      );
+    }
+  }, [enabled]);
 
   useEffect(() => {
     if (disableMaxRanks) {
-      console.log(activeFilters);
       setActiveFilters((prev) => ({
         ...prev,
         highestRank: "",
       }));
-      // setEnabled((prev) => ({
-      //   ...prev,
-      //   ["highestRank:★★★★★"]: false,
-      //   ["highestRank:★★★★★★"]: false,
-      // }));
     }
   }, [disableMaxRanks]);
 
+  useEffect(() => {}, [data.travelers]);
+
   return (
-    <TravelersContext.Provider
+    <FilterContext.Provider
       value={{
-        travelers,
-        loading,
+        activeFilters,
         travelerFilters,
-        handleSortTravelers,
-        openFiltersTab,
-        handleFilterToggle,
         enabled,
-        handleOpenFiltersTab,
-        handleCloseFiltersWindow,
-        handleSelectTraveler,
-        handleResetFilters,
         disableMaxRanks,
+        handleResetFilters,
+        handleFilterToggle,
+        handleCloseFilterWindow,
       }}
     >
       {children}
-    </TravelersContext.Provider>
+    </FilterContext.Provider>
   );
 }

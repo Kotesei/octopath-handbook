@@ -1,4 +1,11 @@
-export default function Button({ clearbg, disabled, children, ...props }) {
+export default function Button({
+  clearbg,
+  disabled,
+  children,
+  sort,
+  filter,
+  ...props
+}) {
   return (
     <button
       className={`${
