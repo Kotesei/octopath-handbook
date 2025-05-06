@@ -13,9 +13,8 @@ import { SearchProvider } from "./store/travelersSearch-context.jsx";
 export default function App() {
   const { uiState, handleOpenFilterWindow, handleOpenSortWindow } =
     useContext(UIContext);
-
   return (
-    <div className="bg-black h-[100dvh] w-full flex items-center flex-col gap-5 overflow-hidden">
+    <div className="bg-indigo-950 flex-1 w-full flex items-center flex-col gap-5 overflow-auto">
       <div className="flex justify-between w-full px-5 pt-5">
         <div className="flex gap-2 items-center">
           {!uiState.loading && !uiState.error && (
@@ -51,9 +50,10 @@ export default function App() {
       )}
       {uiState.travelerCount === 0 && (
         <div
-          className={`flex items-center justify-center ${
+          style={{ border: "2px solid white" }}
+          className={`flex flex-1 items-center justify-center ${
             uiState.error ? "bg-red-200" : "bg-indigo-500"
-          } w-[90%] min-h-[30px] overflow-auto p-5 rounded border border-white`}
+          } w-[90%] max-h-[130px] overflow-hidden p-5 rounded`}
         >
           <Loader
             error={uiState.error}
@@ -64,7 +64,7 @@ export default function App() {
       )}
 
       {uiState.error && (
-        <h2 className="text-red-600 font-extrabold text-3xl text-center">
+        <h2 className="text-red-600 font-extrabold text-2xl text-center flex-1 p-3">
           Failed to fetch characters from database
         </h2>
       )}
@@ -74,21 +74,26 @@ export default function App() {
           <Spinner />
         </div>
       )}
-      {!uiState.loading && (
-        <footer className="flex flex-col items-center flex-1 justify-end pb-9 text-white">
-          <h2>{uiState.error ? "It's NOT go time..." : "It's go time.."}</h2>
-          <p>Made by Kotesei 👾</p>
-          <a href="#">Source Code</a>
-        </footer>
-      )}
+
+      <footer className="flex w-full min-h-[68px] mt-auto p-5 bg-indigo-900 items-center text-white relative">
+        {!uiState.loading && (
+          <h2 className="text-xl italic flex-1 text-center">
+            {uiState.error ? "It's NOT go time..." : "It's go time.."}
+          </h2>
+        )}
+        <div className="flex flex-col items-center absolute right-0 p-3">
+          <p className="text-[10px]">Made by Kotesei 👾</p>
+          <a
+            className="text-[9px] border rounded px-2 bg-violet-300 text-black"
+            href="https://github.com/Kotesei/octopath-handbook"
+          >
+            Source Code
+          </a>
+        </div>
+      </footer>
 
       {uiState.openFilterWindow &&
-        createPortal(
-          <div className="flex flex-col overflow-auto gap-2 w-[100dvw] h-[100dvh] p-5 items-center bg-[#000000d0]">
-            <FiltersMenu />
-          </div>,
-          document.getElementById("filtersMenu")
-        )}
+        createPortal(<FiltersMenu />, document.getElementById("filtersMenu"))}
     </div>
   );
 }

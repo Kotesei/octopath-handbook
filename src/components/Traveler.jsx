@@ -15,10 +15,15 @@ export default function Traveler({ traveler, index, inView, search }) {
     : [];
   return (
     <div
-      className={
+      style={
         search
-          ? "w-full h-18 flex gap-2 relative border-b-1"
-          : "h-30 flex gap-2 border-2 border-black relative"
+          ? index === 0
+            ? { borderTop: "1px solid black", borderBottom: "1px solid black" }
+            : { borderBottom: "1px solid black" }
+          : { border: "2px solid black" }
+      }
+      className={
+        search ? "w-full h-18 flex gap-2 relative" : "h-30 flex gap-2 relative"
       }
       onClick={() => handleSelectTraveler(traveler)}
       id={`${search ? "result" : "traveler"}-${index}`}
@@ -26,9 +31,8 @@ export default function Traveler({ traveler, index, inView, search }) {
       {isVisible ? (
         <>
           <div
-            className={
-              search ? "w-15 flex flex-col" : "w-22 flex flex-col border-r-2"
-            }
+            style={search ? {} : { borderRight: "2px solid" }}
+            className={search ? "w-15 flex flex-col" : "w-22 flex flex-col"}
           >
             {!search && (
               <h2 className="text-nowrap text-sm text-center bg-indigo-400">
@@ -89,15 +93,19 @@ export default function Traveler({ traveler, index, inView, search }) {
               </div>
               <div
                 className={
-                  search ? "flex gap-2" : "flex flex-col justify-center"
+                  search
+                    ? "flex gap-2 items-center"
+                    : "flex flex-col justify-center"
                 }
               >
-                <p className="text-xs font-bold">{traveler.name}</p>
-                <p className="text-xs">{traveler.rank}</p>
+                <p className="text-[11px] font-bold leading-2.5">
+                  {traveler.name}
+                </p>
               </div>
-              <div className="flex gap-1 items-center">
-                <p className="text-xs font-bold">{traveler.influence}</p>
-              </div>
+              <p className="text-[10px] leading-2.5">{traveler.rank}</p>
+              <p className="text-[10px] font-bold leading-2.5">
+                {traveler.influence}
+              </p>
             </div>
           ) : (
             <div className="flex flex-col justify-center">

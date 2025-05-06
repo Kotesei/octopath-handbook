@@ -17,7 +17,8 @@ export default function SearchList({ onOpen }) {
     >
       <input
         ref={inputRef}
-        className={`flex-1 px-2 text-center z-2 relative border-2 border-white rounded ${
+        style={{ border: "2px solid white" }}
+        className={`flex-1 px-2 text-center z-2 relative rounded ${
           onOpen
             ? `${results.found ? "bg-green-200" : "bg-red-300"}`
             : "bg-indigo-200"
@@ -27,11 +28,16 @@ export default function SearchList({ onOpen }) {
         onChange={() => handleSearchTimer(handleSearch, 250)}
       ></input>
       {onOpen && (
-        <div className="items-center absolute pt-7 bg-indigo-500 border-2 border-white w-full z-1 rounded">
+        <div
+          style={{ border: "2px solid white" }}
+          className="items-center absolute pt-7 bg-indigo-500 w-full z-1 rounded"
+        >
           <h2
-            className={`${
-              results.travelers.length > 0 ? `border-b-2` : ""
-            } w-full text-center bg-indigo-400`}
+            style={{
+              borderBottom:
+                results.travelers.length > 0 ? "2px solid white" : "none",
+            }}
+            className={`w-full text-center bg-indigo-400`}
           >
             Search Results: {results.travelers.length}
           </h2>

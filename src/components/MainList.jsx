@@ -8,22 +8,29 @@ export default function MainList() {
   const { travelerFilters } = useContext(FilterContext);
 
   return (
-    <div className="relative w-[90%]">
-      <div className="grid max-h-[70dvh] bg-indigo-500 grid-cols-1 gap-2 overflow-auto p-5 rounded border border-white ">
-        {travelerFilters.filteredTravelers.map((traveler, i) => {
-          return (
-            <Traveler
-              traveler={traveler}
-              inView={visibleItems}
-              index={i}
-              key={`traveler-${i}`}
-            />
-          );
-        })}
-        <p className="absolute top-[100%] right-0 text-white">
+    <>
+      <div className="w-[90%] h-full min-h-[190px] flex flex-col items-center overflow-auto">
+        <div className="relative w-[100%] overflow-hidden">
+          <div
+            style={{ border: "2px solid white" }}
+            className="grid max-h-[100%] bg-indigo-500 grid-cols-1 gap-2 overflow-x-hidden overflow-y-auto overscroll-x-none p-5 rounded "
+          >
+            {travelerFilters.filteredTravelers.map((traveler, i) => {
+              return (
+                <Traveler
+                  traveler={traveler}
+                  inView={visibleItems}
+                  index={i}
+                  key={`traveler-${i}`}
+                />
+              );
+            })}
+          </div>
+        </div>
+        <p className="text-white self-end">
           Found: {travelerFilters.filteredTravelers.length}
         </p>
       </div>
-    </div>
+    </>
   );
 }

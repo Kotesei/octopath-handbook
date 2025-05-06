@@ -106,7 +106,6 @@ export function UIProvider({ children }) {
         setUiState((prev) => {
           return {
             ...prev,
-            travelerCount: data.travelers.length,
             loading: false,
           };
         });

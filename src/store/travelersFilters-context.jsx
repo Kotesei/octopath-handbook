@@ -9,6 +9,7 @@ export function FilterProvider({ children }) {
   const { data } = useContext(DataContext);
   const {
     uiState,
+    setUiState,
     handleCloseFilterWindow,
     setVisibleItems,
     observeElements,
@@ -119,8 +120,25 @@ export function FilterProvider({ children }) {
         data.travelers,
         "traveler"
       );
+      setUiState((prev) => {
+        return {
+          ...prev,
+          travelerCount: travelerFilters.filteredTravelers.length,
+        };
+      });
+    } else if (
+      travelerFilters.filteredTravelers &&
+      travelerFilters.filteredTravelers.length === 0 &&
+      !uiState.loading
+    ) {
+      setUiState((prev) => {
+        return {
+          ...prev,
+          travelerCount: 0,
+        };
+      });
     }
-  }, [travelerFilters.filteredTravelers]);
+  }, [travelerFilters.filteredTravelers, uiState.travelerCount]);
 
   useEffect(() => {
     if (!uiState.loading) {
