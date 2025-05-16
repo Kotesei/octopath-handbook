@@ -1,7 +1,6 @@
 import { useContext } from "react";
 import Button from "./Button";
 import { FilterContext } from "../store/travelersFilters-context";
-// #REFACTOR - UseContext
 export default function FiltersMenu({}) {
   const {
     travelerFilters: filterList,

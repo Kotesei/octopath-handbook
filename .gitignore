@@ -19,6 +19,7 @@ upload*js
 nohup.out
 .vscode
 
+
 # Editor directories and files
 .vscode/*
 !.vscode/extensions.json

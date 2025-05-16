@@ -1,25 +1,196 @@
-import { createContext, useContext, useEffect, useState } from "react";
+import { createContext, useContext, useEffect, useState, useRef } from "react";
 import { DataContext } from "./travelersData-context";
-import sheepQuotes from "../../randomSheepQuote.js";
+import favoriteCharacter from "../helpers/favoriteCharacter";
+import { UserContext } from "./userData-context";
+import { useNavigate } from "react-router-dom";
+import { Howl, Howler } from "howler";
 
 export const UIContext = createContext();
 
 export function UIProvider({ children }) {
-  const { data } = useContext(DataContext);
+  const sounds = useRef({});
+
+  const tapTimeoutRef = useRef(null);
+  const timerRef = useRef(null);
+  const navigate = useNavigate();
+  const [enableAudio, setEnableAudio] = useState(false);
+  const { data, setData } = useContext(DataContext);
+  const { setUserData } = useContext(UserContext);
   const [visibleItems, setVisibleItems] = useState(new Set());
+  const { user } = useContext(UserContext);
   const [uiState, setUiState] = useState({
-    loading: true,
-    error: false,
     openSortWindow: false,
+    openFavorites: false,
     openFilterWindow: false,
     openSearchResultsDropdown: false,
     travelerCount: 0,
-    text: null,
+    toast: null,
   });
 
-  function handleSelectTraveler({ _id: id }) {
-    console.log(data.travelers.find((traveler) => traveler._id === id));
+  useEffect(() => {
+    if (!data.loading && !data.selectedTraveler) {
+      if (
+        (user.favorites?.length === 0 && uiState.openFavorites) ||
+        uiState.travelerCount === 0
+      ) {
+        playSound("no_travelers");
+      }
+    }
+  }, [user.favorites, uiState.openFavorites, uiState.travelerCount]);
+
+  function handleSelectTraveler(traveler) {
+    if (tapTimeoutRef.current) {
+      clearTimeout(tapTimeoutRef.current);
+      tapTimeoutRef.current = null;
+      handleFavoriteTraveler(traveler);
+    } else {
+      tapTimeoutRef.current = setTimeout(() => {
+        playSound("page_turn");
+
+        navigate(`/${traveler.slug}`);
+
+        setData((prev) => ({
+          ...prev,
+          selectedTraveler: traveler,
+        }));
+
+        setUiState((prev) => ({
+          ...prev,
+          openSearchResultsDropdown: false,
+        }));
+
+        tapTimeoutRef.current = null;
+      }, 300);
+    }
   }
+
+  function handleOpenFavorites() {
+    if (!uiState.openFavorites) {
+      playSound("confirm");
+      setUiState((prev) => {
+        return {
+          ...prev,
+          openFavorites: true,
+          travelerCount: user.favorites.length,
+        };
+      });
+    } else {
+      playSound("back");
+      setUiState((prev) => {
+        return {
+          ...prev,
+          openFavorites: false,
+          travelerCount: data.travelers.length,
+        };
+      });
+    }
+  }
+
+  async function handleFavoriteTraveler({ _id: id, name }) {
+    let alreadyFavorited;
+    setUserData((prev) => {
+      if (!prev) return prev;
+
+      alreadyFavorited = prev.favorites?.includes(id);
+
+      const updatedFavorites = alreadyFavorited
+        ? prev.favorites.filter((favId) => favId !== id)
+        : [...(prev.favorites || []), id];
+
+      return {
+        ...prev,
+        favorites: updatedFavorites,
+      };
+    });
+    const result = await favoriteCharacter(id);
+
+    if (result.success) {
+      let toast;
+      if (alreadyFavorited) {
+        playSound("unfavorite");
+        toast = {
+          type: "Favorite",
+          details: {
+            name,
+            message: "Successfully removed traveler from favorites!",
+          },
+        };
+      } else {
+        playSound("favorite");
+        toast = {
+          type: "Favorite",
+          details: {
+            name,
+            message: "Successfully saved traveler to favorites!",
+          },
+        };
+      }
+      setUiState((prev) => {
+        return { ...prev, toast };
+      });
+    }
+    if (result.failed) {
+      toast = {
+        type: "Error",
+        details: {
+          message: "Failed to save traveler to favorites...",
+        },
+      };
+
+      setUiState((prev) => {
+        return { ...prev, toast };
+      });
+    }
+  }
+
+  useEffect(() => {
+    if (user.loggedIn) {
+      setUiState((prev) => {
+        return { ...prev, loggedIn: true };
+      });
+    }
+
+    if (user.loggedInFailed) {
+      setUiState((prev) => {
+        return { ...prev, loggedInFailed: true };
+      });
+    }
+    if (user.loggedOut) {
+      setUiState((prev) => {
+        return { ...prev, loggedOut: true };
+      });
+    }
+  }, [user]);
+
+  useEffect(() => {
+    if (uiState.toast) {
+      if (timerRef.current) {
+        clearTimeout(timerRef.current);
+      }
+
+      timerRef.current = setTimeout(() => {
+        setUiState((prev) => ({ ...prev, toast: null }));
+        timerRef.current = null;
+      }, 4000);
+    }
+
+    return () => {
+      if (timerRef.current) {
+        clearTimeout(timerRef.current);
+      }
+    };
+  }, [uiState.toast]);
+
+  useEffect(() => {
+    if (data.selectedTraveler) {
+      setUiState((prev) => {
+        return {
+          ...prev,
+          openSearchResultsDropdown: false,
+        };
+      });
+    }
+  }, [data.selectedTraveler]);
 
   function createIntersectionHandler(intersection) {
     return function (entries) {
@@ -54,12 +225,19 @@ export function UIProvider({ children }) {
   }
 
   function handleOpenSortWindow() {
-    if (uiState.loading || uiState.error) return;
+    if (data.loading || data.error || uiState.openFavorites) {
+      playSound("deny");
+      return;
+    }
     console.log("Sorting Feature here");
   }
 
   function handleOpenFilterWindow() {
-    if (uiState.loading || uiState.error) return;
+    if (data.loading || data.error || uiState.openFavorites) {
+      playSound("deny");
+      return;
+    }
+    playSound("confirm");
     setUiState((prev) => {
       return {
         ...prev,
@@ -69,6 +247,7 @@ export function UIProvider({ children }) {
   }
 
   function handleCloseFilterWindow() {
+    playSound("confirm");
     setUiState((prev) => {
       return {
         ...prev,
@@ -77,45 +256,129 @@ export function UIProvider({ children }) {
     });
   }
 
-  // Set loading text
-  useEffect(() => {
-    setUiState((prev) => {
-      return {
-        ...prev,
-        text: sheepQuotes[Math.floor(Math.random() * sheepQuotes.length)],
-      };
-    });
-  }, []);
+  function playSound(name) {
+    const sound = sounds.current[name];
+    if (sound) {
+      sound.play();
+    }
+  }
 
-  // Set travelers count and remove loading screen
   useEffect(() => {
-    if (!uiState.openFilterWindow) {
-      if (!data.travelers) {
-        setUiState((prev) => {
-          return {
-            ...prev,
-            text: "The shepherd’s voice is lost, and the herd, without guidance, wanders in silence. The records are corrupted; the path is unclear...",
-            error: true,
-            loading: false,
-            travelerCount: 0,
-          };
-        });
-        return;
-      }
-      if (data.travelers.length > 0) {
-        setUiState((prev) => {
-          return {
-            ...prev,
-            loading: false,
-          };
-        });
-      }
+    const handleUserInteraction = () => {
+      setEnableAudio(true);
+    };
+
+    if (enableAudio) {
+      sounds.current = {
+        back: new Howl({ src: ["/sounds/back.wav"], preload: true }),
+        confirm: new Howl({ src: ["/sounds/confirm.wav"], preload: true }),
+        deny: new Howl({ src: ["/sounds/deny.wav"], preload: true }),
+        favorite: new Howl({ src: ["/sounds/favorite.wav"], preload: true }),
+        login: new Howl({ src: ["/sounds/login.wav"], preload: true }),
+        no_travelers: new Howl({
+          src: ["/sounds/no_travelers.wav"],
+          preload: true,
+        }),
+        notice: new Howl({ src: ["/sounds/notice.wav"], preload: true }),
+        page_turn: new Howl({ src: ["/sounds/page_turn.wav"], preload: true }),
+        reset: new Howl({ src: ["/sounds/reset.wav"], preload: true }),
+        toastClose: new Howl({
+          src: ["/sounds/toastClose.wav"],
+          preload: true,
+        }),
+        toggle: new Howl({ src: ["/sounds/toggle.wav"], preload: true }),
+        unfavorite: new Howl({
+          src: ["/sounds/unfavorite.wav"],
+          preload: true,
+        }),
+      };
+      Howler.autoUnlock = true;
+    }
+
+    window.addEventListener("click", handleUserInteraction, {
+      once: true,
+    });
+    window.addEventListener("keydown", handleUserInteraction, { once: true });
+
+    return () => {
+      window.removeEventListener("click", handleUserInteraction);
+      window.removeEventListener("keydown", handleUserInteraction);
+    };
+  }, [enableAudio]);
+
+  useEffect(() => {
+    if (!data.loading && !data.error && data.travelers.length > 0) {
+      setUiState((prev) => {
+        return { ...prev, travelerCount: data.travelers.length };
+      });
+    }
+    // Do something maybe a welcome toast or welcome back toast
+    let toast;
+    if (
+      user.googleId &&
+      !data.loading &&
+      !uiState.loggedIn &&
+      !uiState.loggedInFailed
+    ) {
+      toast = {
+        type: "Welcome",
+        details: {
+          message: "Welcome back to the site!",
+        },
+      };
+    }
+
+    if (uiState.loggedIn) {
+      toast = {
+        type: "Login",
+        details: {
+          message: "You have succesfully logged in, welcome!",
+        },
+      };
+    }
+
+    if (uiState.loggedInFailed) {
+      toast = {
+        type: "Login",
+        details: {
+          message: "You have failed to login!",
+        },
+      };
+    }
+
+    if (uiState.loggedOut) {
+      toast = {
+        type: "Logout",
+        details: {
+          message: "You have logged out!",
+        },
+      };
+    }
+    setUiState((prev) => {
+      return { ...prev, toast };
+    });
+  }, [data.loading]);
+
+  useEffect(() => {
+    if (
+      !uiState.openFilterWindow &&
+      !data.travelers &&
+      !data.selectedTraveler
+    ) {
+      setUiState((prev) => {
+        return {
+          ...prev,
+          travelerCount: 0,
+        };
+      });
+      return;
     }
   }, [data.travelers, uiState.openFilterWindow]);
 
   return (
     <UIContext.Provider
       value={{
+        playSound,
         uiState,
         setUiState,
         visibleItems,
@@ -124,6 +387,7 @@ export function UIProvider({ children }) {
         handleOpenFilterWindow,
         handleCloseFilterWindow,
         handleSelectTraveler,
+        handleOpenFavorites,
         observeElements,
         createIntersectionHandler,
       }}

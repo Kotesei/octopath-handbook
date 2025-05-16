@@ -1,10 +1,12 @@
 import { useContext } from "react";
 import { DataContext } from "../store/travelersData-context";
 import { UIContext } from "../store/travelersUI-context";
+import { UserContext } from "../store/userData-context";
 
 export default function Traveler({ traveler, index, inView, search }) {
   const { data } = useContext(DataContext);
   const { handleSelectTraveler } = useContext(UIContext);
+  const { user } = useContext(UserContext);
 
   const isVisible = inView.has(`${search ? "result" : "traveler"}-${index}`);
 
@@ -34,6 +36,17 @@ export default function Traveler({ traveler, index, inView, search }) {
             style={search ? {} : { borderRight: "2px solid" }}
             className={search ? "w-15 flex flex-col" : "w-22 flex flex-col"}
           >
+            <div className=" absolute right-0 bottom-0 p-1.5 flex gap-0.5">
+              {user?.favorites?.includes(traveler._id) && (
+                <div className="bg-[#8100a8] w-5.5 h-5.5 rounded-full">
+                  <img src="/heart.svg" className="invert-100" />
+                </div>
+              )}
+              <div className="w-5.5 h-5.5 p-0.5 flex flex-col justify-center items-center pb-4">
+                <p className="text-center text-xs">0</p>
+                <img src="/view.svg" />
+              </div>
+            </div>
             {!search && (
               <h2 className="text-nowrap text-sm text-center bg-indigo-400">
                 {traveler.job}

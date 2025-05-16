@@ -27,7 +27,6 @@ export default function Loader({ loading, error, text }) {
           </div>
         </div>
       )}
-      {!loading && !error && <p>No Travelers Found</p>}
     </>
   );
 }

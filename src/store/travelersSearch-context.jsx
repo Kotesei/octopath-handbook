@@ -90,14 +90,8 @@ export function SearchProvider({ children }) {
     }
   }, [results.travelers, uiState.openSearchResultsDropdown]);
 
-  useEffect(() => {
-    if (uiState.openSearchResultsDropdown) {
-    }
-  }, [uiState.openSearchResultsDropdown]);
-
   function handleClickOutside(e) {
-    if (document.getElementById("searchContainer").contains(e.target)) {
-    } else {
+    if (!document.getElementById("searchContainer").contains(e.target)) {
       setUiState((prev) => {
         return { ...prev, openSearchResultsDropdown: false };
       });
