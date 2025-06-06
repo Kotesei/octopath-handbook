@@ -78,12 +78,12 @@ async function fetchAllAsBlobs(urls) {
       const response = await fetch(url);
       if (!response.ok) {
         console.warn(`Failed to fetch image: ${url}`);
-        return new Blob(); // Return empty blob if fetch fails
+        return new Blob();
       }
       return await response.blob();
     } catch (err) {
       console.warn(`Error fetching image ${url}:`, err);
-      return new Blob(); // Return empty blob on error
+      return new Blob();
     }
   });
 

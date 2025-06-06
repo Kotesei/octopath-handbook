@@ -8,6 +8,7 @@ import { SearchProvider } from "./store/travelersSearch-context.jsx";
 import { UserProvider } from "./store/userData-context.jsx";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import TravelerWindow from "./components/TravelerWindow.jsx";
+import { SortProvider } from "./store/travelersSort-context.jsx";
 
 createRoot(document.getElementById("root")).render(
   <StrictMode>
@@ -16,12 +17,14 @@ createRoot(document.getElementById("root")).render(
         <DataProvider>
           <UIProvider>
             <FilterProvider>
-              <SearchProvider>
-                <Routes>
-                  <Route path="/" element={<App />} />
-                  <Route path="/:travelerName" element={<TravelerWindow />} />
-                </Routes>
-              </SearchProvider>
+              <SortProvider>
+                <SearchProvider>
+                  <Routes>
+                    <Route path="/" element={<App />} />
+                    <Route path="/:travelerName" element={<TravelerWindow />} />
+                  </Routes>
+                </SearchProvider>
+              </SortProvider>
             </FilterProvider>
           </UIProvider>
         </DataProvider>

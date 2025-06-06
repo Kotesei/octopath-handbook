@@ -13,13 +13,14 @@ export function UIProvider({ children }) {
   const tapTimeoutRef = useRef(null);
   const timerRef = useRef(null);
   const navigate = useNavigate();
+  const [theme, setTheme] = useState("orangecream-theme");
   const [enableAudio, setEnableAudio] = useState(false);
   const { data, setData } = useContext(DataContext);
   const { setUserData } = useContext(UserContext);
   const [visibleItems, setVisibleItems] = useState(new Set());
   const { user } = useContext(UserContext);
   const [uiState, setUiState] = useState({
-    openSortWindow: false,
+    openSortDropdown: false,
     openFavorites: false,
     openFilterWindow: false,
     openSearchResultsDropdown: false,
@@ -37,6 +38,12 @@ export function UIProvider({ children }) {
       }
     }
   }, [user.favorites, uiState.openFavorites, uiState.travelerCount]);
+
+  function handleSwitchTheme(theme) {
+    console.log(theme);
+    // console.log(theme.currentTarget.id);
+    setTheme(`${theme}-theme`);
+  }
 
   function handleSelectTraveler(traveler) {
     if (tapTimeoutRef.current) {
@@ -85,6 +92,16 @@ export function UIProvider({ children }) {
       });
     }
   }
+
+  useEffect(() => {
+    document.addEventListener("dragstart", function (e) {
+      e.preventDefault();
+    });
+
+    document.addEventListener("drop", function (e) {
+      e.preventDefault();
+    });
+  }, []);
 
   async function handleFavoriteTraveler({ _id: id, name }) {
     let alreadyFavorited;
@@ -224,12 +241,51 @@ export function UIProvider({ children }) {
     };
   }
 
-  function handleOpenSortWindow() {
+  function handleOpenSortDropdown(e) {
     if (data.loading || data.error || uiState.openFavorites) {
       playSound("deny");
       return;
     }
-    console.log("Sorting Feature here");
+    if (!uiState.openSortDropdown) {
+      playSound("confirm");
+    }
+
+    if (
+      e.target === document.getElementById("sortContainer") &&
+      uiState.openSortDropdown
+    ) {
+      playSound("back");
+      setUiState((prev) => {
+        return {
+          ...prev,
+          openSortDropdown: false,
+        };
+      });
+    }
+
+    if (e.target.closest("#sort-toggle")) {
+      playSound("confirm");
+      setUiState((prev) => {
+        return {
+          ...prev,
+          openSortDropdown: false,
+        };
+      });
+    } else if (!uiState.openSortDropdown) {
+      setUiState((prev) => {
+        return {
+          ...prev,
+          openSortDropdown: true,
+        };
+      });
+    }
+  }
+
+  function handleCloseSortDropdown() {
+    playSound("toggle");
+    setUiState((prev) => {
+      return { ...prev, openSortDropdown: false };
+    });
   }
 
   function handleOpenFilterWindow() {
@@ -375,17 +431,29 @@ export function UIProvider({ children }) {
     }
   }, [data.travelers, uiState.openFilterWindow]);
 
+  function handleClickOutside(e, container, state) {
+    if (!document.getElementById(container)?.contains(e.target)) {
+      setUiState((prev) => {
+        return { ...prev, [state]: false };
+      });
+    }
+  }
+
   return (
     <UIContext.Provider
       value={{
+        theme,
         playSound,
         uiState,
         setUiState,
         visibleItems,
         setVisibleItems,
-        handleOpenSortWindow,
+        handleSwitchTheme,
+        handleOpenSortDropdown,
+        handleCloseSortDropdown,
         handleOpenFilterWindow,
         handleCloseFilterWindow,
+        handleClickOutside,
         handleSelectTraveler,
         handleOpenFavorites,
         observeElements,

@@ -231,7 +231,6 @@ export function FilterProvider({ children }) {
         disableMaxRanks,
         handleResetFilters,
         handleFilterToggle,
-        handleCloseFilterWindow,
         travelerListRef,
       }}
     >

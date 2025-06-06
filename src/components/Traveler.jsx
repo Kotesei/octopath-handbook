@@ -17,15 +17,11 @@ export default function Traveler({ traveler, index, inView, search }) {
     : [];
   return (
     <div
-      style={
-        search
-          ? index === 0
-            ? { borderTop: "1px solid black", borderBottom: "1px solid black" }
-            : { borderBottom: "1px solid black" }
-          : { border: "2px solid black" }
-      }
+      style={search ? { borderTop: "1px solid" } : { border: "2px solid" }}
       className={
-        search ? "w-full h-18 flex gap-2 relative" : "h-30 flex gap-2 relative"
+        search
+          ? "w-full min-h-18 flex gap-2 relative"
+          : "h-30 flex gap-2 relative"
       }
       onClick={() => handleSelectTraveler(traveler)}
       id={`${search ? "result" : "traveler"}-${index}`}
@@ -38,7 +34,10 @@ export default function Traveler({ traveler, index, inView, search }) {
           >
             <div className=" absolute right-0 bottom-0 p-1.5 flex gap-0.5">
               {user?.favorites?.includes(traveler._id) && (
-                <div className="bg-[#8100a8] w-5.5 h-5.5 rounded-full">
+                <div
+                  style={{ backgroundColor: "var(--heart-color)" }}
+                  className="w-5.5 h-5.5 rounded-full"
+                >
                   <img src="/heart.svg" className="invert-100" />
                 </div>
               )}
@@ -48,19 +47,28 @@ export default function Traveler({ traveler, index, inView, search }) {
               </div>
             </div>
             {!search && (
-              <h2 className="text-nowrap text-sm text-center bg-indigo-400">
+              <h2
+                style={{
+                  backgroundColor: "var(--label_bg-color)",
+                  color: "var(--label_text-color)",
+                }}
+                className="text-nowrap text-sm text-center"
+              >
                 {traveler.job}
               </h2>
             )}
-            <div className="flex-1 bg-indigo-950 overflow-hidden flex items-center justify-center">
+            <div
+              style={{ backgroundColor: "var(--avatar_bg-color" }}
+              className="flex-1 overflow-hidden flex items-center justify-center"
+            >
               <img src={traveler.avatar} className={search ? "h-13" : "h-20"} />
 
               <div
-                className={
+                className={`${
                   search
-                    ? "absolute top-1 right-1 w-4 h-4 rounded-full bg-white flex items-center justify-center text-xs z-1"
-                    : "absolute bottom-[-5px] left-[-6px] w-5 h-5 rounded-full bg-white flex items-center justify-center text-xs"
-                }
+                    ? "top-1 right-1 w-4 h-4 z-1"
+                    : "bottom-[-5px] left-[-6px] w-5 h-5"
+                } justify-center text-xs items-center flex outline-1 bg-white rounded-full absolute`}
               >
                 <img
                   className={search ? "size-3" : "size-4"}
@@ -76,11 +84,18 @@ export default function Traveler({ traveler, index, inView, search }) {
             </div>
           </div>
           {search ? (
-            <div className="flex flex-col justify-center gap-1">
+            <div
+              style={{ color: "var(--text-color)" }}
+              className="flex flex-col justify-center gap-1"
+            >
               <div className="flex gap-1 h-3 items-center">
                 <p
+                  style={{
+                    backgroundColor: "var(--label_bg-color)",
+                    color: "var(--label_text-color)",
+                  }}
                   className={
-                    "text-nowrap text-[10px] text-center px-2 rounded-xl bg-indigo-200"
+                    "text-nowrap text-[10px] text-center px-2 rounded-xl"
                   }
                 >
                   {traveler.job}
@@ -93,8 +108,8 @@ export default function Traveler({ traveler, index, inView, search }) {
                         key={i}
                         src={`${
                           data.icons.types[
-                            data.icons.types.findIndex((gender) =>
-                              gender.filename.includes(type)
+                            data.icons.types.findIndex((types) =>
+                              types.filename.includes(type)
                             )
                           ].url
                         }`}

@@ -7,5 +7,258 @@ body,
   width: 100dvw;
   position: relative;
   display: flex;
-  background-color: #312c85;
+  user-select: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  transition: background-color 0.4s ease, color 0.4s ease;
+}
+
+button {
+  cursor: pointer;
+}
+
+/* 
+#F5DCE0
+#ECBDC4
+#E4A0B7
+#E18AAA
+*/
+
+.bubblegum-theme {
+  --svg-arrow-color: invert(96%) sepia(22%) saturate(3708%) hue-rotate(180deg)
+    brightness(103%) contrast(92%);
+  --scrollbar-color: #f5dce0;
+  --bg-color: #e4a0b7;
+  --avatar_bg-color: #eca9c2;
+  --border-color: #e097ba;
+  --border-color--2: #f0c3d3;
+  --heart-color: #ff3d98;
+  --text-color: #bd4c75;
+  --text-color--2: #fdf5f8;
+  --alt-text-color: #ffffff;
+
+  --container_bg-color: #f8d1d8;
+
+  --label_bg-color: #eb7ba4;
+
+  --error_bg-color: #f8e6e6;
+  --error_text-color: #ff8181;
+
+  --footer_bg-color: #c75a82;
+
+  --label_text-color: #ffcfeb;
+
+  --button_bg-color: #fd7bab;
+  --button_text-color: #f5dce0;
+  --button_alt-text-color: #ffffff;
+  --button_hover_bg-color: #ec82a6;
+  --button_enabled_bg-color: #ff2491;
+  --button_enabled_text-color: rgb(255, 255, 255);
+  --button_enabled_hover_bg-color: #b82958;
+  --button_disabled-bg-color: #c773a1;
+  --button_disabled-text-color: #fff;
+
+  --details_loading-bg-color: #2c2c34;
+  --details_bg-color: #ffaac9;
+  --details_text-color: #632343;
+  --details_info_bg-color: #ff64b48e;
+  --details_alt-text-color: #ffffff;
+  --details_accessory_bg-color: rgb(255, 219, 219);
+  --details_icon_bg-color: #ff609a;
+  --details_header_bg-color: #fa68b1;
+  --details_header_text-color: #fdbaef;
+  --details_border-color: #ffb7ef;
+
+  --filter_container-bg-color: #e4a0b7;
+  --filter_container_title-bg-color: #eb749c;
+}
+
+.toasty-theme {
+  --svg-arrow-color: invert(96%) sepia(22%) saturate(3708%) hue-rotate(180deg)
+    brightness(103%) contrast(92%);
+  --scrollbar-color: #d8d8f6;
+  --bg-color: #2c2c34;
+  --border-color: #bfbcdb;
+  --heart-color: #272323;
+  --text-color: #bfbcdb;
+  --text-color--2: #9896a5;
+  --alt-text-color: #d8d8f6;
+
+  --avatar_bg-color: #333238;
+
+  --container_bg-color: #494850;
+
+  --label_bg-color: #9595a3;
+
+  --error_bg-color: #fcb5b5;
+  --error_text-color: #ff8181;
+
+  --footer_bg-color: #494850;
+
+  --label_text-color: #000000;
+
+  --button_bg-color: #d8d8f6;
+  --button_text-color: rgb(0, 0, 0);
+  --button_alt-text-color: #fff;
+  --button_hover_bg-color: rgb(167, 167, 167);
+  --button_enabled_bg-color: #27272c;
+  --button_enabled_text-color: rgb(255, 255, 255);
+  --button_enabled_hover_bg-color: #3f3f3f;
+  --button_disabled-bg-color: #86756d;
+  --button_disabled-text-color: #fff;
+
+  --details_loading-bg-color: #2c2c34;
+  --details_bg-color: #383837;
+  --details_text-color: #e4e4fc;
+  --details_alt-text-color: #000;
+  --details_accessory_bg-color: #332e2b;
+  --details_icon_bg-color: #e2e2fa;
+  --details_header_bg-color: #757575;
+  --details_header_text-color: #e6e6f8;
+  --details_border-color: #fff;
+  --details_info_bg-color: #424144;
+
+  --filter_container-bg-color: #494850;
+  --filter_container_title-bg-color: #2c2c34;
+}
+
+.orangecream-theme {
+  --svg-arrow-color: invert(93%) sepia(9%) saturate(1871%) hue-rotate(309deg)
+    brightness(86%) contrast(90%);
+
+  --scrollbar-color: #b39282;
+  --bg-color: #d1ae9c;
+  --border-color: #000;
+  --heart-color: #e46e2a;
+  --text-color: #49423e;
+  --alt-text-color: #6e625a;
+
+  --error_bg-color: #fcb5b5;
+  --error_text-color: #ff8181;
+
+  --avatar_bg-color: #f3c7ab;
+
+  --container_bg-color: #f3d8c7;
+
+  --footer_bg-color: #f3d8c7;
+
+  --label_bg-color: #cf987c;
+  --label_text-color: #000;
+
+  --button_text-color: rgb(0, 0, 0);
+  --button_alt-text-color: #fff;
+  --button_bg-color: #ac8f80;
+  --button_hover_bg-color: rgb(158, 158, 158);
+  --button_enabled_bg-color: #574438;
+  --button_enabled_text-color: rgb(255, 255, 255);
+  --button_enabled_hover_bg-color: #f3d8c7;
+  --button_disabled-bg-color: #86756d;
+  --button_disabled-text-color: #fff;
+
+  --details_loading-bg-color: #9b8174;
+  --details_bg-color: #e7bba5;
+  --details_text-color: #000000;
+  --details_alt-text-color: #000;
+  --details_banner_bg-color: #af8f7f;
+  --details_icon_bg-color: #f7e5c3;
+  --details_header_bg-color: #af816a;
+  --details_header_text-color: #000000;
+  --details_border-color: #fff;
+  --details_info_bg-color: #6b625d;
+
+  --filter_container-bg-color: #d0b8ac;
+  --filter_container_title-bg-color: #f3d8c7;
+}
+
+.default-theme {
+  --svg-arrow-color: invert(12%) sepia(41%) saturate(1861%) hue-rotate(219deg)
+    brightness(98%) contrast(104%);
+  --scrollbar-color: #732c85;
+  --bg-color: #5f0788;
+  --border-color: #c4d4ff;
+  --heart-color: #8100a8;
+  --text-color: #4a009e;
+  --text-color--2: #fff;
+  --alt-text-color: #d9e3ff;
+
+  --avatar_bg-color: #650eac;
+
+  --error_bg-color: #ffd0d0;
+  --error_text-color: #ff8181;
+
+  --container_bg-color: oklch(0.64 0.2277 299.75);
+
+  --footer_bg-color: #4c1975;
+
+  --label_bg-color: #9317f8;
+  --label_text-color: #ffffff;
+
+  --button_text-color: rgb(0, 0, 0);
+  --button_alt-text-color: #fff;
+  --button_bg-color: rgb(255, 255, 255);
+  --button_hover_bg-color: rgb(158, 158, 158);
+  --button_enabled_bg-color: rgb(142, 111, 255);
+  --button_enabled_text-color: rgb(255, 255, 255);
+  --button_enabled_hover_bg-color: rgb(35, 9, 56);
+  --button_disabled-bg-color: #5d56e7;
+  --button_disabled-text-color: #fff;
+
+  --details_loading-bg-color: #312c85;
+  --details_bg-color: #5b179a;
+  --details_text-color: #fff;
+  --details_alt-text-color: #000;
+  --details_banner_bg-color: #440d68;
+  --details_icon_bg-color: oklch(0.8 0.1053 286.82);
+  --details_header_bg-color: oklch(0.62 0.2853 311.26);
+  --details_header_text-color: #fff;
+  --details_border-color: #fff;
+  --details_info_bg-color: #aa43ff;
+
+  --filter_container-bg-color: oklch(0.37 0.139 314.75);
+  --filter_container_title-bg-color: #9125cf;
+}
+
+.custom-button {
+  background-color: var(--button_bg-color);
+  color: var(--button_text-color);
+}
+
+.custom-button:hover {
+  background-color: var(--button_hover_bg-color);
+}
+
+.custom-button-enabled {
+  background-color: var(--button_enabled_bg-color);
+  color: var(--button_enabled_text-color);
+}
+.custom-button-enabled:hover {
+  background-color: var(--button_enabled_hover_bg-color);
+}
+
+.custom-scrollbar {
+  scrollbar-gutter: auto;
+}
+
+.custom-scrollbar::-webkit-scrollbar {
+  width: 2px;
+  background-color: rgba(255, 255, 255, 0.137);
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background-color: var(--scrollbar-color);
+  border-radius: 10px;
+}
+
+.theme-transition-bg {
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  transition: background-color 0.4s ease, color 0.4s ease,
+    border-color 0.4s ease;
+}
+.theme-transition-footer {
+  background-color: var(--footer_bg-color);
+  color: var(--alt-text-color);
+  transition: background-color 0.4s ease, color 0.4s ease,
+    border-color 0.4s ease;
 }

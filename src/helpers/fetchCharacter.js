@@ -22,9 +22,18 @@ export default async function fetchCharacter(travelerName, data) {
       .replace(/\s+/g, "_")
       .replace(/'/g, "_")}_Sprite.webp`;
 
+    const typesUrls = travelerData.types.map((type) => {
+      return {
+        url: `https://api.octopathhandbook.com/icons/types/Type_${type}.webp`,
+        filename: `Type_${type}.webp`,
+        type,
+      };
+    });
+
     return {
       ...travelerData,
       avatar: avatarUrl,
+      typesUrls,
     };
   } catch (error) {
     console.error("Error fetching character:", error);

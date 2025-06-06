@@ -1,14 +1,13 @@
 import { useContext } from "react";
 import Button from "./Button";
 import { FilterContext } from "../store/travelersFilters-context";
-export default function FiltersMenu({}) {
+export default function FiltersMenu({ onClose, theme }) {
   const {
     travelerFilters: filterList,
     enabled,
     disableMaxRanks,
     handleResetFilters: onReset,
     handleFilterToggle: onToggle,
-    handleCloseFilterWindow: onClose,
   } = useContext(FilterContext);
   const {
     genders: gender,
@@ -29,9 +28,11 @@ export default function FiltersMenu({}) {
   };
 
   return (
-    <div className="h-[100dvh] w-[100dvw] absolute z-10 bg-[#0c0018e0]">
-      <div className="h-[100%] p-5 gap-5 w-[100%] relative flex flex-col">
-        <div className="h-[100%] items-center flex flex-col gap-2 overflow-auto">
+    <div
+      className={`${theme} h-[100dvh] w-[100dvw] absolute z-10 bg-[#0c0018e0]`}
+    >
+      <div className="h-[100%] p-4 gap-5 w-[100%] relative flex flex-col">
+        <div className="h-[100%] items-center flex flex-col gap-2 overflow-auto p-2">
           {Object.keys(allFilters).flatMap((filterType, i) => {
             const filterCategories = [
               "Job",
@@ -43,13 +44,20 @@ export default function FiltersMenu({}) {
             ];
             return (
               <div
-                style={{ border: "2px solid white" }}
+                style={{
+                  border: "2px solid var(--border-color)",
+                  backgroundColor: "var(--filter_container-bg-color)",
+                }}
                 key={i}
-                className="flex flex-col items-center w-fit rounded bg-[#1e1a3bad]"
+                className="flex flex-col items-center w-fit min-h-fit overflow-hidden rounded-xl"
               >
                 <h2
-                  style={{ borderBottom: "2px solid" }}
-                  className="text-white bg-slate-800 text-2xl w-full font-bold text-center pb-1"
+                  style={{
+                    borderBottom: "2px solid var(--border-color)",
+                    color: "var(--text-color--2)",
+                    backgroundColor: "var(--filter_container_title-bg-color)",
+                  }}
+                  className="text-2xl w-full font-bold text-center pb-1"
                 >
                   {filterCategories[i]}
                 </h2>
@@ -59,22 +67,24 @@ export default function FiltersMenu({}) {
                     const disableMaxRankFilters =
                       key.includes("highestRank") && disableMaxRanks;
 
-                    let cssClasses = `h-fit px-3 cursor-pointer rounded `;
-                    if (disableMaxRankFilters) {
-                      cssClasses += `${
-                        enabled[key] ? "bg-slate-400" : "bg-white opacity-10"
-                      }`;
-                    } else {
-                      cssClasses += `${
-                        enabled[key]
-                          ? "bg-indigo-500 text-white hover:bg-indigo-700"
-                          : "bg-white hover:bg-slate-400"
-                      }`;
-                    }
-
                     return (
                       <Button
-                        className={cssClasses}
+                        style={{
+                          color: `${
+                            disableMaxRankFilters
+                              ? "var(--button_disabled-text-color)"
+                              : ""
+                          }`,
+                          backgroundColor: `${
+                            disableMaxRankFilters ? "black" : ""
+                          }`,
+                          opacity: `${disableMaxRankFilters ? "20%" : "100%"}`,
+                        }}
+                        className={`${
+                          enabled[key]
+                            ? "custom-button-enabled"
+                            : "custom-button"
+                        } px-1.5 rounded`}
                         onClick={() =>
                           onToggle(
                             filterName,
