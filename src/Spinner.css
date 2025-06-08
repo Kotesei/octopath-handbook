@@ -1,6 +1,5 @@
 .lds-roller {
-  /* change color here */
-  color: #7058b3;
+  color: var(--scrollbar-color);
 }
 
 .lds-roller,

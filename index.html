@@ -1,12 +1,40 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
+    <link rel="icon" href="/ico.png" />
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Octopath Handbook</title>
+    <meta name="title" content="Octopath Handbook" />
+    <meta
+      name="description"
+      content="An interactive handbook for Octopath Traveler Champions Of The Continent."
+    />
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://octopathhandbook.com/" />
+    <meta property="og:title" content="Octopath Handbook" />
+    <meta
+      property="og:description"
+      content="An interactive handbook for Octopath Traveler Champions Of The Continent."
+    />
+    <meta property="og:image" content="/metaimg.webp" />
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image" />
+    <meta name="og:site_name" content="Octopath Handbook" />
+    <meta property="twitter:url" content="https://octopathhandbook.com/" />
+    <meta property="twitter:title" content="Octopath Handbook" />
+    <meta
+      property="twitter:description"
+      content="An interactive handbook for Octopath Traveler Champions Of The Continent."
+    />
+    <meta property="twitter:image" content="/metaimg.webp" />
   </head>
   <body>
-    <div id="filtersMenu" class="absolute z-5 right-0 top-0"></div>
+    <div id="filtersMenu"></div>
+    <div id="toast"></div>
     <div id="root"></div>
     <script type="module" src="/src/main.jsx"></script>
   </body>

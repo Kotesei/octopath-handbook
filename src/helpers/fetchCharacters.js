@@ -1,10 +1,7 @@
 export default async function fetchCharacters() {
   try {
     const res = await fetch("https://api.octopathhandbook.com/travelers");
-
-    if (!res.ok) {
-      throw new Error(`HTTP error! status: ${res.status}`);
-    }
+    if (!res.ok) throw new Error(`HTTP error! status: ${res.status}`);
 
     const data = await res.json();
     const travelers = data.data;
@@ -13,94 +10,82 @@ export default async function fetchCharacters() {
     const uniqueTypes = new Set();
 
     travelers.forEach((traveler) => {
-      if (traveler.gender) {
-        uniqueGenders.add(traveler.gender.toLowerCase());
-      }
-
-      if (Array.isArray(traveler.types)) {
+      if (traveler.gender) uniqueGenders.add(traveler.gender.toLowerCase());
+      if (Array.isArray(traveler.types))
         traveler.types.forEach((type) => uniqueTypes.add(type));
-      }
     });
 
-    const uniqueGendersArray = Array.from(uniqueGenders);
-    const uniqueTypesArray = Array.from(uniqueTypes);
+    const travelersWithAvatars = travelers.map((traveler) => ({
+      ...traveler,
+      avatar: `https://api.octopathhandbook.com/icons/avatars/${traveler.name
+        .replace(/\s+/g, "_")
+        .replace(/'/g, "_")}_Sprite.webp`,
+    }));
 
-    const travelersWithAvatars = await Promise.all(
-      travelers.map(async (traveler) => {
-        const avatarUrl = `https://api.octopathhandbook.com/icons/avatars/${traveler.name
-          .replace(/\s+/g, "_")
-          .replace(/'/g, "_")}_Sprite.webp`;
-
-        const avatarRes = await fetch(avatarUrl);
-        let avatarImage = null;
-
-        if (avatarRes.ok) {
-          const imageBlob = await avatarRes.blob();
-          avatarImage = URL.createObjectURL(imageBlob);
-        }
-
-        return {
-          ...traveler,
-          avatar: avatarImage,
-        };
-      })
-    );
-
-    const iconRes = await Promise.all([
-      ...uniqueGendersArray.map((icon) =>
-        fetch(`https://api.octopathhandbook.com/icons/genders/${icon}.svg`)
-      ),
-      ...uniqueTypesArray.map((icon) =>
-        fetch(`https://api.octopathhandbook.com/icons/types/Type_${icon}.webp`)
-      ),
-    ]);
-
-    const iconData = await Promise.all(
-      iconRes.map(async (res, index) => {
-        if (!res.ok) {
-          throw new Error(
-            `Failed to fetch: ${res.url} - Status: ${res.status}`
-          );
-        }
-
-        const fileName = res.url.split("/").pop();
-
-        if (fileName.includes("svg")) {
-          const svgText = await res.text();
-
-          return {
-            url: URL.createObjectURL(
-              new Blob([svgText], { type: "image/svg+xml" })
-            ),
-            filename: fileName,
-          };
-        }
-
-        if (fileName.includes("webp")) {
-          const blob = await res.blob();
-          const url = URL.createObjectURL(blob);
-          return {
-            url: url,
-            filename: fileName,
-          };
-        }
-      })
-    );
-
-    const categorizedIcons = {
-      genders: iconData.filter((icon) => icon.filename.includes("svg")),
-      types: iconData.filter((icon) => icon.filename.includes("webp")),
+    const iconUrls = {
+      genders: Array.from(uniqueGenders).map((icon) => ({
+        url: `https://api.octopathhandbook.com/icons/genders/${icon}.svg`,
+        filename: `${icon}.svg`,
+      })),
+      types: Array.from(uniqueTypes).map((icon) => ({
+        url: `https://api.octopathhandbook.com/icons/types/Type_${icon}.webp`,
+        filename: `Type_${icon}.webp`,
+      })),
     };
 
-    const fetchedData = {
-      travelers: travelersWithAvatars,
-      types: categorizedIcons.types,
-      genders: categorizedIcons.genders,
+    const allImageUrls = [
+      ...iconUrls.genders.map((g) => g.url),
+      ...iconUrls.types.map((t) => t.url),
+      ...travelersWithAvatars.map((t) => t.avatar),
+    ];
+
+    const imageBlobs = await fetchAllAsBlobs(allImageUrls);
+    const blobCache = {};
+    allImageUrls.forEach((url, index) => {
+      blobCache[url] = URL.createObjectURL(imageBlobs[index]);
+    });
+
+    const travelersWithBlobAvatars = travelersWithAvatars.map((traveler) => ({
+      ...traveler,
+      avatar: blobCache[traveler.avatar],
+    }));
+
+    const iconsWithBlobs = {
+      genders: iconUrls.genders.map((g) => ({
+        ...g,
+        url: blobCache[g.url],
+      })),
+      types: iconUrls.types.map((t) => ({
+        ...t,
+        url: blobCache[t.url],
+      })),
     };
 
-    return fetchedData;
+    return {
+      travelers: travelersWithBlobAvatars,
+      types: iconsWithBlobs.types,
+      genders: iconsWithBlobs.genders,
+    };
   } catch (error) {
-    console.error("Error fetching data: ", error.message);
+    console.error("Error fetching data:", error);
     return null;
   }
+}
+
+async function fetchAllAsBlobs(urls) {
+  const promises = urls.map(async (url) => {
+    try {
+      const response = await fetch(url);
+      if (!response.ok) {
+        console.warn(`Failed to fetch image: ${url}`);
+        return new Blob();
+      }
+      return await response.blob();
+    } catch (err) {
+      console.warn(`Error fetching image ${url}:`, err);
+      return new Blob();
+    }
+  });
+
+  return Promise.all(promises);
 }

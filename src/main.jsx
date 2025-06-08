@@ -5,15 +5,30 @@ import { UIProvider } from "./store/travelersUI-context.jsx";
 import { DataProvider } from "./store/travelersData-context.jsx";
 import { FilterProvider } from "./store/travelersFilters-context.jsx";
 import { SearchProvider } from "./store/travelersSearch-context.jsx";
+import { UserProvider } from "./store/userData-context.jsx";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import TravelerWindow from "./components/TravelerWindow.jsx";
+import { SortProvider } from "./store/travelersSort-context.jsx";
 
 createRoot(document.getElementById("root")).render(
   <StrictMode>
-    <DataProvider>
-      <UIProvider>
-        <FilterProvider>
-          <App />
-        </FilterProvider>
-      </UIProvider>
-    </DataProvider>
+    <BrowserRouter>
+      <UserProvider>
+        <DataProvider>
+          <UIProvider>
+            <FilterProvider>
+              <SortProvider>
+                <SearchProvider>
+                  <Routes>
+                    <Route path="/" element={<App />} />
+                    <Route path="/:travelerName" element={<TravelerWindow />} />
+                  </Routes>
+                </SearchProvider>
+              </SortProvider>
+            </FilterProvider>
+          </UIProvider>
+        </DataProvider>
+      </UserProvider>
+    </BrowserRouter>
   </StrictMode>
 );

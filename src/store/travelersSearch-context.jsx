@@ -5,8 +5,13 @@ import { DataContext } from "./travelersData-context";
 export const SearchContext = createContext();
 
 export function SearchProvider({ children }) {
-  const { uiState, setUiState, observeElements, createIntersectionHandler } =
-    useContext(UIContext);
+  const {
+    uiState,
+    setUiState,
+    observeElements,
+    createIntersectionHandler,
+    handleClickOutside,
+  } = useContext(UIContext);
   const { data } = useContext(DataContext);
   const inputRef = useRef();
   const timer = useRef(null);
@@ -91,24 +96,12 @@ export function SearchProvider({ children }) {
   }, [results.travelers, uiState.openSearchResultsDropdown]);
 
   useEffect(() => {
+    const handle = (e) =>
+      handleClickOutside(e, "searchContainer", "openSearchResultsDropdown");
     if (uiState.openSearchResultsDropdown) {
-    }
-  }, [uiState.openSearchResultsDropdown]);
-
-  function handleClickOutside(e) {
-    if (document.getElementById("searchContainer").contains(e.target)) {
+      window.addEventListener("click", handle);
     } else {
-      setUiState((prev) => {
-        return { ...prev, openSearchResultsDropdown: false };
-      });
-    }
-  }
-
-  useEffect(() => {
-    if (uiState.openSearchResultsDropdown) {
-      window.addEventListener("click", handleClickOutside);
-    } else {
-      window.removeEventListener("click", handleClickOutside);
+      window.removeEventListener("click", handle);
       clearTimeout(timer.current);
     }
   }, [uiState.openSearchResultsDropdown]);
