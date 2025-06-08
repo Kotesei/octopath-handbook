@@ -13,7 +13,7 @@ export function UIProvider({ children }) {
   const tapTimeoutRef = useRef(null);
   const timerRef = useRef(null);
   const navigate = useNavigate();
-  const [theme, setTheme] = useState("orangecream-theme");
+  const [theme, setTheme] = useState("toasty-theme");
   const [enableAudio, setEnableAudio] = useState(false);
   const { data, setData } = useContext(DataContext);
   const { setUserData } = useContext(UserContext);
@@ -23,6 +23,7 @@ export function UIProvider({ children }) {
     openSortDropdown: false,
     openFavorites: false,
     openFilterWindow: false,
+    openThemeSelection: true,
     openSearchResultsDropdown: false,
     travelerCount: 0,
     toast: null,
@@ -39,11 +40,35 @@ export function UIProvider({ children }) {
     }
   }, [user.favorites, uiState.openFavorites, uiState.travelerCount]);
 
-  function handleSwitchTheme(theme) {
-    console.log(theme);
-    // console.log(theme.currentTarget.id);
-    setTheme(`${theme}-theme`);
+  useEffect(() => {
+    const handle = (e) =>
+      handleClickOutside(e, "theme-Selection", "openThemeSelection");
+    if (uiState.openThemeSelection) {
+      window.addEventListener("click", handle);
+    } else {
+      window.removeEventListener("click", handle);
+    }
+  }, [uiState.openThemeSelection]);
+
+  function handleOpenThemeSelection(e) {
+    setUiState((prev) => {
+      return { ...prev, openThemeSelection: true };
+    });
   }
+
+  function handleSwitchTheme(theme) {
+    localStorage.setItem("theme", theme);
+    setTheme(`${theme}-theme`);
+    setUiState((prev) => {
+      return { ...prev, openThemeSelection: false };
+    });
+  }
+
+  useEffect(() => {
+    if (localStorage.getItem("theme")) {
+      setTheme(`${localStorage.getItem("theme")}-theme`);
+    }
+  }, []);
 
   function handleSelectTraveler(traveler) {
     if (tapTimeoutRef.current) {
@@ -439,6 +464,9 @@ export function UIProvider({ children }) {
     }
   }
 
+  ["Help", "Change Theme", "Login"];
+  ["Help", "Change Theme", "Manage Account", "Logout"];
+
   return (
     <UIContext.Provider
       value={{
@@ -449,6 +477,7 @@ export function UIProvider({ children }) {
         visibleItems,
         setVisibleItems,
         handleSwitchTheme,
+        handleOpenThemeSelection,
         handleOpenSortDropdown,
         handleCloseSortDropdown,
         handleOpenFilterWindow,

@@ -17,6 +17,7 @@ export default function App() {
   const {
     uiState,
     theme,
+    handleOpenThemeSelection,
     handleOpenFilterWindow,
     handleOpenSortDropdown,
     handleOpenFavorites,
@@ -100,38 +101,86 @@ export default function App() {
         )}
 
         {data.error && (
-          <h2 className="text-red-600 font-extrabold text-2xl text-center flex-1 p-3">
+          <h2 className="text-red-600 font-extrabold text-xl text-center flex-1 p-3">
             Failed to fetch characters from database
           </h2>
         )}
         {data.loading && (
           <div className="flex flex-col justify-center items-center gap-5">
             <h2 className="text-white">Loading Travelers...</h2>
-            <Spinner />
           </div>
         )}
 
-        <footer className="theme-transition-footer flex w-full min-h-[68px] mt-auto p-5 items-center text-white relative">
-          {/* // #REFACTOR */}
-          {!data.loading && (
-            // <h2 className="text-xl italic flex-1 text-center">
-            //   {data.error ? "It's NOT go time..." : "It's go time.."}
-            // </h2>
-            // Theme here
-            <>
-              {user?.googleId && !data.loading && !data.error && (
-                <img
-                  style={{ borderColor: "var(--border-color)" }}
-                  className="right-1/2 translate-x-1/2 absolute border-2 h-12 rounded-full text-black"
-                  src={user.avatar}
-                />
-              )}
-              {!user?.googleId && (
+        <footer className="theme-transition-footer flex min-w-full max-h-[68px] mt-auto p-2 items-center justify-between text-white relative gap-2">
+          <>
+            {user?.googleId && !data.error && !data.loading && (
+              <img
+                style={{ borderColor: "var(--border-color)" }}
+                className="border-2 min-h-12 min-w-12 max-h-12 max-w-12  rounded-full text-black"
+                src={user.avatar}
+                onClick={() => {
+                  window.location.href =
+                    "https://api.octopathhandbook.com/logout";
+                }}
+              />
+            )}
+            {!user?.googleId && !data.error && !data.loading && (
+              <img
+                style={{ borderColor: "var(--border-color" }}
+                className="border-2 min-h-12 min-w-12 max-h-12 max-w-12  rounded-full text-black"
+                src={"./settings.svg"}
+                onClick={() => {
+                  window.location.href =
+                    "https://api.octopathhandbook.com/googleauth";
+                }}
+              />
+            )}
+
+            {data.error && (
+              <div
+                style={{
+                  borderColor: "var(--border-color",
+                  backgroundColor: "var(--error_bg-color)",
+                }}
+                className="border-2 min-h-12 min-w-12 max-h-12 max-w-12rounded-full text-black flex items-center justify-center"
+              >
+                <p
+                  style={{ color: "var(--error_text-color)" }}
+                  className="text-3xl font-bold"
+                >
+                  !
+                </p>
+              </div>
+            )}
+
+            {data.loading && (
+              <div
+                style={{
+                  borderColor: "var(--border-color",
+                  backgroundColor: "var(--container_bg-color)",
+                }}
+                className="border-2 max-h-12 max-w-12 min-h-12 min-w-12 rounded-full text-black flex items-center justify-center"
+              >
+                <Spinner className="lds-roller scale-50 min-w-5" />
+              </div>
+            )}
+
+            <p className="font-light text-[8px] sm:text-[11px] text-center">
+              Fan project. Not affiliated with Square Enix or Acquire. All
+              rights to original content belong to their respective owners.
+            </p>
+            {/* #REFACTOR */}
+            {/* {!user?.googleId && (
                 <div
                   style={{ borderColor: "var(--border-color)" }}
                   className="flex flex-wrap rounded-xl border-2 h-10 w-10 absolute right-1/2 translate-x-1/2"
+                  id="theme-Selection"
                 >
-                  <ThemeSelection />
+                  <div
+                    className="absolute w-full h-full"
+                    onClick={handleOpenThemeSelection}
+                  ></div>
+                  {uiState.openThemeSelection && <ThemeSelection />}
                   <div
                     style={{ backgroundColor: "var(--container_bg-color)" }}
                     className="h-[50%] w-[50%] rounded-tl-[10px]"
@@ -152,25 +201,10 @@ export default function App() {
                     className="h-[50%] w-[50%] rounded-br-[10px]"
                   ></div>
                 </div>
-              )}
-            </>
-          )}
-          {!user?.googleId && !data.loading && !data.error && (
-            <Button
-              style={{
-                backgroundColor: "var(--label_bg-color)",
-                color: "var(--alt-text-color)",
-              }}
-              className="absolute px-3 rounded"
-              onClick={() => {
-                window.location.href =
-                  "https://api.octopathhandbook.com/googleauth";
-              }}
-            >
-              Log in
-            </Button>
-          )}
-          {user?.googleId && !data.loading && !data.error && (
+              )} */}
+          </>
+
+          {/* {user?.googleId && !data.loading && !data.error && (
             <Button
               style={{
                 backgroundColor: "var(--label_bg-color)",
@@ -184,13 +218,13 @@ export default function App() {
             >
               Log Out
             </Button>
-          )}
-          <div className="flex flex-col items-center absolute right-0 p-3">
+          )} */}
+          <div className="flex flex-col min-w-fit items-center gap-1 right-0 p-1">
             <p
               style={{ color: "var(--alt-text-color)" }}
               className="text-[10px]"
             >
-              Made by Kotesei 👾
+              By Kotesei 👾
             </p>
             <a
               style={{

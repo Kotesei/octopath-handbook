@@ -130,6 +130,7 @@ button {
   --scrollbar-color: #b39282;
   --bg-color: #d1ae9c;
   --border-color: #000;
+  --border-color--2: #fde3d5;
   --heart-color: #e46e2a;
   --text-color: #49423e;
   --alt-text-color: #6e625a;
@@ -177,6 +178,7 @@ button {
   --scrollbar-color: #732c85;
   --bg-color: #5f0788;
   --border-color: #c4d4ff;
+  --border-color--2: #c96bf5;
   --heart-color: #8100a8;
   --text-color: #4a009e;
   --text-color--2: #fff;
