@@ -16,8 +16,10 @@ import ThemeSelection from "./components/ThemeSelection.jsx";
 export default function App() {
   const {
     uiState,
+    userOptions,
     theme,
-    handleOpenThemeSelection,
+    handleOpenOptions,
+    handleSelectOption,
     handleOpenFilterWindow,
     handleOpenSortDropdown,
     handleOpenFavorites,
@@ -114,26 +116,108 @@ export default function App() {
         <footer className="theme-transition-footer flex min-w-full max-h-[68px] mt-auto p-2 items-center justify-between text-white relative gap-2">
           <>
             {user?.googleId && !data.error && !data.loading && (
-              <img
-                style={{ borderColor: "var(--border-color)" }}
-                className="border-2 min-h-12 min-w-12 max-h-12 max-w-12  rounded-full text-black"
-                src={user.avatar}
-                onClick={() => {
-                  window.location.href =
-                    "https://api.octopathhandbook.com/logout";
-                }}
-              />
+              <div className="relative">
+                <div className="pointer-events-none absolute border-1 w-5 h-5 left-[70%] bottom-[65%] rounded-xl flex flex-wrap overflow-hidden">
+                  <div
+                    style={{ backgroundColor: "var(--container_bg-color)" }}
+                    className="h-[50%] w-[50%]"
+                  ></div>
+                  <div
+                    style={{ backgroundColor: "var(--bg-color)" }}
+                    className="h-[50%] w-[50%]"
+                  ></div>
+
+                  <div
+                    style={{ backgroundColor: "var(--details_bg-color)" }}
+                    className="h-[50%] w-[50%] "
+                  ></div>
+                  <div
+                    style={{
+                      backgroundColor: "var(--details_header_bg-color)",
+                    }}
+                    className="h-[50%] w-[50%] "
+                  ></div>
+                  {/*  */}
+                </div>
+                <div
+                  style={{ backgroundColor: "var(--avatar_bg-color)" }}
+                  className="absolute bottom-[125%] border-2 rounded-xl p-2 flex flex-col gap-1"
+                >
+                  {userOptions.map((option, i) => {
+                    return (
+                      <p
+                        key={i}
+                        style={{
+                          backgroundColor: "var(--label_bg-color)",
+                          color: "var(--label_text-color)",
+                        }}
+                        className="text-nowrap rounded px-2"
+                        onClick={() => handleSelectOption(option)}
+                      >
+                        {option}
+                      </p>
+                    );
+                  })}
+                </div>
+
+                <img
+                  style={{ borderColor: "var(--border-color)" }}
+                  className="border-2 min-h-12 min-w-12 max-h-12 max-w-12  rounded-full text-black"
+                  src={user.avatar}
+                />
+              </div>
             )}
             {!user?.googleId && !data.error && !data.loading && (
-              <img
-                style={{ borderColor: "var(--border-color" }}
-                className="border-2 min-h-12 min-w-12 max-h-12 max-w-12  rounded-full text-black"
-                src={"./settings.svg"}
-                onClick={() => {
-                  window.location.href =
-                    "https://api.octopathhandbook.com/googleauth";
-                }}
-              />
+              <div className="relative">
+                <div className="pointer-events-none absolute border-1 w-5 h-5 left-[70%] bottom-[65%] rounded-xl flex flex-wrap overflow-hidden">
+                  <div
+                    style={{ backgroundColor: "var(--container_bg-color)" }}
+                    className="h-[50%] w-[50%]"
+                  ></div>
+                  <div
+                    style={{ backgroundColor: "var(--bg-color)" }}
+                    className="h-[50%] w-[50%]"
+                  ></div>
+
+                  <div
+                    style={{ backgroundColor: "var(--details_bg-color)" }}
+                    className="h-[50%] w-[50%] "
+                  ></div>
+                  <div
+                    style={{
+                      backgroundColor: "var(--details_header_bg-color)",
+                    }}
+                    className="h-[50%] w-[50%] "
+                  ></div>
+                  {/*  */}
+                </div>
+                <div
+                  style={{ backgroundColor: "var(--bg-color)" }}
+                  className="absolute bottom-[125%] border-2 rounded-xl p-2 flex flex-col gap-1"
+                >
+                  {userOptions.map((option, i) => {
+                    return (
+                      <p
+                        key={i}
+                        style={{
+                          backgroundColor: "var(--container_bg-color)",
+                          color: "var(--label_text-color)",
+                        }}
+                        className="text-nowrap rounded px-2"
+                        onClick={() => handleSelectOption(option)}
+                      >
+                        {option}
+                      </p>
+                    );
+                  })}
+                </div>
+                <img
+                  style={{ borderColor: "var(--border-color" }}
+                  className="border-2 min-h-12 min-w-12 max-h-12 max-w-12  rounded-full text-black"
+                  src={"./settings.svg"}
+                  onClick={handleOpenOptions}
+                />
+              </div>
             )}
 
             {data.error && (

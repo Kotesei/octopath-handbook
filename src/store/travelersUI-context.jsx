@@ -19,12 +19,14 @@ export function UIProvider({ children }) {
   const { setUserData } = useContext(UserContext);
   const [visibleItems, setVisibleItems] = useState(new Set());
   const { user } = useContext(UserContext);
+  const [userOptions, setUserOptions] = useState("");
   const [uiState, setUiState] = useState({
     openSortDropdown: false,
     openFavorites: false,
     openFilterWindow: false,
     openThemeSelection: true,
     openSearchResultsDropdown: false,
+    openOptions: true,
     travelerCount: 0,
     toast: null,
   });
@@ -69,6 +71,29 @@ export function UIProvider({ children }) {
       setTheme(`${localStorage.getItem("theme")}-theme`);
     }
   }, []);
+
+  function handleOpenOptions(e) {
+    console.log(e.target);
+  }
+
+  function handleSelectOption(option) {
+    switch (option) {
+      case "Login":
+        window.location.href = "https://api.octopathhandbook.com/googleauth";
+        break;
+      case "Logout":
+        window.location.href = "https://api.octopathhandbook.com/logout";
+        break;
+      case "Manage Account":
+        console.log("Manage Account Stuff Here");
+        break;
+      case "Change Theme":
+        console.log("Theme Stuff Here");
+        break;
+      case "Help":
+        console.log("Help Stuff Here");
+    }
+  }
 
   function handleSelectTraveler(traveler) {
     if (tapTimeoutRef.current) {
@@ -186,6 +211,12 @@ export function UIProvider({ children }) {
   }
 
   useEffect(() => {
+    if (user.googleId) {
+      setUserOptions(["Help", "Change Theme", "Manage Account", "Logout"]);
+    }
+    if (!user.googleId) {
+      setUserOptions(["Help", "Change Theme", "Login"]);
+    }
     if (user.loggedIn) {
       setUiState((prev) => {
         return { ...prev, loggedIn: true };
@@ -464,9 +495,6 @@ export function UIProvider({ children }) {
     }
   }
 
-  ["Help", "Change Theme", "Login"];
-  ["Help", "Change Theme", "Manage Account", "Logout"];
-
   return (
     <UIContext.Provider
       value={{
@@ -475,9 +503,11 @@ export function UIProvider({ children }) {
         uiState,
         setUiState,
         visibleItems,
+        userOptions,
         setVisibleItems,
         handleSwitchTheme,
-        handleOpenThemeSelection,
+        handleOpenOptions,
+        handleSelectOption,
         handleOpenSortDropdown,
         handleCloseSortDropdown,
         handleOpenFilterWindow,
