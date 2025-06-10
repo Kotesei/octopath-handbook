@@ -30,7 +30,7 @@ export default function TravelerWindow() {
         className={`${theme} flex flex-col gap-5 italic font-semibold flex-1 items-center justify-center text-center p-5`}
       >
         <img src="/loading.webp" />
-        <h1 style={{ color: "var(--text-color)" }} className="text-3xl">
+        <h1 style={{ color: "var(--text-color--2)" }} className="text-3xl">
           Loading Traveler...
         </h1>
         <Spinner />
@@ -48,7 +48,9 @@ export default function TravelerWindow() {
         <h1 style={{ color: "var(--error_text-color)" }} className="text-3xl">
           Unable to load traveler data for "{travelerName}"..
         </h1>
-        <p style={{ color: "var(--text-color)" }}>Does this traveler exist?</p>
+        <p style={{ color: "var(--text-color--2)" }}>
+          Does this traveler exist?
+        </p>
       </div>
     );
   }

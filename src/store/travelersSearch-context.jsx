@@ -100,11 +100,23 @@ export function SearchProvider({ children }) {
       handleClickOutside(e, "searchContainer", "openSearchResultsDropdown");
     if (uiState.openSearchResultsDropdown) {
       window.addEventListener("click", handle);
-    } else {
+    }
+    return () => {
       window.removeEventListener("click", handle);
       clearTimeout(timer.current);
-    }
+    };
   }, [uiState.openSearchResultsDropdown]);
+
+  //   useEffect(() => {
+  //   const handle = (e) =>
+  //     handleClickOutside(e, "options-window", "openOptions");
+  //   if (uiState.openOptions) {
+  //     window.addEventListener("click", handle);
+  //   }
+  //   return () => {
+  //     window.removeEventListener("click", handle);
+  //   };
+  // }, [uiState.openOptions]);
 
   return (
     <SearchContext.Provider

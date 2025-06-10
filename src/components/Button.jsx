@@ -40,10 +40,12 @@ export default function Button({
           </button>
           {openSortDropdown && (
             <div
+              id="sortContainer"
               style={{ left: "50%", transform: "translateX(-50%)" }}
               className="absolute h-25 z-5 w-55 rounded top-[120%] cursor-default"
             >
               <div
+                id="sortContainer"
                 style={{
                   transform: "translateX(-50%) rotate(45deg)",
                   left: "50%",
@@ -53,10 +55,12 @@ export default function Button({
                 className="absolute w-7 h-7 bottom-[85%] z-1 border-2"
               ></div>
               <div
+                id="sortContainer"
                 style={{ right: "50%", transform: "translateX(50%)" }}
                 className="absolute h-[13px] bottom-[90%] w-[35px] z-3 overflow-hidden"
               >
                 <div
+                  id="sortContainer"
                   style={{
                     right: "50%",
                     transform: "translateX(50%) rotate(45deg",
@@ -66,19 +70,20 @@ export default function Button({
                 ></div>
               </div>
               <div
+                id="sortContainer"
                 style={{
                   backgroundColor: "var(--avatar_bg-color)",
                   borderColor: "var(--border-color)",
                 }}
                 className="rounded-xl relative border-2 p-4 z-2"
               >
-                <div className="flex flex-col gap-1">
+                <div id="sortContainer" className="flex flex-col gap-1">
                   <button
                     style={{
                       backgroundColor: "var(--label_bg-color)",
                       color: "var(--label_text-color)",
                     }}
-                    id="sort-toggle"
+                    id="sortContainer"
                     className="rounded"
                   >
                     Sort by Name ↑↓
@@ -88,7 +93,7 @@ export default function Button({
                       backgroundColor: "var(--bg-color)",
                       color: "var(--alt-text-color)",
                     }}
-                    id="sort-toggle"
+                    id="sortContainer"
                     className="rounded"
                   >
                     Sort by Most Viewed
@@ -98,7 +103,7 @@ export default function Button({
                       backgroundColor: "var(--bg-color)",
                       color: "var(--alt-text-color)",
                     }}
-                    id="sort-toggle"
+                    id="sortContainer"
                     className="rounded"
                   >
                     Sort by Most Types
@@ -108,7 +113,7 @@ export default function Button({
                       backgroundColor: "var(--bg-color)",
                       color: "var(--alt-text-color)",
                     }}
-                    id="sort-toggle"
+                    id="sortContainer"
                     className="rounded"
                   >
                     Sort by Ranks
@@ -118,7 +123,7 @@ export default function Button({
                       backgroundColor: "var(--bg-color)",
                       color: "var(--alt-text-color)",
                     }}
-                    id="sort-toggle"
+                    id="sortContainer"
                     className="rounded"
                   >
                     Randomize

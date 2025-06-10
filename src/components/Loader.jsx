@@ -17,8 +17,16 @@ export default function Loader({ loading, error, text }) {
       {error && (
         <div className="flex gap-5 items-center justify-center">
           <div className="flex flex-col">
-            <p className="min-h-[64px] text-[9px] text-red-400">{text}...</p>
-            <h2 className="mt-auto self-end text-sm font-semibold italic">
+            <p
+              style={{ color: "var(--error_text-color)" }}
+              className="min-h-[64px] text-[12px]"
+            >
+              {text}...
+            </p>
+            <h2
+              style={{ color: "var(--error_text-color)" }}
+              className="mt-auto self-end text-sm font-semibold italic"
+            >
               - Solon Probably
             </h2>
           </div>

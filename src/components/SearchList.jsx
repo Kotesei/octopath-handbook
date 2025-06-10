@@ -16,6 +16,7 @@ export default function SearchList({ onOpen }) {
       className="flex w-[75%] max-w-150 relative rounded"
     >
       <input
+        id="searchContainer"
         ref={inputRef}
         style={{
           border: "2px solid var(--border-color)",
@@ -37,6 +38,7 @@ export default function SearchList({ onOpen }) {
       ></input>
       {onOpen && (
         <div
+          id="searchContainer"
           style={{
             border: "2px solid var(--border-color)",
             borderTop: "none",
@@ -45,6 +47,7 @@ export default function SearchList({ onOpen }) {
           className="items-center rounded absolute top-[50%] pt-3.5 w-full z-1"
         >
           <h2
+            id="searchContainer"
             style={{
               borderBottom:
                 results.travelers.length > 0
@@ -58,7 +61,10 @@ export default function SearchList({ onOpen }) {
             Search Results: {results.travelers.length}
           </h2>
 
-          <div className="max-h-[35dvh] relative overflow-y-auto custom-scrollbar grid grid-cols-1 md:grid-cols-2">
+          <div
+            id="searchContainer"
+            className="max-h-[35dvh] relative overflow-y-auto custom-scrollbar grid grid-cols-1 md:grid-cols-2"
+          >
             {results.travelers.map((traveler, i) => {
               return (
                 <Traveler

@@ -7,17 +7,19 @@ import FiltersMenu from "./components/FiltersMenu";
 import MainList from "./components/MainList.jsx";
 import SearchList from "./components/SearchList.jsx";
 import { UIContext } from "./store/travelersUI-context.jsx";
-import { useContext } from "react";
+import { useContext, useEffect, useRef } from "react";
 import { DataContext } from "./store/travelersData-context.jsx";
 import { UserContext } from "./store/userData-context.jsx";
 import Toast from "./components/Toast.jsx";
 import ThemeSelection from "./components/ThemeSelection.jsx";
 
 export default function App() {
+  const themeWindow = useRef(null);
   const {
     uiState,
     userOptions,
     theme,
+    handleClickOutside,
     handleOpenOptions,
     handleSelectOption,
     handleOpenFilterWindow,
@@ -103,7 +105,10 @@ export default function App() {
         )}
 
         {data.error && (
-          <h2 className="text-red-600 font-extrabold text-xl text-center flex-1 p-3">
+          <h2
+            style={{ color: "var(--text-color--2)" }}
+            className="font-extrabold text-xl text-center flex-1 p-3"
+          >
             Failed to fetch characters from database
           </h2>
         )}
@@ -168,7 +173,11 @@ export default function App() {
               </div>
             )}
             {!user?.googleId && !data.error && !data.loading && (
-              <div className="relative">
+              <div
+                id="options-window"
+                className="relative"
+                onClick={handleOpenOptions}
+              >
                 <div className="pointer-events-none absolute border-1 w-5 h-5 left-[70%] bottom-[65%] rounded-xl flex flex-wrap overflow-hidden">
                   <div
                     style={{ backgroundColor: "var(--container_bg-color)" }}
@@ -191,31 +200,38 @@ export default function App() {
                   ></div>
                   {/*  */}
                 </div>
-                <div
-                  style={{ backgroundColor: "var(--bg-color)" }}
-                  className="absolute bottom-[125%] border-2 rounded-xl p-2 flex flex-col gap-1"
-                >
-                  {userOptions.map((option, i) => {
-                    return (
-                      <p
-                        key={i}
-                        style={{
-                          backgroundColor: "var(--container_bg-color)",
-                          color: "var(--label_text-color)",
-                        }}
-                        className="text-nowrap rounded px-2"
-                        onClick={() => handleSelectOption(option)}
-                      >
-                        {option}
-                      </p>
-                    );
-                  })}
-                </div>
+                {uiState.openOptions && (
+                  <div
+                    id="options-window"
+                    style={{ backgroundColor: "var(--avatar_bg-color)" }}
+                    className={`absolute bottom-[125%] border-2 rounded-xl ${
+                      uiState.openThemeSelection ? "p-1" : "p-2"
+                    } flex flex-col gap-1`}
+                  >
+                    {uiState.openThemeSelection && <ThemeSelection />}
+                    {!uiState.openThemeSelection &&
+                      userOptions.map((option, i) => {
+                        return (
+                          <p
+                            key={i}
+                            id="options-window"
+                            style={{
+                              backgroundColor: "var(--label_bg-color)",
+                              color: "var(--label_text-color)",
+                            }}
+                            className="text-nowrap rounded px-2"
+                            onClick={() => handleSelectOption(option)}
+                          >
+                            {option}
+                          </p>
+                        );
+                      })}
+                  </div>
+                )}
                 <img
                   style={{ borderColor: "var(--border-color" }}
-                  className="border-2 min-h-12 min-w-12 max-h-12 max-w-12  rounded-full text-black"
+                  className="border-2 min-h-12 min-w-12 max-h-12 max-w-12 rounded-full text-black pointer-events-none"
                   src={"./settings.svg"}
-                  onClick={handleOpenOptions}
                 />
               </div>
             )}
@@ -226,7 +242,7 @@ export default function App() {
                   borderColor: "var(--border-color",
                   backgroundColor: "var(--error_bg-color)",
                 }}
-                className="border-2 min-h-12 min-w-12 max-h-12 max-w-12rounded-full text-black flex items-center justify-center"
+                className="border-2 min-h-12 min-w-12 max-h-12 max-w-12 rounded-full text-black flex items-center justify-center"
               >
                 <p
                   style={{ color: "var(--error_text-color)" }}

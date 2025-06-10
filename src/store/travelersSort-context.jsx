@@ -14,9 +14,10 @@ export function SortProvider({ children }) {
       handleClickOutside(e, "sortContainer", "openSortDropdown");
     if (uiState.openSortDropdown) {
       window.addEventListener("click", handle);
-    } else {
-      window.removeEventListener("click", handle);
     }
+    return () => {
+      window.removeEventListener("click", handle);
+    };
   }, [uiState.openSortDropdown]);
   return <SortContext.Provider value={{}}>{children}</SortContext.Provider>;
 }

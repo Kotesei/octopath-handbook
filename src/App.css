@@ -38,16 +38,16 @@ button {
   --text-color--2: #fdf5f8;
   --alt-text-color: #ffffff;
 
-  --container_bg-color: #f8d1d8;
+  --container_bg-color: #fcccd5;
 
   --label_bg-color: #eb7ba4;
 
   --error_bg-color: #f8e6e6;
-  --error_text-color: #ff8181;
+  --error_text-color: #ff0000;
 
   --footer_bg-color: #c75a82;
 
-  --label_text-color: #ffcfeb;
+  --label_text-color: #ffffff;
 
   --button_bg-color: #fd7bab;
   --button_text-color: #f5dce0;
@@ -59,7 +59,7 @@ button {
   --button_disabled-bg-color: #c773a1;
   --button_disabled-text-color: #fff;
 
-  --details_loading-bg-color: #2c2c34;
+  --details_loading-bg-color: #f884c0;
   --details_bg-color: #ffaac9;
   --details_text-color: #632343;
   --details_info_bg-color: #ff64b48e;
@@ -91,8 +91,8 @@ button {
 
   --label_bg-color: #9595a3;
 
-  --error_bg-color: #fcb5b5;
-  --error_text-color: #ff8181;
+  --error_bg-color: #222222;
+  --error_text-color: #ff6c6c;
 
   --footer_bg-color: #494850;
 
@@ -135,8 +135,8 @@ button {
   --text-color: #49423e;
   --alt-text-color: #6e625a;
 
-  --error_bg-color: #fcb5b5;
-  --error_text-color: #ff8181;
+  --error_bg-color: #fccbb5;
+  --error_text-color: #ff0000;
 
   --avatar_bg-color: #f3c7ab;
 
@@ -157,7 +157,7 @@ button {
   --button_disabled-bg-color: #86756d;
   --button_disabled-text-color: #fff;
 
-  --details_loading-bg-color: #9b8174;
+  --details_loading-bg-color: #d3b09f;
   --details_bg-color: #e7bba5;
   --details_text-color: #000000;
   --details_alt-text-color: #000;
@@ -186,8 +186,8 @@ button {
 
   --avatar_bg-color: #650eac;
 
-  --error_bg-color: #ffd0d0;
-  --error_text-color: #ff8181;
+  --error_bg-color: #fbd0ff;
+  --error_text-color: #fc2d2d;
 
   --container_bg-color: oklch(0.64 0.2277 299.75);
 
@@ -206,7 +206,7 @@ button {
   --button_disabled-bg-color: #5d56e7;
   --button_disabled-text-color: #fff;
 
-  --details_loading-bg-color: #312c85;
+  --details_loading-bg-color: #44145a;
   --details_bg-color: #5b179a;
   --details_text-color: #fff;
   --details_alt-text-color: #000;

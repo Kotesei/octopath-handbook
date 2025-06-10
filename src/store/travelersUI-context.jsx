@@ -24,9 +24,9 @@ export function UIProvider({ children }) {
     openSortDropdown: false,
     openFavorites: false,
     openFilterWindow: false,
-    openThemeSelection: true,
+    openThemeSelection: false,
     openSearchResultsDropdown: false,
-    openOptions: true,
+    openOptions: false,
     travelerCount: 0,
     toast: null,
   });
@@ -42,17 +42,7 @@ export function UIProvider({ children }) {
     }
   }, [user.favorites, uiState.openFavorites, uiState.travelerCount]);
 
-  useEffect(() => {
-    const handle = (e) =>
-      handleClickOutside(e, "theme-Selection", "openThemeSelection");
-    if (uiState.openThemeSelection) {
-      window.addEventListener("click", handle);
-    } else {
-      window.removeEventListener("click", handle);
-    }
-  }, [uiState.openThemeSelection]);
-
-  function handleOpenThemeSelection(e) {
+  function handleOpenThemeSelection() {
     setUiState((prev) => {
       return { ...prev, openThemeSelection: true };
     });
@@ -67,13 +57,34 @@ export function UIProvider({ children }) {
   }
 
   useEffect(() => {
+    const handle = (e) =>
+      handleClickOutside(e, "options-window", "openOptions");
+    if (uiState.openOptions) {
+      window.addEventListener("click", handle);
+    }
+    return () => {
+      window.removeEventListener("click", handle);
+    };
+  }, [uiState.openOptions]);
+
+  useEffect(() => {
     if (localStorage.getItem("theme")) {
       setTheme(`${localStorage.getItem("theme")}-theme`);
     }
   }, []);
 
   function handleOpenOptions(e) {
-    console.log(e.target);
+    if (uiState.openOptions) {
+      if (e.target.id === "options-window") return;
+
+      setUiState((prev) => {
+        return { ...prev, openOptions: false, openThemeSelection: false };
+      });
+    } else {
+      setUiState((prev) => {
+        return { ...prev, openOptions: true };
+      });
+    }
   }
 
   function handleSelectOption(option) {
@@ -89,6 +100,7 @@ export function UIProvider({ children }) {
         break;
       case "Change Theme":
         console.log("Theme Stuff Here");
+        handleOpenThemeSelection();
         break;
       case "Help":
         console.log("Help Stuff Here");
@@ -488,11 +500,10 @@ export function UIProvider({ children }) {
   }, [data.travelers, uiState.openFilterWindow]);
 
   function handleClickOutside(e, container, state) {
-    if (!document.getElementById(container)?.contains(e.target)) {
-      setUiState((prev) => {
-        return { ...prev, [state]: false };
-      });
-    }
+    if (container === e.target.id) return;
+    setUiState((prev) => {
+      return { ...prev, openThemeSelection: false, [state]: false };
+    });
   }
 
   return (
