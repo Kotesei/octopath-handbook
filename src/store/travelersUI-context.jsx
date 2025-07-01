@@ -14,18 +14,21 @@ export function UIProvider({ children }) {
   const timerRef = useRef(null);
   const navigate = useNavigate();
   const [theme, setTheme] = useState("toasty-theme");
+  const [popoutType, setpopoutType] = useState("");
   const [enableAudio, setEnableAudio] = useState(false);
   const { data, setData } = useContext(DataContext);
   const { setUserData } = useContext(UserContext);
   const [visibleItems, setVisibleItems] = useState(new Set());
   const { user } = useContext(UserContext);
-  const [userOptions, setUserOptions] = useState("");
+  const [userOptions, setUserOptions] = useState();
   const [uiState, setUiState] = useState({
     openSortDropdown: false,
     openFavorites: false,
     openFilterWindow: false,
     openThemeSelection: false,
     openSearchResultsDropdown: false,
+    openFAQDropdown: false,
+    openPopup: false,
     openOptions: false,
     travelerCount: 0,
     toast: null,
@@ -96,15 +99,30 @@ export function UIProvider({ children }) {
         window.location.href = "https://api.octopathhandbook.com/logout";
         break;
       case "Manage Account":
-        console.log("Manage Account Stuff Here");
+        setpopoutType("Manage Account");
+        setUiState((prev) => {
+          return { ...prev, openPopup: true };
+        });
         break;
       case "Change Theme":
-        console.log("Theme Stuff Here");
         handleOpenThemeSelection();
         break;
       case "Help":
-        console.log("Help Stuff Here");
+        setpopoutType("Help");
+        setUiState((prev) => {
+          return { ...prev, openPopup: true };
+        });
     }
+  }
+
+  function handleFAQDropdown() {
+    console.log("Test");
+    setUiState((prev) => {
+      return {
+        ...prev,
+        openFAQDropdown: uiState.openFAQDropdown ? false : true,
+      };
+    });
   }
 
   function handleSelectTraveler(traveler) {
@@ -512,6 +530,7 @@ export function UIProvider({ children }) {
         theme,
         playSound,
         uiState,
+        popoutType,
         setUiState,
         visibleItems,
         userOptions,
@@ -521,6 +540,7 @@ export function UIProvider({ children }) {
         handleSelectOption,
         handleOpenSortDropdown,
         handleCloseSortDropdown,
+        handleFAQDropdown,
         handleOpenFilterWindow,
         handleCloseFilterWindow,
         handleClickOutside,

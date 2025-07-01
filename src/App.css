@@ -189,7 +189,7 @@ button {
   --error_bg-color: #fbd0ff;
   --error_text-color: #fc2d2d;
 
-  --container_bg-color: oklch(0.64 0.2277 299.75);
+  --container_bg-color: #a45fff;
 
   --footer_bg-color: #4c1975;
 
@@ -211,13 +211,13 @@ button {
   --details_text-color: #fff;
   --details_alt-text-color: #000;
   --details_banner_bg-color: #440d68;
-  --details_icon_bg-color: oklch(0.8 0.1053 286.82);
-  --details_header_bg-color: oklch(0.62 0.2853 311.26);
+  --details_icon_bg-color: #b9b4ff;
+  --details_header_bg-color: #bc2cff;
   --details_header_text-color: #fff;
   --details_border-color: #fff;
   --details_info_bg-color: #aa43ff;
 
-  --filter_container-bg-color: oklch(0.37 0.139 314.75);
+  --filter_container-bg-color: #5a2071;
   --filter_container_title-bg-color: #9125cf;
 }
 

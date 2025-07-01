@@ -7,11 +7,12 @@ import FiltersMenu from "./components/FiltersMenu";
 import MainList from "./components/MainList.jsx";
 import SearchList from "./components/SearchList.jsx";
 import { UIContext } from "./store/travelersUI-context.jsx";
-import { useContext, useEffect, useRef } from "react";
+import { useContext, useRef } from "react";
 import { DataContext } from "./store/travelersData-context.jsx";
 import { UserContext } from "./store/userData-context.jsx";
 import Toast from "./components/Toast.jsx";
 import ThemeSelection from "./components/ThemeSelection.jsx";
+import { FAQ } from "./components/FAQ.jsx";
 
 export default function App() {
   const themeWindow = useRef(null);
@@ -19,11 +20,12 @@ export default function App() {
     uiState,
     userOptions,
     theme,
-    handleClickOutside,
+    popoutType,
     handleOpenOptions,
     handleSelectOption,
     handleOpenFilterWindow,
     handleOpenSortDropdown,
+    handleFAQDropdown,
     handleOpenFavorites,
     handleCloseFilterWindow,
   } = useContext(UIContext);
@@ -121,7 +123,11 @@ export default function App() {
         <footer className="theme-transition-footer flex min-w-full max-h-[68px] mt-auto p-2 items-center justify-between text-white relative gap-2">
           <>
             {user?.googleId && !data.error && !data.loading && (
-              <div className="relative">
+              <div
+                id="options-window"
+                className="relative"
+                onClick={handleOpenOptions}
+              >
                 <div className="pointer-events-none absolute border-1 w-5 h-5 left-[70%] bottom-[65%] rounded-xl flex flex-wrap overflow-hidden">
                   <div
                     style={{ backgroundColor: "var(--container_bg-color)" }}
@@ -144,30 +150,39 @@ export default function App() {
                   ></div>
                   {/*  */}
                 </div>
-                <div
-                  style={{ backgroundColor: "var(--avatar_bg-color)" }}
-                  className="absolute bottom-[125%] border-2 rounded-xl p-2 flex flex-col gap-1"
-                >
-                  {userOptions.map((option, i) => {
-                    return (
-                      <p
-                        key={i}
-                        style={{
-                          backgroundColor: "var(--label_bg-color)",
-                          color: "var(--label_text-color)",
-                        }}
-                        className="text-nowrap rounded px-2"
-                        onClick={() => handleSelectOption(option)}
-                      >
-                        {option}
-                      </p>
-                    );
-                  })}
-                </div>
-
+                {uiState.openOptions && (
+                  <div
+                    id="options-window"
+                    style={{ backgroundColor: "var(--avatar_bg-color)" }}
+                    className={`absolute bottom-[125%] border-2 rounded-xl min-w-fit ${
+                      uiState.openThemeSelection ? "p-1" : "p-2"
+                    } flex flex-col gap-1`}
+                  >
+                    {uiState.openThemeSelection && <ThemeSelection />}
+                    {!uiState.openThemeSelection &&
+                      userOptions.map((option, i) => {
+                        return (
+                          <p
+                            key={i}
+                            id="options-window"
+                            style={{
+                              whiteSpace: "nowrap",
+                              textWrap: "nowrap",
+                              backgroundColor: "var(--label_bg-color)",
+                              color: "var(--label_text-color)",
+                            }}
+                            className="text-nowrap rounded px-2"
+                            onClick={() => handleSelectOption(option)}
+                          >
+                            {option}
+                          </p>
+                        );
+                      })}
+                  </div>
+                )}
                 <img
-                  style={{ borderColor: "var(--border-color)" }}
-                  className="border-2 min-h-12 min-w-12 max-h-12 max-w-12  rounded-full text-black"
+                  style={{ borderColor: "var(--border-color" }}
+                  className="border-2 min-h-12 min-w-12 max-h-12 max-w-12 rounded-full text-black pointer-events-none"
                   src={user.avatar}
                 />
               </div>
@@ -204,7 +219,7 @@ export default function App() {
                   <div
                     id="options-window"
                     style={{ backgroundColor: "var(--avatar_bg-color)" }}
-                    className={`absolute bottom-[125%] border-2 rounded-xl ${
+                    className={`absolute bottom-[125%] border-2 rounded-xl min-w-fit ${
                       uiState.openThemeSelection ? "p-1" : "p-2"
                     } flex flex-col gap-1`}
                   >
@@ -216,6 +231,8 @@ export default function App() {
                             key={i}
                             id="options-window"
                             style={{
+                              whiteSpace: "nowrap",
+                              textWrap: "nowrap",
                               backgroundColor: "var(--label_bg-color)",
                               color: "var(--label_text-color)",
                             }}
@@ -269,56 +286,8 @@ export default function App() {
               Fan project. Not affiliated with Square Enix or Acquire. All
               rights to original content belong to their respective owners.
             </p>
-            {/* #REFACTOR */}
-            {/* {!user?.googleId && (
-                <div
-                  style={{ borderColor: "var(--border-color)" }}
-                  className="flex flex-wrap rounded-xl border-2 h-10 w-10 absolute right-1/2 translate-x-1/2"
-                  id="theme-Selection"
-                >
-                  <div
-                    className="absolute w-full h-full"
-                    onClick={handleOpenThemeSelection}
-                  ></div>
-                  {uiState.openThemeSelection && <ThemeSelection />}
-                  <div
-                    style={{ backgroundColor: "var(--container_bg-color)" }}
-                    className="h-[50%] w-[50%] rounded-tl-[10px]"
-                  ></div>
-                  <div
-                    style={{ backgroundColor: "var(--bg-color)" }}
-                    className="h-[50%] w-[50%] rounded-tr-[10px]"
-                  ></div>
-
-                  <div
-                    style={{ backgroundColor: "var(--details_bg-color)" }}
-                    className="h-[50%] w-[50%] rounded-bl-[10px]"
-                  ></div>
-                  <div
-                    style={{
-                      backgroundColor: "var(--details_header_bg-color)",
-                    }}
-                    className="h-[50%] w-[50%] rounded-br-[10px]"
-                  ></div>
-                </div>
-              )} */}
           </>
 
-          {/* {user?.googleId && !data.loading && !data.error && (
-            <Button
-              style={{
-                backgroundColor: "var(--label_bg-color)",
-                color: "var(--alt-text-color)",
-              }}
-              className="absolute px-3 rounded"
-              onClick={() => {
-                window.location.href =
-                  "https://api.octopathhandbook.com/logout";
-              }}
-            >
-              Log Out
-            </Button>
-          )} */}
           <div className="flex flex-col min-w-fit items-center gap-1 right-0 p-1">
             <p
               style={{ color: "var(--alt-text-color)" }}
@@ -338,18 +307,74 @@ export default function App() {
             </a>
           </div>
         </footer>
-
-        {uiState.openFilterWindow &&
-          createPortal(
-            <FiltersMenu theme={theme} onClose={handleCloseFilterWindow} />,
-            document.getElementById("filtersMenu")
-          )}
-        {uiState.toast &&
-          createPortal(
-            <Toast detail={uiState.toast} />,
-            document.getElementById("toast")
-          )}
       </div>
+      {uiState.openFilterWindow &&
+        createPortal(
+          <FiltersMenu theme={theme} onClose={handleCloseFilterWindow} />,
+          document.getElementById("filtersMenu")
+        )}
+      {uiState.toast &&
+        createPortal(
+          <Toast detail={uiState.toast} />,
+          document.getElementById("toast")
+        )}
+      {uiState.openPopup &&
+        createPortal(
+          <div
+            className={`${theme} absolute z-3 w-full h-full flex items-center justify-center bg-[#000000c7]`}
+          >
+            <div
+              // onClick={handleCloseWindow}
+              className="absolute z-1 w-full h-full"
+            ></div>
+            <div
+              style={{ border: "solid 2px var(--border-color)" }}
+              className="relative z-2 backdrop-blur-[3px] bg-[#00000063] w-[80%] h-fit max-h-[70%] rounded-lg flex flex-col items-center border overflow-auto"
+            >
+              <h2 className="text-white w-full text-center p-3 font-bold text-4xl italic">
+                {popoutType}
+              </h2>
+              {popoutType === "Help" && (
+                <div className="h-full w-full flex flex-col gap-2 p-5">
+                  <div className="flex bg-[#000000c7] rounded-xl w-full h-fit p-3 flex-col">
+                    <div
+                      className="flex flex-1 justify-between p-2"
+                      onClick={handleFAQDropdown}
+                    >
+                      <h2 className="text-white ">FAQ</h2>
+                      <img
+                        src="dropdown-arrow.svg"
+                        className={`w-5 ${
+                          uiState.openFAQDropdown ? "-rotate-90" : ""
+                        } invert`}
+                      />
+                    </div>
+                    {uiState.openFAQDropdown && (
+                      <div className="flex flex-col gap-2 pt-2">
+                        <FAQ />
+                        <FAQ />
+                        <FAQ />
+                      </div>
+                    )}
+                  </div>
+                  <h2 className="text-white w-full h-fit p-1 px-3 rounded-xl bg-[#000000c7]">
+                    Quick Start Guide
+                  </h2>
+                  <h2 className="text-white w-full h-fit p-1 px-3 rounded-xl bg-[#000000c7]">
+                    Changelog
+                  </h2>
+                  <h2 className="text-white w-full h-fit p-1 px-3 rounded-xl bg-[#000000c7]">
+                    More Information
+                  </h2>
+                  <h2 className="text-white w-full h-fit p-1 px-3 rounded-xl bg-[#000000c7]">
+                    Contact Support
+                  </h2>
+                </div>
+              )}
+            </div>
+          </div>,
+          document.getElementById("popout-container")
+        )}
     </>
   );
 }
