@@ -4,9 +4,10 @@ import { FilterContext } from "../store/travelersFilters-context";
 import { UIContext } from "../store/travelersUI-context";
 import { UserContext } from "../store/userData-context";
 import { DataContext } from "../store/travelersData-context";
+import FiltersMenu from "./FiltersMenu";
 
 export default function MainList() {
-  const { visibleItems, uiState } = useContext(UIContext);
+  const { visibleItems, uiState, theme } = useContext(UIContext);
   const { travelerFilters, travelerListRef } = useContext(FilterContext);
   const { user } = useContext(UserContext);
   const { data } = useContext(DataContext);
@@ -23,11 +24,14 @@ export default function MainList() {
     return (
       <>
         <div className="w-[90%] h-full min-h-[162px] flex flex-col items-center">
-          <div className="relative w-[100%] overflow-hidden">
+          <div
+            className="relative w-[100%] flex flex-col overflow-hidden rounded"
+            style={{ border: "2px solid var(--border-color)" }}
+          >
+            {uiState.openFilterWindow && <FiltersMenu />}
             <div
               ref={travelerListRef}
               style={{
-                border: "2px solid var(--border-color)",
                 backgroundColor: "var(--container_bg-color)",
               }}
               id={"travelerList"}
@@ -38,7 +42,7 @@ export default function MainList() {
               } max-h-[100%] overflow-x-hidden overflow-y-auto 
              
 custom-scrollbar
-overscroll-x-none p-2 rounded`}
+overscroll-x-none p-2`}
             >
               {noTravelers && (
                 <p>No Travelers {uiState.openFavorites ? "Saved" : "Found"}!</p>

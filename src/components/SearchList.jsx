@@ -31,7 +31,7 @@ export default function SearchList({ onOpen }) {
               : "var(--container_bg-color)"
           }`,
         }}
-        className={`flex-1 px-2 text-center z-2 border-2 relative rounded  outline-0`}
+        className={`flex-1 px-2 text-center z-3 border-2 relative rounded  outline-0`}
         placeholder="Search by Traveler Name"
         onClick={() => handleSearch(false)}
         onChange={() => handleSearchTimer(handleSearch, 250)}
@@ -44,7 +44,7 @@ export default function SearchList({ onOpen }) {
             borderTop: "none",
             backgroundColor: "var(--container_bg-color)",
           }}
-          className="items-center rounded absolute top-[50%] pt-3.5 w-full z-1"
+          className="items-center rounded absolute top-[50%] pt-3.5 w-full z-2"
         >
           <h2
             id="searchContainer"

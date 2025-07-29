@@ -15,7 +15,6 @@ import ThemeSelection from "./components/ThemeSelection.jsx";
 import { FAQ } from "./components/FAQ.jsx";
 
 export default function App() {
-  const themeWindow = useRef(null);
   const {
     uiState,
     userOptions,
@@ -27,7 +26,8 @@ export default function App() {
     handleOpenSortDropdown,
     handleFAQDropdown,
     handleOpenFavorites,
-    handleCloseFilterWindow,
+    handleCloseWindow,
+    // handleCloseFilterWindow,
   } = useContext(UIContext);
   const { data } = useContext(DataContext);
   const { user } = useContext(UserContext);
@@ -308,11 +308,11 @@ export default function App() {
           </div>
         </footer>
       </div>
-      {uiState.openFilterWindow &&
+      {/* {uiState.openFilterWindow &&
         createPortal(
           <FiltersMenu theme={theme} onClose={handleCloseFilterWindow} />,
           document.getElementById("filtersMenu")
-        )}
+        )} */}
       {uiState.toast &&
         createPortal(
           <Toast detail={uiState.toast} />,
@@ -324,7 +324,7 @@ export default function App() {
             className={`${theme} absolute z-3 w-full h-full flex items-center justify-center bg-[#000000c7]`}
           >
             <div
-              // onClick={handleCloseWindow}
+              onClick={handleCloseWindow}
               className="absolute z-1 w-full h-full"
             ></div>
             <div

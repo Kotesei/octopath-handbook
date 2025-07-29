@@ -8,6 +8,7 @@ export default function FiltersMenu({ onClose, theme }) {
     disableMaxRanks,
     handleResetFilters: onReset,
     handleFilterToggle: onToggle,
+    handleOpenAdvFilters,
   } = useContext(FilterContext);
   const {
     genders: gender,
@@ -28,84 +29,175 @@ export default function FiltersMenu({ onClose, theme }) {
   };
 
   return (
-    <div
-      className={`${theme} h-[100dvh] w-[100dvw] absolute z-10 bg-[#0c0018e0]`}
-    >
-      <div className="h-[100%] p-4 gap-5 w-[100%] relative flex flex-col">
-        <div className="h-[100%] items-center flex flex-col gap-2 overflow-auto p-2">
-          {Object.keys(allFilters).flatMap((filterType, i) => {
-            const filterCategories = [
-              "Job",
-              "Types",
-              "Influence",
-              "Starting Rank",
-              "Ending Rank",
-              "Gender",
-            ];
-            return (
-              <div
-                style={{
-                  border: "2px solid var(--border-color)",
-                  backgroundColor: "var(--filter_container-bg-color)",
-                }}
-                key={i}
-                className="flex flex-col items-center w-fit min-h-fit overflow-hidden rounded-xl"
-              >
-                <h2
-                  style={{
-                    borderBottom: "2px solid var(--border-color)",
-                    color: "var(--text-color--2)",
-                    backgroundColor: "var(--filter_container_title-bg-color)",
-                  }}
-                  className="text-2xl w-full font-bold text-center pb-1"
-                >
-                  {filterCategories[i]}
-                </h2>
-                <div className="flex flex-wrap gap-x-1 gap-y-2 justify-center p-2">
-                  {allFilters[filterType].map((filterName, i) => {
-                    const key = `${filterType}:${filterName}`;
-                    const disableMaxRankFilters =
-                      key.includes("highestRank") && disableMaxRanks;
+    <div className="bg-[#ffffff] min-h-10 flex justify-between items-center p-2">
+      <div className="flex gap-2 overflow-auto">
+        <div className="flex gap-1 items-center">
+          <label htmlFor="jobFilter" className="font-semibold text-xs">
+            Job
+          </label>
+          <select
+            onChange={(e) => onToggle(e.target.value, "job")}
+            id="jobFilter"
+            className="bg-[#00000060] text-center py-0.5 px-1 rounded text-xs"
+          >
+            <option>None</option>
+            {allFilters.job.map((job, i) => {
+              return <option key={i}>{job}</option>;
+            })}
+          </select>
+        </div>
+
+        <div className="flex gap-1 items-center">
+          <label htmlFor="genderFilter" className="font-semibold text-xs">
+            Gender
+          </label>
+          <select
+            onChange={(e) => onToggle(e.target.value, "gender")}
+            id="genderFilter"
+            className="bg-[#00000060] text-center py-0.5 px-1 rounded text-xs"
+          >
+            <option>None</option>
+            {allFilters.gender.map((gender, i) => {
+              return <option key={i}>{gender}</option>;
+            })}
+          </select>
+        </div>
+
+        <div className="flex gap-1 items-center">
+          <label htmlFor="influenceFilter" className="font-semibold text-xs">
+            Influence
+          </label>
+          <select
+            onChange={(e) => onToggle(e.target.value, "influence")}
+            id="influenceFilter"
+            className="bg-[#00000060] text-center py-0.5 px-1 rounded text-xs"
+          >
+            <option>None</option>
+            {allFilters.influence.map((influence, i) => {
+              return <option key={i}>{influence}</option>;
+            })}
+          </select>
+        </div>
+      </div>
+
+      <div className="flex min-w-fit">
+        <p
+          onClick={handleOpenAdvFilters}
+          className="bg-amber-200 px-2 py-0.5 rounded text-sm"
+        >
+          Advanced Filters
+        </p>
+        <div className="absolute h-full w-full z-1 top-0 right-1/2 translate-x-1/2 rounded p-2 flex justify-end">
+          <div
+            style={{
+              backgroundColor: "var(--avatar_bg-color",
+              borderColor: "var(--border-color",
+              color: "var(--label_text-color)",
+            }}
+            className="bg-[#ff0000] border-2 border-black w-full max-w-75 h-fit rounded p-2 pb-4 flex flex-col gap-2"
+          >
+            <div className="flex justify-around">
+              <div className="flex-1">
+                <h2 className="text-center">Min Rank</h2>
+                <div className="flex gap-1 flex-wrap items-center justify-center">
+                  {allFilters.startingRank.map((min, i) => {
+                    const key = `startingRank:${min}`;
+                    const disabled =
+                      disableMaxRanks &&
+                      min ===
+                        allFilters.startingRank[
+                          allFilters.startingRank.length - 1
+                        ][-1];
 
                     return (
                       <Button
                         style={{
                           color: `${
-                            disableMaxRankFilters
-                              ? "var(--button_disabled-text-color)"
-                              : ""
+                            disabled ? "var(--button_disabled-text-color)" : ""
                           }`,
-                          backgroundColor: `${
-                            disableMaxRankFilters ? "black" : ""
-                          }`,
-                          opacity: `${disableMaxRankFilters ? "20%" : "100%"}`,
+                          backgroundColor: `${disabled ? "black" : ""}`,
+                          opacity: `${disabled ? "20%" : "100%"}`,
                         }}
                         className={`${
                           enabled[key]
                             ? "custom-button-enabled"
                             : "custom-button"
                         } px-1.5 rounded`}
-                        onClick={() =>
+                        onClick={(e) =>
                           onToggle(
-                            filterName,
-                            allFilters[filterType],
-                            filterType
+                            e.target.innerText,
+                            allFilters.startingRank,
+                            "startingRank"
                           )
                         }
-                        key={key}
+                        key={i}
                       >
-                        {filterName}
+                        {min}
                       </Button>
                     );
                   })}
                 </div>
               </div>
-            );
-          })}
-        </div>
-        <div className="col-2 col-end-4 flex gap-5 self-end">
-          <Button onClick={onReset}>Reset?</Button>
-          <Button onClick={onClose}>OK</Button>
+              <div className="flex-1">
+                <h2 className="text-center">Max Rank</h2>
+                <div className="flex gap-1 flex-wrap items-center justify-center">
+                  {allFilters.highestRank.map((max, i) => {
+                    const key = `highestRank:${max}`;
+                    return (
+                      <Button
+                        style={{
+                          color: `${
+                            disableMaxRanks
+                              ? "var(--button_disabled-text-color)"
+                              : ""
+                          }`,
+                          backgroundColor: `${disableMaxRanks ? "black" : ""}`,
+                          opacity: `${disableMaxRanks ? "20%" : "100%"}`,
+                        }}
+                        className={`${
+                          enabled[key]
+                            ? "custom-button-enabled"
+                            : "custom-button"
+                        } px-1.5 rounded`}
+                        onClick={(e) =>
+                          onToggle(
+                            e.target.innerText,
+                            allFilters.highestRank,
+                            "highestRank"
+                          )
+                        }
+                        key={i}
+                      >
+                        {max}
+                      </Button>
+                    );
+                  })}
+                </div>
+              </div>
+            </div>
+            <div>
+              <h2 className="text-center">Attack Types</h2>
+              <div className="flex gap-1 flex-wrap items-center justify-center">
+                {allFilters.types.map((type, i) => {
+                  const key = `types:${type}`;
+                  return (
+                    <Button
+                      onClick={(e) =>
+                        onToggle(e.target.innerText, allFilters.types, "type")
+                      }
+                      style={{}}
+                      className={`${
+                        enabled[key] ? "custom-button-enabled" : "custom-button"
+                      } p-1 rounded text-xs`}
+                      key={i}
+                    >
+                      {type}
+                    </Button>
+                  );
+                })}
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </div>

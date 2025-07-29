@@ -75,6 +75,25 @@ export function FilterProvider({ children }) {
   }
 
   function handleFilterToggle(filterName, filterList, category) {
+    if (filterName === "None") {
+      switch (filterList) {
+        case "influence":
+          setActiveFilters((prev) => {
+            return { ...prev, influence: "" };
+          });
+          break;
+        case "gender":
+          setActiveFilters((prev) => {
+            return { ...prev, gender: "" };
+          });
+          break;
+        case "job":
+          setActiveFilters((prev) => {
+            return { ...prev, job: "" };
+          });
+          break;
+      }
+    }
     if (category === "startingRank") {
       if (filterName === "★★★★★") {
         setDisableMaxRanks((prev) => !prev);
@@ -94,6 +113,12 @@ export function FilterProvider({ children }) {
     if (filterList[0] === "★★★★★") max = true;
 
     applyFilters(filterName, min, max);
+  }
+
+  function handleOpenAdvFilters() {
+    setUiState((prev) => {
+      return { ...prev, openAdvFilters: true };
+    });
   }
 
   function handleResetFilters() {
@@ -232,6 +257,7 @@ export function FilterProvider({ children }) {
         handleResetFilters,
         handleFilterToggle,
         travelerListRef,
+        handleOpenAdvFilters,
       }}
     >
       {children}

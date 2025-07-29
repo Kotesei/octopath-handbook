@@ -27,12 +27,19 @@ export function UIProvider({ children }) {
     openFilterWindow: false,
     openThemeSelection: false,
     openSearchResultsDropdown: false,
+    openAdvFilters: false,
     openFAQDropdown: false,
     openPopup: false,
     openOptions: false,
     travelerCount: 0,
     toast: null,
   });
+
+  useEffect(() => {
+    if (uiState.openAdvFilters) {
+      console.log("test");
+    }
+  }, [uiState.openAdvFilters]);
 
   useEffect(() => {
     if (!data.loading && !data.selectedTraveler) {
@@ -116,7 +123,6 @@ export function UIProvider({ children }) {
   }
 
   function handleFAQDropdown() {
-    console.log("Test");
     setUiState((prev) => {
       return {
         ...prev,
@@ -367,6 +373,12 @@ export function UIProvider({ children }) {
     }
   }
 
+  function handleCloseWindow() {
+    setUiState((prev) => {
+      return { ...prev, openPopup: false };
+    });
+  }
+
   function handleCloseSortDropdown() {
     playSound("toggle");
     setUiState((prev) => {
@@ -547,6 +559,7 @@ export function UIProvider({ children }) {
         handleSelectTraveler,
         handleOpenFavorites,
         observeElements,
+        handleCloseWindow,
         createIntersectionHandler,
       }}
     >
