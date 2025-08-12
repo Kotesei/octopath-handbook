@@ -27,25 +27,29 @@ export default function MainList() {
         <div
           className={`overflow-hidden relative pointer-events-none ${
             rotate
-              ? "w-[100%] max-h-[95%] pl-20 pr-2"
-              : "w-[90%] min-h-[162px] h-full"
+              ? `w-[100%] max-h-[95%] ${
+                  noTravelers ? "" : "min-h-[95%]"
+                } pl-20 pr-2`
+              : `w-[90%]  ${noTravelers ? "" : "h-full min-h-[162px]"}`
           } flex flex-col items-center`}
         >
           <div className="absolute w-[100%] h-10 z-1">
             {uiState.openFilterWindow && <FiltersMenu />}
           </div>
           <div
-            className="pointer-events-auto relative w-[100%] flex flex-col overflow-hidden rounded"
-            style={{ border: "2px solid var(--border-color)" }}
+            className={`pointer-events-auto relative  ${
+              noTravelers ? "" : "w-full"
+            } flex h-full flex-col overflow-hidden rounded`}
+            style={{
+              backgroundColor: "var(--container_bg-color)",
+              border: "2px solid var(--border-color)",
+            }}
           >
             {uiState.openFilterWindow && (
               <div className="min-h-10 flex justify-between items-center p-2"></div>
             )}
             <div
               ref={travelerListRef}
-              style={{
-                backgroundColor: "var(--container_bg-color)",
-              }}
               id={"travelerList"}
               className={`${
                 noTravelers
@@ -92,9 +96,16 @@ overscroll-x-none p-2`}
               )}
             </div>
           </div>
-          {uiState.openFavorites && user.favorites.length > 0 && (
-            <p style={{ color: "var(--text-color)" }} className="self-end">
-              Favorited: {user.favorites.length}
+          {!noTravelers && uiState.openFavorites && (
+            <p
+              style={{ color: "var(--text-color--2)" }}
+              className={`self-end ${
+                430 > document.body.getBoundingClientRect().height
+                  ? "absolute left-0 bottom-0 text-xs pl-4"
+                  : ""
+              }`}
+            >
+              Saved: {user.favorites.length}
             </p>
           )}
 

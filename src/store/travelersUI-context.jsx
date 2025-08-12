@@ -23,6 +23,7 @@ export function UIProvider({ children }) {
   const [userOptions, setUserOptions] = useState();
   const [uiState, setUiState] = useState({
     openSortDropdown: false,
+    openHamburgerMenu: true,
     openFavorites: false,
     openFilterWindow: false,
     openThemeSelection: false,
@@ -126,6 +127,8 @@ export function UIProvider({ children }) {
       });
     }
   }
+
+  function revealHamburgerMenu() {}
 
   function handleSelectOption(option) {
     switch (option) {

@@ -40,16 +40,43 @@ export default function App() {
         } theme-transition-bg flex-1 w-full flex items-center flex-col gap-5 overflow-auto`}
       >
         {rotate && !data.loading && !data.error && (
-          <div className="w-20 h-full absolute left-0 top-0 px-3 py-8 flex flex-col justify-between items-center">
-            <div className="flex flex-col gap-3.5 items-center">
+          <div className="w-20 h-full absolute left-0 top-0 px-3 pt-4 pb-8 flex flex-col justify-between items-center">
+            <div className="flex flex-col gap-2 items-center">
+              <div className="bg-white w-10 h-10 rounded-lg flex items-center justify-center relative">
+                {uiState.openHamburgerMenu && (
+                  <div className="left-[100%] top-0 pl-2 absolute z-5 w-fit h-fit">
+                    <div className="bg-white  text-nowrap px-1 py-1  rounded gap-1 flex flex-col">
+                      <p className="bg-black px-1 rounded w-fit">
+                        Sort Travelers
+                      </p>
+                      <p className="bg-black px-1 rounded w-fit">
+                        Filter Travelers
+                      </p>
+                    </div>
+                  </div>
+                )}
+                <img src="hamburger.svg" className="size-6" />
+              </div>
               <div
-                className="bg-white w-8.5 h-8.5 rounded-full flex items-center justify-center"
+                className="bg-white w-9 h-9 rounded-full flex items-center justify-center"
                 onClick={handleToggleSearchBar}
               >
-                <img src="search.svg" className="size-7" />
+                <img src="search.svg" className="size-6" />
               </div>
-              <div className="bg-black w-13 h-13 rounded-full"></div>
-              <div className="bg-black w-13 h-13 rounded-full"></div>
+
+              <div className="flex bg-white rounded-full flex-col items-center gap-1 w-9 h-9 justify-center relative">
+                <div
+                  onClick={handleOpenFavorites}
+                  className="rounded-full absolute flex items-center justify-center"
+                >
+                  {!uiState.openFavorites ? (
+                    <img src="heart.svg" className="size-10" />
+                  ) : (
+                    <img src="return-arrow.svg" className="size-10" />
+                  )}
+                </div>
+                <p className="text-white text-xs"></p>
+              </div>
             </div>
             <div
               id="options-window"
