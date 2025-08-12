@@ -1,7 +1,9 @@
 import { useContext } from "react";
 import Button from "./Button";
 import { FilterContext } from "../store/travelersFilters-context";
+import { UIContext } from "../store/travelersUI-context";
 export default function FiltersMenu({ onClose, theme }) {
+  const { uiState } = useContext(UIContext);
   const {
     travelerFilters: filterList,
     enabled,
@@ -9,6 +11,7 @@ export default function FiltersMenu({ onClose, theme }) {
     handleResetFilters: onReset,
     handleFilterToggle: onToggle,
     handleOpenAdvFilters,
+    activeFilters,
   } = useContext(FilterContext);
   const {
     genders: gender,
@@ -29,16 +32,28 @@ export default function FiltersMenu({ onClose, theme }) {
   };
 
   return (
-    <div className="bg-[#ffffff] min-h-10 flex justify-between items-center p-2">
-      <div className="flex gap-2 overflow-auto">
+    <div
+      style={{
+        backgroundColor: "var(--label_bg-color)",
+        borderColor: "var(--border-color)",
+      }}
+      className="min-h-10 flex justify-between items-center p-2 rounded-t border-2"
+    >
+      <div className="flex gap-2 overflow-auto px-2">
         <div className="flex gap-1 items-center">
-          <label htmlFor="jobFilter" className="font-semibold text-xs">
+          <label
+            htmlFor="jobFilter"
+            style={{ color: "var(--label_text-color)" }}
+            className="font-semibold text-xs"
+          >
             Job
           </label>
           <select
+            value={activeFilters.job || "None"}
             onChange={(e) => onToggle(e.target.value, "job")}
             id="jobFilter"
-            className="bg-[#00000060] text-center py-0.5 px-1 rounded text-xs"
+            style={{ color: "white" }}
+            className="bg-[#00000046] text-center py-0.5 px-1 rounded text-xs"
           >
             <option>None</option>
             {allFilters.job.map((job, i) => {
@@ -48,13 +63,19 @@ export default function FiltersMenu({ onClose, theme }) {
         </div>
 
         <div className="flex gap-1 items-center">
-          <label htmlFor="genderFilter" className="font-semibold text-xs">
+          <label
+            htmlFor="genderFilter"
+            className="font-semibold text-xs"
+            style={{ color: "var(--label_text-color)" }}
+          >
             Gender
           </label>
           <select
+            value={activeFilters.gender || "None"}
             onChange={(e) => onToggle(e.target.value, "gender")}
             id="genderFilter"
-            className="bg-[#00000060] text-center py-0.5 px-1 rounded text-xs"
+            style={{ color: "white" }}
+            className="bg-[#00000046] text-center py-0.5 px-1 rounded text-xs"
           >
             <option>None</option>
             {allFilters.gender.map((gender, i) => {
@@ -64,13 +85,19 @@ export default function FiltersMenu({ onClose, theme }) {
         </div>
 
         <div className="flex gap-1 items-center">
-          <label htmlFor="influenceFilter" className="font-semibold text-xs">
+          <label
+            htmlFor="influenceFilter"
+            style={{ color: "var(--label_text-color)" }}
+            className="font-semibold text-xs"
+          >
             Influence
           </label>
           <select
+            value={activeFilters.influence || "None"}
             onChange={(e) => onToggle(e.target.value, "influence")}
             id="influenceFilter"
-            className="bg-[#00000060] text-center py-0.5 px-1 rounded text-xs"
+            style={{ color: "white" }}
+            className="bg-[#00000046] text-center py-0.5 px-1 rounded text-xs"
           >
             <option>None</option>
             {allFilters.influence.map((influence, i) => {
@@ -80,125 +107,160 @@ export default function FiltersMenu({ onClose, theme }) {
         </div>
       </div>
 
-      <div className="flex min-w-fit">
+      <div className="flex min-w-fit ml-2">
         <p
+          id="advFilters"
           onClick={handleOpenAdvFilters}
-          className="bg-amber-200 px-2 py-0.5 rounded text-sm"
+          style={{
+            backgroundColor: "var(--avatar_bg-color)",
+            color: "var(--label_text-color)",
+          }}
+          className="px-2 py-0.5 rounded text-sm"
         >
           Advanced Filters
         </p>
-        <div className="absolute h-full w-full z-1 top-0 right-1/2 translate-x-1/2 rounded p-2 flex justify-end">
+        {uiState.openAdvFilters && (
           <div
-            style={{
-              backgroundColor: "var(--avatar_bg-color",
-              borderColor: "var(--border-color",
-              color: "var(--label_text-color)",
-            }}
-            className="bg-[#ff0000] border-2 border-black w-full max-w-75 h-fit rounded p-2 pb-4 flex flex-col gap-2"
+            id="advFilters"
+            className="absolute z-1 top-0 right-0 rounded p-2 flex justify-end"
           >
-            <div className="flex justify-around">
-              <div className="flex-1">
-                <h2 className="text-center">Min Rank</h2>
-                <div className="flex gap-1 flex-wrap items-center justify-center">
-                  {allFilters.startingRank.map((min, i) => {
-                    const key = `startingRank:${min}`;
-                    const disabled =
-                      disableMaxRanks &&
-                      min ===
-                        allFilters.startingRank[
-                          allFilters.startingRank.length - 1
-                        ][-1];
+            <div
+              style={{
+                backgroundColor: "var(--avatar_bg-color",
+                borderColor: "var(--border-color",
+                color: "var(--label_text-color)",
+              }}
+              id="advFilters"
+              className="bg-[#ff0000] border-2 border-black w-full max-w-75 h-fit rounded p-2 pb-4 flex flex-col gap-2"
+            >
+              <div id="advFilters" className="flex justify-around">
+                <div id="advFilters" className="flex-1">
+                  <h2 id="advFilters" className="text-center">
+                    Min Rank
+                  </h2>
+                  <div
+                    id="advFilters"
+                    className="flex gap-1 flex-wrap items-center justify-center"
+                  >
+                    {allFilters.startingRank.map((min, i) => {
+                      const key = `startingRank:${min}`;
+                      const disabled =
+                        disableMaxRanks &&
+                        min ===
+                          allFilters.startingRank[
+                            allFilters.startingRank.length - 1
+                          ][-1];
 
+                      return (
+                        <Button
+                          id="advFilters"
+                          style={{
+                            color: `${
+                              disabled
+                                ? "var(--button_disabled-text-color)"
+                                : ""
+                            }`,
+                            backgroundColor: `${disabled ? "black" : ""}`,
+                            opacity: `${disabled ? "20%" : "100%"}`,
+                          }}
+                          className={`${
+                            enabled[key]
+                              ? "custom-button-enabled"
+                              : "custom-button"
+                          } px-1.5 rounded`}
+                          onClick={(e) =>
+                            onToggle(
+                              e.target.innerText,
+                              allFilters.startingRank,
+                              "startingRank"
+                            )
+                          }
+                          key={i}
+                        >
+                          {min}
+                        </Button>
+                      );
+                    })}
+                  </div>
+                </div>
+                <div id="advFilters" className="flex-1">
+                  <h2 id="advFilters" className="text-center">
+                    Max Rank
+                  </h2>
+                  <div
+                    id="advFilters"
+                    className="flex gap-1 flex-wrap items-center justify-center"
+                  >
+                    {allFilters.highestRank.map((max, i) => {
+                      const key = `highestRank:${max}`;
+                      return (
+                        <Button
+                          id="advFilters"
+                          style={{
+                            color: `${
+                              disableMaxRanks
+                                ? "var(--button_disabled-text-color)"
+                                : ""
+                            }`,
+                            backgroundColor: `${
+                              disableMaxRanks ? "black" : ""
+                            }`,
+                            opacity: `${disableMaxRanks ? "20%" : "100%"}`,
+                          }}
+                          className={`${
+                            enabled[key]
+                              ? "custom-button-enabled"
+                              : "custom-button"
+                          } px-1.5 rounded`}
+                          onClick={(e) =>
+                            onToggle(
+                              e.target.innerText,
+                              allFilters.highestRank,
+                              "highestRank"
+                            )
+                          }
+                          key={i}
+                        >
+                          {max}
+                        </Button>
+                      );
+                    })}
+                  </div>
+                </div>
+              </div>
+              <div id="advFilters">
+                <h2 id="advFilters" className="text-center">
+                  Attack Types
+                </h2>
+                <div
+                  id="advFilters"
+                  className="flex gap-1 flex-wrap items-center justify-center"
+                >
+                  {allFilters.types.map((type, i) => {
+                    const key = `types:${type}`;
                     return (
                       <Button
-                        style={{
-                          color: `${
-                            disabled ? "var(--button_disabled-text-color)" : ""
-                          }`,
-                          backgroundColor: `${disabled ? "black" : ""}`,
-                          opacity: `${disabled ? "20%" : "100%"}`,
-                        }}
+                        id="advFilters"
+                        onClick={(e) =>
+                          onToggle(e.target.innerText, allFilters.types, "type")
+                        }
+                        style={{}}
                         className={`${
                           enabled[key]
                             ? "custom-button-enabled"
                             : "custom-button"
-                        } px-1.5 rounded`}
-                        onClick={(e) =>
-                          onToggle(
-                            e.target.innerText,
-                            allFilters.startingRank,
-                            "startingRank"
-                          )
-                        }
+                        } p-1 rounded text-xs`}
                         key={i}
                       >
-                        {min}
+                        {type}
                       </Button>
                     );
                   })}
                 </div>
-              </div>
-              <div className="flex-1">
-                <h2 className="text-center">Max Rank</h2>
-                <div className="flex gap-1 flex-wrap items-center justify-center">
-                  {allFilters.highestRank.map((max, i) => {
-                    const key = `highestRank:${max}`;
-                    return (
-                      <Button
-                        style={{
-                          color: `${
-                            disableMaxRanks
-                              ? "var(--button_disabled-text-color)"
-                              : ""
-                          }`,
-                          backgroundColor: `${disableMaxRanks ? "black" : ""}`,
-                          opacity: `${disableMaxRanks ? "20%" : "100%"}`,
-                        }}
-                        className={`${
-                          enabled[key]
-                            ? "custom-button-enabled"
-                            : "custom-button"
-                        } px-1.5 rounded`}
-                        onClick={(e) =>
-                          onToggle(
-                            e.target.innerText,
-                            allFilters.highestRank,
-                            "highestRank"
-                          )
-                        }
-                        key={i}
-                      >
-                        {max}
-                      </Button>
-                    );
-                  })}
-                </div>
-              </div>
-            </div>
-            <div>
-              <h2 className="text-center">Attack Types</h2>
-              <div className="flex gap-1 flex-wrap items-center justify-center">
-                {allFilters.types.map((type, i) => {
-                  const key = `types:${type}`;
-                  return (
-                    <Button
-                      onClick={(e) =>
-                        onToggle(e.target.innerText, allFilters.types, "type")
-                      }
-                      style={{}}
-                      className={`${
-                        enabled[key] ? "custom-button-enabled" : "custom-button"
-                      } p-1 rounded text-xs`}
-                      key={i}
-                    >
-                      {type}
-                    </Button>
-                  );
-                })}
               </div>
             </div>
           </div>
-        </div>
+        )}
       </div>
     </div>
   );

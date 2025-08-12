@@ -31,7 +31,7 @@ button {
   --scrollbar-color: #f5dce0;
   --bg-color: #e4a0b7;
   --avatar_bg-color: #eca9c2;
-  --border-color: #e097ba;
+  --border-color: #ffffff;
   --border-color--2: #f0c3d3;
   --heart-color: #ff3d98;
   --text-color: #bd4c75;
@@ -42,7 +42,7 @@ button {
 
   --label_bg-color: #eb7ba4;
 
-  --error_bg-color: #f8e6e6;
+  --error_bg-color: #ff6262;
   --error_text-color: #ff0000;
 
   --footer_bg-color: #c75a82;
@@ -89,14 +89,14 @@ button {
 
   --container_bg-color: #494850;
 
-  --label_bg-color: #9595a3;
+  --label_bg-color: #575757;
 
-  --error_bg-color: #222222;
+  --error_bg-color: #440000;
   --error_text-color: #ff6c6c;
 
   --footer_bg-color: #494850;
 
-  --label_text-color: #000000;
+  --label_text-color: #ffffff;
 
   --button_bg-color: #d8d8f6;
   --button_text-color: rgb(0, 0, 0);
@@ -135,7 +135,7 @@ button {
   --text-color: #49423e;
   --alt-text-color: #6e625a;
 
-  --error_bg-color: #fccbb5;
+  --error_bg-color: #fcb5b5;
   --error_text-color: #ff0000;
 
   --avatar_bg-color: #f3c7ab;
@@ -186,7 +186,7 @@ button {
 
   --avatar_bg-color: #650eac;
 
-  --error_bg-color: #fbd0ff;
+  --error_bg-color: #ff8dd3;
   --error_text-color: #fc2d2d;
 
   --container_bg-color: #a45fff;

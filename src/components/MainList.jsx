@@ -7,7 +7,8 @@ import { DataContext } from "../store/travelersData-context";
 import FiltersMenu from "./FiltersMenu";
 
 export default function MainList() {
-  const { visibleItems, uiState, theme } = useContext(UIContext);
+  const { visibleItems, uiState, bodyHeight } = useContext(UIContext);
+  const rotate = 430 > bodyHeight;
   const { travelerFilters, travelerListRef } = useContext(FilterContext);
   const { user } = useContext(UserContext);
   const { data } = useContext(DataContext);
@@ -23,12 +24,23 @@ export default function MainList() {
   if (filtersReady) {
     return (
       <>
-        <div className="w-[90%] h-full min-h-[162px] flex flex-col items-center">
+        <div
+          className={`overflow-hidden relative pointer-events-none ${
+            rotate
+              ? "w-[100%] max-h-[95%] pl-20 pr-2"
+              : "w-[90%] min-h-[162px] h-full"
+          } flex flex-col items-center`}
+        >
+          <div className="absolute w-[100%] h-10 z-1">
+            {uiState.openFilterWindow && <FiltersMenu />}
+          </div>
           <div
-            className="relative w-[100%] flex flex-col overflow-hidden rounded"
+            className="pointer-events-auto relative w-[100%] flex flex-col overflow-hidden rounded"
             style={{ border: "2px solid var(--border-color)" }}
           >
-            {uiState.openFilterWindow && <FiltersMenu />}
+            {uiState.openFilterWindow && (
+              <div className="min-h-10 flex justify-between items-center p-2"></div>
+            )}
             <div
               ref={travelerListRef}
               style={{
@@ -87,7 +99,14 @@ overscroll-x-none p-2`}
           )}
 
           {!uiState.openFavorites && uiState.travelerCount > 0 && (
-            <p style={{ color: "var(--text-color--2)" }} className="self-end">
+            <p
+              style={{ color: "var(--text-color--2)" }}
+              className={`self-end ${
+                430 > document.body.getBoundingClientRect().height
+                  ? "absolute left-0 bottom-0 text-xs pl-2"
+                  : ""
+              }`}
+            >
               Found: {uiState.travelerCount}
             </p>
           )}

@@ -11,6 +11,7 @@ export function SearchProvider({ children }) {
     observeElements,
     createIntersectionHandler,
     handleClickOutside,
+    bodyHeight,
   } = useContext(UIContext);
   const { data } = useContext(DataContext);
   const inputRef = useRef();
@@ -21,6 +22,19 @@ export function SearchProvider({ children }) {
     found: false,
     travelers: [],
   });
+
+  function handleSearchBar(isRotated) {
+    if (!isRotated) return;
+    setUiState((prev) => {
+      return { ...prev, showSearchBar: false };
+    });
+  }
+
+  useEffect(() => {
+    if (bodyHeight > 430) return;
+    if (!inputRef.current) return;
+    inputRef.current.focus();
+  }, [uiState.showSearchBar]);
 
   function handleSearch(firstLetter) {
     const travelersClone = [...data.travelers];
@@ -107,23 +121,13 @@ export function SearchProvider({ children }) {
     };
   }, [uiState.openSearchResultsDropdown]);
 
-  //   useEffect(() => {
-  //   const handle = (e) =>
-  //     handleClickOutside(e, "options-window", "openOptions");
-  //   if (uiState.openOptions) {
-  //     window.addEventListener("click", handle);
-  //   }
-  //   return () => {
-  //     window.removeEventListener("click", handle);
-  //   };
-  // }, [uiState.openOptions]);
-
   return (
     <SearchContext.Provider
       value={{
         inputRef,
         handleSearch,
         handleSearchTimer,
+        handleSearchBar,
         results,
         visibleSearchItems,
       }}

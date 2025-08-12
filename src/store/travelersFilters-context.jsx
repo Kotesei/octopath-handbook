@@ -19,6 +19,7 @@ export function FilterProvider({ children }) {
     setVisibleItems,
     observeElements,
     createIntersectionHandler,
+    handleClickOutside,
   } = useContext(UIContext);
   const { user } = useContext(UserContext);
 
@@ -147,6 +148,16 @@ export function FilterProvider({ children }) {
       travelerFilters.resetFilters();
     }
   }, [travelerFilters, activeFilters]);
+
+  useEffect(() => {
+    const handle = (e) => handleClickOutside(e, "advFilters", "openAdvFilters");
+    if (uiState.openAdvFilters) {
+      window.addEventListener("click", handle);
+      return () => {
+        window.removeEventListener("click", handle);
+      };
+    }
+  }, [uiState.openAdvFilters]);
 
   useEffect(() => {
     if (!travelerListRef.current || data.loading || location.pathname !== "/")

@@ -3,7 +3,6 @@ import { createPortal } from "react-dom";
 import Button from "./components/Button";
 import Spinner from "./components/Spinner.jsx";
 import Loader from "./components/Loader.jsx";
-import FiltersMenu from "./components/FiltersMenu";
 import MainList from "./components/MainList.jsx";
 import SearchList from "./components/SearchList.jsx";
 import { UIContext } from "./store/travelersUI-context.jsx";
@@ -17,9 +16,11 @@ import { FAQ } from "./components/FAQ.jsx";
 export default function App() {
   const {
     uiState,
+    bodyHeight,
     userOptions,
     theme,
     popoutType,
+    handleToggleSearchBar,
     handleOpenOptions,
     handleSelectOption,
     handleOpenFilterWindow,
@@ -27,61 +28,149 @@ export default function App() {
     handleFAQDropdown,
     handleOpenFavorites,
     handleCloseWindow,
-    // handleCloseFilterWindow,
   } = useContext(UIContext);
   const { data } = useContext(DataContext);
   const { user } = useContext(UserContext);
-
+  const rotate = 430 > bodyHeight;
   return (
     <>
       <div
-        className={`${theme} theme-transition-bg flex-1 w-full flex items-center flex-col gap-5 overflow-auto`}
+        className={`${theme}  ${
+          rotate ? "justify-center" : ""
+        } theme-transition-bg flex-1 w-full flex items-center flex-col gap-5 overflow-auto`}
       >
-        <div className="flex justify-between w-full px-5 pt-5">
-          <div className="flex gap-2 items-center">
-            {user?.googleId && !data.loading && !data.error && (
-              <div className="flex flex-col">
-                <p
-                  style={{
-                    backgroundColor: "var(--label_bg-color)",
-                    color: "var(--alt-text-color)",
-                    borderColor: "var(--border-color)",
-                  }}
-                  className="text-x w-fit px-2 rounded-t border-b-1"
-                >
-                  {user.favorites?.length} Saved
-                </p>
-                <Button
-                  onClick={handleOpenFavorites}
-                  className={`bg-white min-w-20 text-black text-[9px] sm:text-lg px-4 py-0.5 rounded rounded-tl-none`}
-                >
-                  {!uiState.openFavorites ? "View Favorites" : "Go Back"}
-                </Button>
+        {rotate && !data.loading && !data.error && (
+          <div className="w-20 h-full absolute left-0 top-0 px-3 py-8 flex flex-col justify-between items-center">
+            <div className="flex flex-col gap-3.5 items-center">
+              <div
+                className="bg-white w-8.5 h-8.5 rounded-full flex items-center justify-center"
+                onClick={handleToggleSearchBar}
+              >
+                <img src="search.svg" className="size-7" />
               </div>
-            )}
-          </div>
-          <div className="flex gap-2  items-center">
-            <Button
-              disabled={data.loading || data.error || uiState.openFavorites}
-              clearbg
-              sort
-              openSortDropdown={uiState.openSortDropdown}
-              onClick={handleOpenSortDropdown}
+              <div className="bg-black w-13 h-13 rounded-full"></div>
+              <div className="bg-black w-13 h-13 rounded-full"></div>
+            </div>
+            <div
+              id="options-window"
+              className="relative"
+              onClick={handleOpenOptions}
             >
-              Sort
-            </Button>
-            <Button
-              disabled={data.loading || data.error || uiState.openFavorites}
-              filter
-              onClick={handleOpenFilterWindow}
-            >
-              Filter
-            </Button>
+              <div className="pointer-events-none absolute border-1 w-5 h-5 left-[70%] bottom-[65%] rounded-xl flex flex-wrap overflow-hidden">
+                <div
+                  style={{ backgroundColor: "var(--container_bg-color)" }}
+                  className="h-[50%] w-[50%]"
+                ></div>
+                <div
+                  style={{ backgroundColor: "var(--bg-color)" }}
+                  className="h-[50%] w-[50%]"
+                ></div>
+
+                <div
+                  style={{ backgroundColor: "var(--details_bg-color)" }}
+                  className="h-[50%] w-[50%] "
+                ></div>
+                <div
+                  style={{
+                    backgroundColor: "var(--details_header_bg-color)",
+                  }}
+                  className="h-[50%] w-[50%] "
+                ></div>
+                {/*  */}
+              </div>
+              {uiState.openOptions && (
+                <div
+                  id="options-window"
+                  style={{ backgroundColor: "var(--avatar_bg-color)" }}
+                  className={`absolute bottom-[125%] border-2 rounded-xl min-w-fit z-20 ${
+                    uiState.openThemeSelection ? "p-1" : "p-2"
+                  } flex flex-col gap-1`}
+                >
+                  {uiState.openThemeSelection && <ThemeSelection />}
+                  {!uiState.openThemeSelection &&
+                    userOptions.map((option, i) => {
+                      return (
+                        <p
+                          key={i}
+                          id="options-window"
+                          style={{
+                            whiteSpace: "nowrap",
+                            textWrap: "nowrap",
+                            backgroundColor: "var(--label_bg-color)",
+                            color: "var(--label_text-color)",
+                          }}
+                          className="text-nowrap rounded px-2"
+                          onClick={() => handleSelectOption(option)}
+                        >
+                          {option}
+                        </p>
+                      );
+                    })}
+                </div>
+              )}
+              <img
+                style={{ borderColor: "var(--border-color" }}
+                className="border-2 min-h-13 min-w-13 max-h-13 max-w-13 rounded-full text-black pointer-events-none"
+                src={"./settings.svg"}
+              />
+            </div>
           </div>
-        </div>
+        )}
+        {!rotate && (
+          <div
+            className={`flex justify-between w-full px-5 pt-5 ${
+              rotate ? "absolute z-1" : ""
+            }`}
+          >
+            <div className="flex gap-2 items-center">
+              {user?.googleId && !data.loading && !data.error && (
+                <div className="flex flex-col">
+                  <p
+                    style={{
+                      backgroundColor: "var(--label_bg-color)",
+                      color: "var(--alt-text-color)",
+                      borderColor: "var(--border-color)",
+                    }}
+                    className="text-x w-fit px-2 rounded-t border-b-1"
+                  >
+                    {user.favorites?.length} Saved
+                  </p>
+                  <Button
+                    onClick={handleOpenFavorites}
+                    className={`bg-white min-w-20 text-black text-[9px] sm:text-lg px-4 py-0.5 rounded rounded-tl-none`}
+                  >
+                    {!uiState.openFavorites ? "View Favorites" : "Go Back"}
+                  </Button>
+                </div>
+              )}
+            </div>
+            <div className="flex gap-2  items-center">
+              <Button
+                disabled={data.loading || data.error || uiState.openFavorites}
+                clearbg
+                sort
+                openSortDropdown={uiState.openSortDropdown}
+                onClick={handleOpenSortDropdown}
+              >
+                Sort
+              </Button>
+              <Button
+                disabled={data.loading || data.error || uiState.openFavorites}
+                filter
+                onClick={handleOpenFilterWindow}
+              >
+                Filter
+              </Button>
+            </div>
+          </div>
+        )}
         {!data.loading && !data.error && (
           <>
-            <SearchList onOpen={uiState.openSearchResultsDropdown} />
+            <SearchList
+              showSearchBar={uiState.showSearchBar}
+              onOpen={uiState.openSearchResultsDropdown}
+              bodyHeight={bodyHeight}
+            />
             <MainList />
           </>
         )}
@@ -120,7 +209,12 @@ export default function App() {
           </div>
         )}
 
-        <footer className="theme-transition-footer flex min-w-full max-h-[68px] mt-auto p-2 items-center justify-between text-white relative gap-2">
+        <footer
+          style={{ position: rotate ? "absolute" : "" }}
+          className={`theme-transition-footer flex min-w-full max-h-[68px] mt-auto p-2 items-center justify-between text-white relative gap-2 ${
+            rotate ? "invisible" : ""
+          }`}
+        >
           <>
             {user?.googleId && !data.error && !data.loading && (
               <div
@@ -308,11 +402,6 @@ export default function App() {
           </div>
         </footer>
       </div>
-      {/* {uiState.openFilterWindow &&
-        createPortal(
-          <FiltersMenu theme={theme} onClose={handleCloseFilterWindow} />,
-          document.getElementById("filtersMenu")
-        )} */}
       {uiState.toast &&
         createPortal(
           <Toast detail={uiState.toast} />,
@@ -321,11 +410,11 @@ export default function App() {
       {uiState.openPopup &&
         createPortal(
           <div
-            className={`${theme} absolute z-3 w-full h-full flex items-center justify-center bg-[#000000c7]`}
+            className={`${theme} absolute z-50 w-full h-full flex items-center justify-center bg-[#000000c7]`}
           >
             <div
               onClick={handleCloseWindow}
-              className="absolute z-1 w-full h-full"
+              className="absolute z-1 w-full h-full backdrop-blur-[2px]"
             ></div>
             <div
               style={{ border: "solid 2px var(--border-color)" }}

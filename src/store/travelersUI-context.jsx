@@ -26,6 +26,7 @@ export function UIProvider({ children }) {
     openFavorites: false,
     openFilterWindow: false,
     openThemeSelection: false,
+    showSearchBar: true,
     openSearchResultsDropdown: false,
     openAdvFilters: false,
     openFAQDropdown: false,
@@ -35,11 +36,34 @@ export function UIProvider({ children }) {
     toast: null,
   });
 
+  const [bodyHeight, setBodyHeight] = useState(
+    document.body.getBoundingClientRect().height
+  );
+
   useEffect(() => {
-    if (uiState.openAdvFilters) {
-      console.log("test");
+    const updateHeight = () => {
+      setBodyHeight(document.body.getBoundingClientRect().height);
+    };
+
+    updateHeight();
+
+    window.addEventListener("resize", updateHeight);
+
+    return () => window.removeEventListener("resize", updateHeight);
+  }, []);
+
+  useEffect(() => {
+    if (bodyHeight > 430) {
+      setUiState((prev) => {
+        return { ...prev, showSearchBar: true };
+      });
+    } else {
+      if (uiState.openSearchResultsDropdown) return;
+      setUiState((prev) => {
+        return { ...prev, showSearchBar: false };
+      });
     }
-  }, [uiState.openAdvFilters]);
+  }, [bodyHeight]);
 
   useEffect(() => {
     if (!data.loading && !data.selectedTraveler) {
@@ -63,6 +87,12 @@ export function UIProvider({ children }) {
     setTheme(`${theme}-theme`);
     setUiState((prev) => {
       return { ...prev, openThemeSelection: false };
+    });
+  }
+
+  function handleToggleSearchBar() {
+    setUiState((prev) => {
+      return { ...prev, showSearchBar: true };
     });
   }
 
@@ -539,6 +569,7 @@ export function UIProvider({ children }) {
   return (
     <UIContext.Provider
       value={{
+        bodyHeight,
         theme,
         playSound,
         uiState,
@@ -546,6 +577,7 @@ export function UIProvider({ children }) {
         setUiState,
         visibleItems,
         userOptions,
+        handleToggleSearchBar,
         setVisibleItems,
         handleSwitchTheme,
         handleOpenOptions,

@@ -5,7 +5,8 @@ import { UserContext } from "../store/userData-context";
 
 export default function Traveler({ traveler, index, inView, search }) {
   const { data } = useContext(DataContext);
-  const { handleSelectTraveler } = useContext(UIContext);
+  const { handleSelectTraveler, bodyHeight } = useContext(UIContext);
+  const rotate = 430 > bodyHeight;
   const { user } = useContext(UserContext);
 
   const isVisible = inView.has(`${search ? "result" : "traveler"}-${index}`);
@@ -17,11 +18,15 @@ export default function Traveler({ traveler, index, inView, search }) {
     : [];
   return (
     <div
-      style={search ? { borderTop: "1px solid" } : { border: "2px solid" }}
+      style={
+        search
+          ? { borderRight: "1px solid", borderBottom: "1px solid" }
+          : { border: "2px solid" }
+      }
       className={
         search
           ? "w-full min-h-18 flex gap-2 relative"
-          : "h-30 flex gap-2 relative"
+          : `${rotate ? "h-20" : "h-30"} flex gap-2 relative`
       }
       onClick={() => handleSelectTraveler(traveler)}
       id={`${search ? "result" : "traveler"}-${index}`}
@@ -30,7 +35,11 @@ export default function Traveler({ traveler, index, inView, search }) {
         <>
           <div
             style={search ? {} : { borderRight: "2px solid" }}
-            className={search ? "w-15 flex flex-col" : "w-22 flex flex-col"}
+            className={
+              search
+                ? "w-15 flex flex-col"
+                : `${rotate ? "w-17" : "w-22"} flex flex-col`
+            }
           >
             <div className=" absolute right-0 bottom-0 p-1.5 flex gap-0.5">
               {user?.favorites?.includes(traveler._id) && (
@@ -52,7 +61,9 @@ export default function Traveler({ traveler, index, inView, search }) {
                   backgroundColor: "var(--label_bg-color)",
                   color: "var(--label_text-color)",
                 }}
-                className="text-nowrap text-sm text-center"
+                className={`text-nowrap ${
+                  rotate ? "text-[10px] leading-3.5" : "text-sm"
+                } text-center`}
               >
                 {traveler.job}
               </h2>
@@ -61,17 +72,24 @@ export default function Traveler({ traveler, index, inView, search }) {
               style={{ backgroundColor: "var(--avatar_bg-color" }}
               className="flex-1 overflow-hidden flex items-center justify-center"
             >
-              <img src={traveler.avatar} className={search ? "h-13" : "h-20"} />
+              <img
+                src={traveler.avatar}
+                className={search ? "h-13" : `${rotate ? "h-13" : "h-20"}`}
+              />
 
               <div
                 className={`${
                   search
                     ? "top-1 right-1 w-4 h-4 z-1"
-                    : "bottom-[-5px] left-[-6px] w-5 h-5"
+                    : `bottom-[-5px] left-[-6px] ${
+                        rotate ? "w-4 h-4" : "w-5 h-5"
+                      }`
                 } justify-center text-xs items-center flex outline-1 bg-white rounded-full absolute`}
               >
                 <img
-                  className={search ? "size-3" : "size-4"}
+                  className={
+                    search ? "size-3" : `${rotate ? "size-3" : "size-4"}`
+                  }
                   src={`${
                     data.icons.genders[
                       data.icons.genders.findIndex((gender) =>
@@ -137,13 +155,14 @@ export default function Traveler({ traveler, index, inView, search }) {
             </div>
           ) : (
             <div className="flex flex-col justify-center">
-              <p className="leading-2">{traveler.name}</p>
-              <p className="">{traveler.rank}</p>
+              <p className="leading-3.5">{traveler.name}</p>
+              <p className={`${rotate ? "leading-4" : ""}`}>{traveler.rank}</p>
               <div className="flex">
                 {types.map((type, i) => {
                   return (
                     <img
                       key={i}
+                      className={`${rotate ? "size-4.5" : ""}`}
                       src={`${
                         data.icons.types[
                           data.icons.types.findIndex((gender) =>
@@ -156,7 +175,9 @@ export default function Traveler({ traveler, index, inView, search }) {
                   );
                 })}
               </div>
-              <p>{traveler.influence}</p>
+              <p className={`${rotate ? "leading-4" : ""}`}>
+                {traveler.influence}
+              </p>
             </div>
           )}
         </>
