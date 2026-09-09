@@ -4,6 +4,7 @@ import favoriteCharacter from "../helpers/favoriteCharacter";
 import { UserContext } from "./userData-context";
 import { useNavigate } from "react-router-dom";
 import { Howl, Howler } from "howler";
+import { updateViewCount } from "../helpers/updateViewCount.js";
 
 export const UIContext = createContext();
 
@@ -23,7 +24,7 @@ export function UIProvider({ children }) {
   const [userOptions, setUserOptions] = useState();
   const [uiState, setUiState] = useState({
     openSortDropdown: false,
-    openHamburgerMenu: true,
+    openHamburgerMenu: false,
     openFavorites: false,
     openFilterWindow: false,
     openThemeSelection: false,
@@ -109,10 +110,28 @@ export function UIProvider({ children }) {
   }, [uiState.openOptions]);
 
   useEffect(() => {
+    const handle = (e) =>
+      handleClickOutside(e, "changeResults", "openHamburgerMenu");
+    if (uiState.openHamburgerMenu) {
+      console.log("test");
+      window.addEventListener("click", handle);
+    }
+    return () => {
+      window.removeEventListener("click", handle);
+    };
+  }, [uiState.openHamburgerMenu]);
+
+  useEffect(() => {
     if (localStorage.getItem("theme")) {
       setTheme(`${localStorage.getItem("theme")}-theme`);
     }
   }, []);
+
+  function handleOpenHamburgerMenu() {
+    setUiState((prev) => {
+      return { ...prev, openHamburgerMenu: true };
+    });
+  }
 
   function handleOpenOptions(e) {
     if (uiState.openOptions) {
@@ -170,6 +189,7 @@ export function UIProvider({ children }) {
       tapTimeoutRef.current = null;
       handleFavoriteTraveler(traveler);
     } else {
+      updateViewCount(traveler.slug);
       tapTimeoutRef.current = setTimeout(() => {
         playSound("page_turn");
 
@@ -198,6 +218,9 @@ export function UIProvider({ children }) {
           ...prev,
           openFavorites: true,
           travelerCount: user.favorites.length,
+          openFilterWindow: false,
+          openAdvFilters: false,
+          openSortDropdown: false,
         };
       });
     } else {
@@ -424,6 +447,16 @@ export function UIProvider({ children }) {
       playSound("deny");
       return;
     }
+    if (uiState.openFilterWindow) {
+      playSound("back");
+      setUiState((prev) => {
+        return {
+          ...prev,
+          openFilterWindow: false,
+        };
+      });
+      return;
+    }
     playSound("confirm");
     setUiState((prev) => {
       return {
@@ -589,6 +622,7 @@ export function UIProvider({ children }) {
         handleCloseSortDropdown,
         handleFAQDropdown,
         handleOpenFilterWindow,
+        handleOpenHamburgerMenu,
         handleCloseFilterWindow,
         handleClickOutside,
         handleSelectTraveler,

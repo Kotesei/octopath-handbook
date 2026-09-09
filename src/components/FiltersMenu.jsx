@@ -37,8 +37,11 @@ export default function FiltersMenu({ onClose, theme }) {
         backgroundColor: "var(--label_bg-color)",
         borderColor: "var(--border-color)",
       }}
-      className="min-h-10 flex justify-between items-center p-2 rounded-t border-2"
+      className="min-h-10 flex justify-between items-center p-2 border-b-2"
     >
+      {uiState.openAdvFilters && (
+        <div className="absolute w-full h-full top-0 left-0 z-1"></div>
+      )}
       <div className="flex gap-2 overflow-auto px-2">
         <div className="flex gap-1 items-center">
           <label
@@ -122,7 +125,7 @@ export default function FiltersMenu({ onClose, theme }) {
         {uiState.openAdvFilters && (
           <div
             id="advFilters"
-            className="absolute z-1 top-0 right-0 rounded p-2 flex justify-end"
+            className="absolute z-5 top-0 right-0 rounded p-2 flex justify-end"
           >
             <div
               style={{

@@ -51,7 +51,7 @@ export default function Traveler({ traveler, index, inView, search }) {
                 </div>
               )}
               <div className="w-5.5 h-5.5 p-0.5 flex flex-col justify-center items-center pb-4">
-                <p className="text-center text-xs">0</p>
+                <p className="text-center text-xs">{traveler.views}</p>
                 <img src="/view.svg" />
               </div>
             </div>

@@ -23,7 +23,7 @@ export default function Button({
           }}
           className={`${
             disabled ? "" : `outline-1`
-          } px-5 py-2 rounded relative cursor-pointer`}
+          } px-5 py-2 z-20 rounded relative cursor-pointer`}
           {...props}
         >
           <button

@@ -25,6 +25,7 @@ export default function App() {
     handleSelectOption,
     handleOpenFilterWindow,
     handleOpenSortDropdown,
+    handleOpenHamburgerMenu,
     handleFAQDropdown,
     handleOpenFavorites,
     handleCloseWindow,
@@ -41,49 +42,94 @@ export default function App() {
       >
         {rotate && !data.loading && !data.error && (
           <div className="w-20 h-full absolute left-0 top-0 px-3 pt-4 pb-8 flex flex-col justify-between items-center">
-            <div className="flex flex-col gap-2 items-center">
-              <div className="bg-white w-10 h-10 rounded-lg flex items-center justify-center relative">
+            <div className="flex flex-col gap-2 pointer-events-none items-center">
+              <div
+                onClick={handleOpenHamburgerMenu}
+                id="changeResults"
+                className="bg-white pointer-events-auto w-10 h-10 rounded-lg flex items-center justify-center relative"
+              >
                 {uiState.openHamburgerMenu && (
-                  <div className="left-[100%] top-0 pl-2 absolute z-5 w-fit h-fit">
-                    <div className="bg-white  text-nowrap px-1 py-1  rounded gap-1 flex flex-col">
-                      <p className="bg-black px-1 rounded w-fit">
+                  <div
+                    id="changeResults"
+                    className="left-[100%] top-[-5%] pl-2 absolute z-5 w-fit h-fit"
+                  >
+                    <div
+                      id="changeResults"
+                      style={{
+                        backgroundColor: "var(--avatar_bg-color",
+                        border: "2px solid var(--border-color)",
+                      }}
+                      className=" text-nowrap px-1 py-1  rounded gap-1 flex flex-col"
+                    >
+                      <Button
+                        id="changeResults"
+                        style={{
+                          backgroundColor: "var(--bg-color)",
+                          color: "var(--alt-text-color",
+                        }}
+                        className="px-1 rounded w-fit"
+                        onClick={handleOpenSortDropdown}
+                      >
                         Sort Travelers
-                      </p>
-                      <p className="bg-black px-1 rounded w-fit">
+                      </Button>
+                      <Button
+                        id="changeResults"
+                        style={{
+                          backgroundColor: `var(--${
+                            uiState.openFilterWindow ? "label_bg" : "bg"
+                          }-color)`,
+                          color: `var(--${
+                            uiState.openFilterWindow ? "label_" : "alt-"
+                          }text-color`,
+                        }}
+                        onClick={handleOpenFilterWindow}
+                        className="px-1 rounded w-fit"
+                      >
                         Filter Travelers
-                      </p>
+                      </Button>
                     </div>
                   </div>
                 )}
-                <img src="hamburger.svg" className="size-6" />
+                <img
+                  id="changeResults"
+                  src="hamburger.svg"
+                  className="size-6"
+                />
               </div>
               <div
-                className="bg-white w-9 h-9 rounded-full flex items-center justify-center"
+                className="pointer-events-auto bg-white w-9 h-9 rounded-full flex items-center justify-center"
                 onClick={handleToggleSearchBar}
               >
                 <img src="search.svg" className="size-6" />
               </div>
 
-              <div className="flex bg-white rounded-full flex-col items-center gap-1 w-9 h-9 justify-center relative">
-                <div
-                  onClick={handleOpenFavorites}
-                  className="rounded-full absolute flex items-center justify-center"
-                >
-                  {!uiState.openFavorites ? (
-                    <img src="heart.svg" className="size-10" />
-                  ) : (
-                    <img src="return-arrow.svg" className="size-10" />
-                  )}
+              {user.favorites && (
+                <div className="flex bg-white rounded-full flex-col items-center gap-1 w-9 h-9 justify-center relative">
+                  <div
+                    onClick={handleOpenFavorites}
+                    className="pointer-events-auto rounded-full absolute flex items-center justify-center"
+                  >
+                    {!uiState.openFavorites ? (
+                      <img src="heart.svg" className="size-10" />
+                    ) : (
+                      <img src="return-arrow.svg" className="size-10" />
+                    )}
+                  </div>
+                  <p className="text-white text-xs absolute top-[100%] text-nowrap">
+                    {!uiState.openFavorites ? "View Saved" : "Go Back"}
+                  </p>
                 </div>
-                <p className="text-white text-xs"></p>
-              </div>
+              )}
             </div>
             <div
               id="options-window"
               className="relative"
               onClick={handleOpenOptions}
             >
-              <div className="pointer-events-none absolute border-1 w-5 h-5 left-[70%] bottom-[65%] rounded-xl flex flex-wrap overflow-hidden">
+              <div
+                style={{ borderColor: "var(--border-color)" }}
+                className="pointer-events-none absolute border-1 w-5 h-5 left-[70%] bottom-[65%] rounded-xl flex flex-wrap overflow-hidden"
+              >
                 <div
                   style={{ backgroundColor: "var(--container_bg-color)" }}
                   className="h-[50%] w-[50%]"
@@ -138,7 +184,7 @@ export default function App() {
               <img
                 style={{ borderColor: "var(--border-color" }}
                 className="border-2 min-h-13 min-w-13 max-h-13 max-w-13 rounded-full text-black pointer-events-none"
-                src={"./settings.svg"}
+                src={user?.avatar ? user.avatar : "/settings.svg"}
               />
             </div>
           </div>
@@ -171,24 +217,26 @@ export default function App() {
                 </div>
               )}
             </div>
-            <div className="flex gap-2  items-center">
-              <Button
-                disabled={data.loading || data.error || uiState.openFavorites}
-                clearbg
-                sort
-                openSortDropdown={uiState.openSortDropdown}
-                onClick={handleOpenSortDropdown}
-              >
-                Sort
-              </Button>
-              <Button
-                disabled={data.loading || data.error || uiState.openFavorites}
-                filter
-                onClick={handleOpenFilterWindow}
-              >
-                Filter
-              </Button>
-            </div>
+            {!data.loading && !data.error && (
+              <div className="flex gap-2  items-center">
+                <Button
+                  disabled={data.loading || data.error || uiState.openFavorites}
+                  clearbg
+                  sort
+                  openSortDropdown={uiState.openSortDropdown}
+                  onClick={handleOpenSortDropdown}
+                >
+                  Sort
+                </Button>
+                <Button
+                  disabled={uiState.openFavorites}
+                  filter
+                  onClick={handleOpenFilterWindow}
+                >
+                  Filter
+                </Button>
+              </div>
+            )}
           </div>
         )}
         {!data.loading && !data.error && (
@@ -243,13 +291,16 @@ export default function App() {
           }`}
         >
           <>
-            {user?.googleId && !data.error && !data.loading && (
+            {!data.error && !data.loading && (
               <div
                 id="options-window"
                 className="relative"
                 onClick={handleOpenOptions}
               >
-                <div className="pointer-events-none absolute border-1 w-5 h-5 left-[70%] bottom-[65%] rounded-xl flex flex-wrap overflow-hidden">
+                <div
+                  style={{ borderColor: "var(--border-color)" }}
+                  className="pointer-events-none absolute border-1 w-5 h-5 left-[70%] bottom-[65%] rounded-xl flex flex-wrap overflow-hidden"
+                >
                   <div
                     style={{ backgroundColor: "var(--container_bg-color)" }}
                     className="h-[50%] w-[50%]"
@@ -304,76 +355,10 @@ export default function App() {
                 <img
                   style={{ borderColor: "var(--border-color" }}
                   className="border-2 min-h-12 min-w-12 max-h-12 max-w-12 rounded-full text-black pointer-events-none"
-                  src={user.avatar}
+                  src={user?.avatar ? user.avatar : "/settings.svg"}
                 />
               </div>
             )}
-            {!user?.googleId && !data.error && !data.loading && (
-              <div
-                id="options-window"
-                className="relative"
-                onClick={handleOpenOptions}
-              >
-                <div className="pointer-events-none absolute border-1 w-5 h-5 left-[70%] bottom-[65%] rounded-xl flex flex-wrap overflow-hidden">
-                  <div
-                    style={{ backgroundColor: "var(--container_bg-color)" }}
-                    className="h-[50%] w-[50%]"
-                  ></div>
-                  <div
-                    style={{ backgroundColor: "var(--bg-color)" }}
-                    className="h-[50%] w-[50%]"
-                  ></div>
-
-                  <div
-                    style={{ backgroundColor: "var(--details_bg-color)" }}
-                    className="h-[50%] w-[50%] "
-                  ></div>
-                  <div
-                    style={{
-                      backgroundColor: "var(--details_header_bg-color)",
-                    }}
-                    className="h-[50%] w-[50%] "
-                  ></div>
-                  {/*  */}
-                </div>
-                {uiState.openOptions && (
-                  <div
-                    id="options-window"
-                    style={{ backgroundColor: "var(--avatar_bg-color)" }}
-                    className={`absolute bottom-[125%] border-2 rounded-xl min-w-fit ${
-                      uiState.openThemeSelection ? "p-1" : "p-2"
-                    } flex flex-col gap-1`}
-                  >
-                    {uiState.openThemeSelection && <ThemeSelection />}
-                    {!uiState.openThemeSelection &&
-                      userOptions.map((option, i) => {
-                        return (
-                          <p
-                            key={i}
-                            id="options-window"
-                            style={{
-                              whiteSpace: "nowrap",
-                              textWrap: "nowrap",
-                              backgroundColor: "var(--label_bg-color)",
-                              color: "var(--label_text-color)",
-                            }}
-                            className="text-nowrap rounded px-2"
-                            onClick={() => handleSelectOption(option)}
-                          >
-                            {option}
-                          </p>
-                        );
-                      })}
-                  </div>
-                )}
-                <img
-                  style={{ borderColor: "var(--border-color" }}
-                  className="border-2 min-h-12 min-w-12 max-h-12 max-w-12 rounded-full text-black pointer-events-none"
-                  src={"./settings.svg"}
-                />
-              </div>
-            )}
-
             {data.error && (
               <div
                 style={{

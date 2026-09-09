@@ -19,7 +19,7 @@ export default function MainList() {
 
   const noTravelers =
     (user.favorites?.length === 0 && uiState.openFavorites) ||
-    travelerFilters.filteredTravelers.length === 0;
+    (travelerFilters.filteredTravelers.length === 0 && !uiState.openFavorites);
 
   if (filtersReady) {
     return (
@@ -27,33 +27,27 @@ export default function MainList() {
         <div
           className={`overflow-hidden relative pointer-events-none ${
             rotate
-              ? `w-[100%] max-h-[95%] ${
-                  noTravelers ? "" : "min-h-[95%]"
-                } pl-20 pr-2`
-              : `w-[90%]  ${noTravelers ? "" : "h-full min-h-[162px]"}`
+              ? `w-[100%] max-h-[95%]
+                 min-h-[95%]
+                 pl-20 pr-2`
+              : `w-[90%] h-full min-h-[162px]`
           } flex flex-col items-center`}
         >
-          <div className="absolute w-[100%] h-10 z-1">
-            {uiState.openFilterWindow && <FiltersMenu />}
-          </div>
           <div
-            className={`pointer-events-auto relative  ${
-              noTravelers ? "" : "w-full"
-            } flex h-full flex-col overflow-hidden rounded`}
+            className={`pointer-events-auto relative w-full
+            flex h-full flex-col overflow-hidden rounded`}
             style={{
               backgroundColor: "var(--container_bg-color)",
               border: "2px solid var(--border-color)",
             }}
           >
-            {uiState.openFilterWindow && (
-              <div className="min-h-10 flex justify-between items-center p-2"></div>
-            )}
+            {uiState.openFilterWindow && <FiltersMenu />}
             <div
               ref={travelerListRef}
               id={"travelerList"}
               className={`${
                 noTravelers
-                  ? "flex items-center justify-center"
+                  ? "flex items-center justify-center flex-1"
                   : "grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4 gap-1.5"
               } max-h-[100%] overflow-x-hidden overflow-y-auto 
              
